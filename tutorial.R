@@ -20,7 +20,7 @@
 
 rm(list=ls(all=T))
 library(ape)
-setwd("/Volumes/mp1728/Postdoc/WickettTrees/datingAnalyses/prepareMCMCtree/")
+setwd("")
 
 install.packages("devtools")
 library(devtools)
