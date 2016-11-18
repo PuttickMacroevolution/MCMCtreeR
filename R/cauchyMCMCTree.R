@@ -20,7 +20,8 @@ cauchyMCMCTree <- function(xRange=c(0, 2), tL=1, p=0.5, c=0.2, minProb=0.025, ma
 		if(t <= tL) numero[rc] <- minProb * (omega/tL) * (t/tL)^(omega-1)
 		rc <- rc + 1
 		}
-	return(cbind(xx, numero))
+	time <- xx ; density <- numero
+	return(cbind(time, density))
 }
 
 

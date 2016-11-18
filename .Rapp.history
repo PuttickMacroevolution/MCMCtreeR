@@ -1,0 +1,1040 @@
+foo <- function(x) {#
+    	ebTree <- ebSubClade(phy, a=x[2], node=node, branches, times, originTimeFocal)#
+    	-1 * phyICOptim(ebTree, y, x[1])$logLikelihood#
+#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");
+o
+phyICOptim(ebTree, y, o$par[1])$logLikelihood
+ebTree <- ebSubClade(phy, a=o$par[2], node=node, branches, times, originTimeFocal)
+phyICOptim(ebTree, y, o$par[1])$logLikelihood
+foo <- function(x) {#
+    	ebTree <- ebSubClade(phy, a=x[2], node=node, branches, times, originTimeFocal)#
+    	-1 * phyICOptim(ebTree, y, x[1])$logLikelihood#
+#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+  ebTree <- ebSubClade(phy, a=o$par[2], node=node, branches, times, originTimeFocal)#
+  ebOut <- phyICOptim(ebTree, y, o$par[1])#
+  results <- list(lnl = ebOut$logLikelihood, root.state = as.numeric(ebOut$phyloMean), beta = o$par[1], a = o$par[2], focalnode = node);#
+  results$aic <- 2 * k - 2 * ebOut$logLikelihood#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * ebOut$logLikelihood#
+  results$k <- k
+results
+startBM = beta.start#
+    lowerBM = bounds[1, "beta"]#
+    upperBM = bounds[2, "beta"]#
+    k <- 2
+picMark <- phyIC(phy, y)#
+		results <- list(lnl = picMark$logLikelihood, root.state = as.numeric(picMark$phyloMean), beta = picMark$sigmaSq)#
+		results$aic <- 2 * k - 2 * picMark$logLikelihood#
+  		results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * picMark$logLikelihood#
+  		results$k <- k
+results
+allTimes <- BranchingTimesFossil(phy)#
+  	relations_num <- monoClade(phy, node)#
+  	originTimeFocal <- allTimes[which(names(allTimes) == node)]#
+  	names(allTimes)[((Nnode(phy)+1):(Nnode(phy)+Ntip(phy)))] <- 1:Ntip(phy)#
+  	times <- c()#
+  	for(u in 1:length(allTimes)) times[which(phy$edge[,1] == names(allTimes)[u])] <- allTimes[u]#
+  	branches <- match(relations_num , phy$edge[,2])#
+  	lowerEB <- as.numeric(log(10^-5)/originTimeFocal)#
+  	k <- 4#
+	start <- c(startBM, startBM,  -0.01)#
+	upper <- c(upperBM, upperBM, -0.000001)#
+	lower <- c(lowerBM, lowerBM,  lowerEB)#
+  	n <- Ntip(phy)
+ebSubClade
+ebSubClade <- function (phy_tree, a, node, branches, times, originTime, newRate=1) {#
+  for (i in branches) {#
+    bl <- phy_tree$edge.length[i]#
+    age <- times[i]#
+    t1 <- originTime - age	  #distance from root#
+    t2 <- t1 + bl          	#length from root plus original length#
+    phy_tree$edge.length[i] <- ((exp(a*t2)-exp(a*t1))/(a) ) * newRate#
+  }#
+  phy_tree#
+}
+allTimes <- BranchingTimesFossil(phy)#
+  	relations_num <- monoClade(phy, node)#
+  	originTimeFocal <- allTimes[which(names(allTimes) == node)]#
+  	names(allTimes)[((Nnode(phy)+1):(Nnode(phy)+Ntip(phy)))] <- 1:Ntip(phy)#
+  	times <- c()#
+  	for(u in 1:length(allTimes)) times[which(phy$edge[,1] == names(allTimes)[u])] <- allTimes[u]#
+  	branches <- match(relations_num , phy$edge[,2])#
+  	lowerEB <- as.numeric(log(10^-5)/originTimeFocal)#
+  	k <- 4#
+	start <- c(startBM, startBM,  -0.01)#
+	upper <- c(upperBM, upperBM, -0.000001)#
+	lower <- c(lowerBM, lowerBM,  lowerEB)#
+  	n <- Ntip(phy)#
+  foo <- function(x) {#
+    ebTree <- ebSubClade(phy, a=x[3], node, branches, times, originTimeFocal, newRate=x[2])#
+    -1 * phyICOptim(ebTree, y, x[1])$logLikelihood#
+  }
+o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");
+o
+ebTree <- ebSubClade(phy, a=x[3], node, branches, times, originTimeFocal, newRate=x[2])#
+    -1 * phyICOptim(ebTree, y, x[1])$logLikelihood
+allTimes <- BranchingTimesFossil(phy)#
+  	relations_num <- monoClade(phy, node)#
+  	originTimeFocal <- allTimes[which(names(allTimes) == node)]#
+  	names(allTimes)[((Nnode(phy)+1):(Nnode(phy)+Ntip(phy)))] <- 1:Ntip(phy)#
+  	times <- c()#
+  	for(u in 1:length(allTimes)) times[which(phy$edge[,1] == names(allTimes)[u])] <- allTimes[u]#
+  	branches <- match(relations_num , phy$edge[,2])#
+  	lowerEB <- as.numeric(log(10^-5)/originTimeFocal)#
+  	k <- 3	#
+  	start <- c(startBM, -0.01)#
+  	upper <- c(upperBM, -0.000001)#
+  	lower <- c(lowerBM, lowerEB)#
+  	n <- Ntip(phy)#
+#
+	foo <- function(x) {#
+    	ebTree <- ebSubClade(phy, a=x[2], node=node, branches, times, originTimeFocal)#
+    	-1 * phyICOptim(ebTree, y, x[1])$logLikelihood#
+#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+  ebTree <- ebSubClade(phy, a=o$par[2], node=node, branches, times, originTimeFocal)#
+  ebOut <- phyICOptim(ebTree, y, o$par[1])#
+  results <- list(lnl = ebOut$logLikelihood, root.state = as.numeric(ebOut$phyloMean), beta = o$par[1], a = o$par[2], focalnode = node);#
+  results$aic <- 2 * k - 2 * ebOut$logLikelihood#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * ebOut$logLikelihood#
+  results$k <- k#
+  return(results)
+results
+allTimes <- BranchingTimesFossil(phy)#
+  	relations_num <- monoClade(phy, node)#
+  	originTimeFocal <- allTimes[which(names(allTimes) == node)]#
+  	names(allTimes)[((Nnode(phy)+1):(Nnode(phy)+Ntip(phy)))] <- 1:Ntip(phy)#
+  	times <- c()#
+  	for(u in 1:length(allTimes)) times[which(phy$edge[,1] == names(allTimes)[u])] <- allTimes[u]#
+  	branches <- match(relations_num , phy$edge[,2])#
+  	lowerEB <- as.numeric(log(10^-5)/originTimeFocal)#
+  	k <- 4#
+	start <- c(startBM, startBM,  -0.01)#
+	upper <- c(upperBM, upperBM, -0.000001)#
+	lower <- c(lowerBM, lowerBM,  lowerEB)#
+  	n <- Ntip(phy)
+foo <- function(x) {#
+    ebTree <- ebSubClade(phy, a=x[3], node, branches, times, originTimeFocal, newRate=x[2])#
+    -1 * phyICOptim(ebTree, y, x[1])$logLikelihood#
+  }#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");
+o
+ebTree <- ebSubClade(phy, a=o$par[2], node=node, branches, times, originTimeFocal)
+ebTree <- ebSubClade(phy, a=o$par[3], node=node, branches, times, originTimeFocal, o$par[2])
+ebOut <- phyICOptim(ebTree, y, o$par[1])
+ebOut
+upperBM
+o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+#
+  ebTree <- ebSubClade(phy, a=o$par[3], node=node, branches, times, originTimeFocal, o$par[2])#
+  ebOut <- phyICOptim(ebTree, y, o$par[1])#
+#
+	results <- list(lnl = ebOut$logLikelihood, root.state = as.numeric(ebOut$phyloMean), beta = o$par[1], betaClade=o$par[2], a = o$par[3], focalnode = node);#
+  results$aic <- 2 * k - 2 * ebOut$logLikelihood#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * ebOut$logLikelihood#
+  results$k <- k
+results
+ebOut$logLikelihood
+2 * k - 2 * ebOut$logLikelihood
+2 * k * (n - 1)/(n - k - 2) - 2 * ebOut$logLikelihood
+k
+ebOut$logLikelihood
+2 * ebOut$logLikelihood
+2 * k * (n - 1)/(n - k - 2)
+n
+results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * ebOut$logLikelihood
+results$aicc
+results$aic
+lowerEB
+shiftClade <- function (phy_tree, rate,  branches) {#
+  for (i in branches) {#
+    bl <- phy_tree$edge.length[i]#
+    phy_tree$edge.length[i] <- bl * rate#
+  }#
+  phy_tree#
+}
+allTimes <- BranchingTimesFossil(phy)#
+  	relations_num <- monoClade(phy, node)#
+  	originTimeFocal <- allTimes[which(names(allTimes) == node)]#
+  	names(allTimes)[((Nnode(phy)+1):(Nnode(phy)+Ntip(phy)))] <- 1:Ntip(phy)#
+  	times <- c()#
+  	for(u in 1:length(allTimes)) times[which(phy$edge[,1] == names(allTimes)[u])] <- allTimes[u]#
+  	branches <- match(relations_num , phy$edge[,2])#
+  	lowerEB <- as.numeric(log(10^-5)/originTimeFocal)#
+  	k <- 4#
+	start <- c(startBM, startBM,  -0.01)#
+	upper <- c(upperBM, upperBM, -0.000001)#
+	lower <- c(lowerBM, lowerBM,  lowerEB)#
+  	n <- Ntip(phy)#
+	foo <- function(x) {#
+		phyOut <- shiftClade(phy, rate=x[2], branches)#
+		-1 * phyICOptim(phyOut, y, x[1])$logLikelihood#
+#
+    }#
+  }#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");
+o
+allTimes <- BranchingTimesFossil(phy)#
+  	relations_num <- monoClade(phy, node)#
+  	originTimeFocal <- allTimes[which(names(allTimes) == node)]#
+  	names(allTimes)[((Nnode(phy)+1):(Nnode(phy)+Ntip(phy)))] <- 1:Ntip(phy)#
+  	times <- c()#
+  	for(u in 1:length(allTimes)) times[which(phy$edge[,1] == names(allTimes)[u])] <- allTimes[u]#
+  	branches <- match(relations_num , phy$edge[,2])#
+  	lowerEB <- as.numeric(log(10^-5)/originTimeFocal)#
+  	k <- 4#
+	start <- c(startBM, startBM)#
+	upper <- c(upperBM, upperBM)#
+	lower <- c(lowerBM, lowerBM)#
+  	n <- Ntip(phy)#
+	foo <- function(x) {#
+		phyOut <- shiftClade(phy, rate=x[2], branches)#
+		-1 * phyICOptim(phyOut, y, x[1])$logLikelihood#
+#
+    }
+o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");
+o
+allTimes <- BranchingTimesFossil(phy)#
+  	relations_num <- monoClade(phy, node)#
+  	originTimeFocal <- allTimes[which(names(allTimes) == node)]#
+  	names(allTimes)[((Nnode(phy)+1):(Nnode(phy)+Ntip(phy)))] <- 1:Ntip(phy)#
+  	times <- c()#
+  	for(u in 1:length(allTimes)) times[which(phy$edge[,1] == names(allTimes)[u])] <- allTimes[u]#
+  	branches <- match(relations_num , phy$edge[,2])#
+  	lowerEB <- as.numeric(log(10^-5)/originTimeFocal)#
+  	k <- 4#
+	start <- c(startBM, startBM)#
+	upper <- c(upperBM, upperBM)#
+	lower <- c(lowerBM, lowerBM)#
+  	n <- Ntip(phy)#
+	foo <- function(x) {#
+		phyOut <- shiftClade(phy, rate=x[2], branches)#
+		-1 * phyICOptim(phyOut, y, x[1])$logLikelihood#
+#
+    }#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+#
+  phyOut <- shiftClade(phy, rate=o$par[2], branches)#
+  shiftOut <- phyICOptim(phyOut, y, o$par[1])#
+#
+  results <- list(lnl = shiftOut$logLikelihood, root.state = as.numeric(shiftOut$phyloMean), beta = o$par[1], betaClade=o$par[2], focalnode = node);#
+  results$aic <- 2 * k - 2 * shiftOut$logLikelihood#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * shiftOut$logLikelihood#
+  results$k <- k
+results
+k
+n
+ouMatrix
+node=Ntip(phy) + 1#
+	allTimes <- BranchingTimesFossil(phy)#
+  	relations_num <- monoClade(phy, node)#
+  	originTimeFocal <- allTimes[which(names(allTimes) == node)]#
+  	names(allTimes)[((Nnode(phy)+1):(Nnode(phy)+Ntip(phy)))] <- 1:Ntip(phy)#
+  	times <- c()#
+  	for(u in 1:length(allTimes)) times[which(phy$edge[,1] == names(allTimes)[u])] <- allTimes[u]#
+  	branches <- match(relations_num , phy$edge[,2])#
+  	lowerEB <- as.numeric(log(10^-5)/originTimeFocal)#
+  	k <- 3	#
+  	start <- c(startBM, -0.01)#
+  	upper <- c(upperBM, -0.000001)#
+  	lower <- c(lowerBM, lowerEB)#
+  	n <- Ntip(phy)#
+#
+	foo <- function(x) {#
+    	ebTree <- ebSubClade(phy, a=x[2], node=node, branches, times, originTimeFocal)#
+    	-1 * phyICOptim(ebTree, y, x[1])$logLikelihood#
+#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+  ebTree <- ebSubClade(phy, a=o$par[2], node=node, branches, times, originTimeFocal)#
+  ebOut <- phyICOptim(ebTree, y, o$par[1])
+results <- list(lnl = ebOut$logLikelihood, root.state = as.numeric(ebOut$phyloMean), beta = o$par[1], a = o$par[2], focalnode = node);
+results
+results$aic <- 2 * k - 2 * ebOut$logLikelihood
+results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * ebOut$logLikelihood
+results$k <- k
+ouMatrix
+ouMatrix(phy, 1)
+ouMatrix(vcv(phy), 1)
+vcv(phy)
+vcvDiag <- diag(vcvMatrix)
+vcvMatrix <- vcv(phy)
+vcvDiag <- diag(vcvMatrix)
+vcvDiag
+vcv(phy)
+diagi <- matrix(vcvDiag, nrow = length(vcvDiag), ncol = length(vcvDiag))
+diagi
+vcvDiag
+vcvMatrix
+diagi <- matrix(vcvDiag, nrow = length(vcvDiag), ncol = length(vcvDiag))
+diagj <- matrix(vcvDiag, nrow = length(vcvDiag), ncol = length(vcvDiag),
+byrow = T)
+diagj
+diagi
+plot(phy)
+(1/(2 * alpha)) * exp(-alpha * Tij) * (1 - #
+        exp(-2 * alpha * vcvMatrix))
+alpha=1
+(1/(2 * alpha)) * exp(-alpha * Tij) * (1 - #
+        exp(-2 * alpha * vcvMatrix))
+Tij = diagi + diagj - (2 * vcvMatrix)
+Tij
+vcvMatrix <- vcv(phy)
+vcvMatrix
+vcvMatrix <- vcv(phy)#
+#
+vcvDiag <- diag(vcvMatrix)
+vcvDiag
+plot(phy)
+edgelabels(phy$edge.length)
+vcvDiag
+diagi <- matrix(vcvDiag, nrow = length(vcvDiag), ncol = length(vcvDiag))
+diagi
+diagj <- matrix(vcvDiag, nrow = length(vcvDiag), ncol = length(vcvDiag), #
+        byrow = T)
+diagj
+diagi + diagj
+vcvMatrix
+(2 * vcvMatrix)
+diagi + diagj - (2 * vcvMatrix)
+Tij = diagi + diagj - (2 * vcvMatrix)
+exp(-alpha * Tij)
+k <- 3#
+	start <- c(startBM, log(0.05))#
+	upper <- c(upperBM, log(50))#
+	lower <- c(lowerBM, log(1e-8))#
+	release.mat <- split.vcv.node(phy, node)#
+	n <- Ntip(phy)#
+	bm.mat <- release.mat[[1]]#
+	shift.mat <- release.mat[[2]]#
+	foo <- function(x) {#
+    	vv <- (bm.mat + ouMatrix(shift.mat, exp(x[2])))#
+    	diag(vv) <- diag(vv) #+ meserr^2#
+    	-1 * phyICOptim(vcv2phy(vv), y, x[1])#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");
+k <- 3#
+	start <- c(startBM, log(0.05))#
+	upper <- c(upperBM, log(50))#
+	lower <- c(lowerBM, log(1e-8))#
+	release.mat <- split.vcv.node(phy, node)#
+	n <- Ntip(phy)#
+	bm.mat <- release.mat[[1]]#
+	shift.mat <- release.mat[[2]]#
+	foo <- function(x) {#
+    	vv <- (bm.mat + ouMatrix(shift.mat, exp(x[2])))#
+    	diag(vv) <- diag(vv) #+ meserr^2#
+    	-1 * phyICOptim(vcv2phylo(vv), y, x[1])#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");
+vv
+k <- 3#
+	start <- c(startBM, log(0.05))#
+	upper <- c(upperBM, log(50))#
+	lower <- c(lowerBM, log(1e-8))#
+	release.mat <- split.vcv.node(phy, node)#
+	n <- Ntip(phy)#
+	bm.mat <- release.mat[[1]]#
+	shift.mat <- release.mat[[2]]#
+	foo <- function(x) {#
+    	vv <- (bm.mat + ouMatrix(shift.mat, x[2]))#
+    	diag(vv) <- diag(vv) #+ meserr^2#
+    	-1 * phyICOptim(vcv2phylo(vv), y, x[1])#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");
+k <- 3#
+	start <- c(startBM, log(0.05))#
+	upper <- c(upperBM, log(50))#
+	lower <- c(lowerBM, log(1e-8))#
+	release.mat <- split.vcv.node(phy, node)#
+	n <- Ntip(phy)#
+	bm.mat <- release.mat[[1]]#
+	shift.mat <- release.mat[[2]]
+x=start
+x
+node
+node=9
+k <- 3#
+	start <- c(startBM, log(0.05))#
+	upper <- c(upperBM, log(50))#
+	lower <- c(lowerBM, log(1e-8))#
+	release.mat <- split.vcv.node(phy, node)#
+	n <- Ntip(phy)#
+	bm.mat <- release.mat[[1]]#
+	shift.mat <- release.mat[[2]]
+foo <- function(x) {#
+    	vv <- (bm.mat + ouMatrix(shift.mat, x[2]))#
+    	diag(vv) <- diag(vv) #+ meserr^2#
+    	-1 * phyICOptim(vcv2phylo(vv), y, x[1])#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");
+k <- 3#
+	start <- c(startBM, log(0.05))#
+	upper <- c(upperBM, log(50))#
+	lower <- c(lowerBM, log(1e-8))#
+	release.mat <- split.vcv.node(phy, node)#
+	n <- Ntip(phy)#
+	bm.mat <- release.mat[[1]]#
+	shift.mat <- release.mat[[2]]
+vv <- bm.mat + ouMatrix(shift.mat, x[2])
+vv
+diag(vv) <- diag(vv) #+ meserr^2
+vcv2phylo(vv)
+-1 * phyICOptim(vcv2phylo(vv), y, x[1])
+y
+phyICOptim(vcv2phylo(vv), y, x[1])
+k <- 3#
+	start <- c(startBM, log(0.05))#
+	upper <- c(upperBM, log(50))#
+	lower <- c(lowerBM, log(1e-8))#
+	release.mat <- split.vcv.node(phy, node)#
+	n <- Ntip(phy)#
+	bm.mat <- release.mat[[1]]#
+	shift.mat <- release.mat[[2]]#
+	foo <- function(x) {#
+    	vv <- bm.mat + ouMatrix(shift.mat, x[2])#
+    	diag(vv) <- diag(vv) #+ meserr^2#
+    	-1 * phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");
+o
+k <- 3#
+	start <- c(startBM, log(0.05))#
+	upper <- c(upperBM, log(50))#
+	lower <- c(lowerBM, log(1e-8))#
+	release.mat <- split.vcv.node(phy, node)#
+	n <- Ntip(phy)#
+	bm.mat <- release.mat[[1]]#
+	shift.mat <- release.mat[[2]]#
+	foo <- function(x) {#
+    	vv <- bm.mat + ouMatrix(shift.mat, x[2])#
+    	-1 * phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+  ml.vcv <- exp(o$par[1]) * (bm.mat + (ouMatrix(shift.mat, exp(o$par[2]))))#
+  root.state <- phylogMean(ml.vcv, y)#
+  results <- list(lnl = -o$value, root.state = root.state, beta = exp(o$par[1]), alpha = o$par[2], focalnode = node);#
+  results$aic <- 2 * k - 2 * results$lnl#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * results$lnl#
+  results$k <- k#
+  return(results)  #
+  vv <- bm.mat + ouMatrix(shift.mat, o$par[2])#
+  shiftOut <- phyICOptim(vcv2phylo(vv), y, o$par[1])#
+  results <- list(lnl = shiftOut$logLikelihood, root.state = as.numeric(shiftOut$phyloMean), beta = o$par[1], alpha=o$par[2], focalnode = node);#
+  results$aic <- 2 * k - 2 * shiftOut$logLikelihood#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * shiftOut$logLikelihood#
+  results$k <- k
+results
+k <- 3#
+	start <- c(startBM, log(0.05))#
+	upper <- c(upperBM, log(50))#
+	lower <- c(lowerBM, log(1e-8))#
+	n <- Ntip(phy)#
+	shift.mat <- vcv(phy)#
+	foo <- function(x) {#
+    	vv <- ouMatrix(shift.mat, x[2])#
+    	-1 * phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");
+o
+results <- list(lnl = shiftOut$logLikelihood, root.state = as.numeric(shiftOut$phyloMean), beta = o$par[1], alpha=o$par[2], focalnode = node);#
+  results$aic <- 2 * k - 2 * shiftOut$logLikelihood#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * shiftOut$logLikelihood#
+  results$k <- k#
+  return(results)
+results
+k <- 3#
+	start <- c(startBM, 0.05)#
+	upper <- c(upperBM, 50)#
+	lower <- c(lowerBM, 1e-8)#
+	n <- Ntip(phy)#
+	shift.mat <- vcv(phy)#
+	foo <- function(x) {#
+    	vv <- ouMatrix(shift.mat, x[2])#
+    	-1 * phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+#
+  results <- list(lnl = shiftOut$logLikelihood, root.state = as.numeric(shiftOut$phyloMean), beta = o$par[1], alpha=o$par[2], focalnode = node);#
+  results$aic <- 2 * k - 2 * shiftOut$logLikelihood#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * shiftOut$logLikelihood#
+  results$k <- k
+o
+par
+results
+k <- 3#
+	start <- c(startBM, 0.05)#
+	upper <- c(upperBM, 50)#
+	lower <- c(lowerBM, 1e-8)#
+	release.mat <- split.vcv.node(phy, node)#
+	n <- Ntip(phy)#
+	bm.mat <- release.mat[[1]]#
+	shift.mat <- release.mat[[2]]#
+	foo <- function(x) {#
+    	vv <- bm.mat + ouMatrix(shift.mat, x[2])#
+    	-1 * phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+  ml.vcv <- exp(o$par[1]) * (bm.mat + (ouMatrix(shift.mat, exp(o$par[2]))))#
+  root.state <- phylogMean(ml.vcv, y)#
+  results <- list(lnl = -o$value, root.state = root.state, beta = exp(o$par[1]), alpha = o$par[2], focalnode = node);#
+  results$aic <- 2 * k - 2 * results$lnl#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * results$lnl#
+  results$k <- k
+results
+results$lnl
+bounds <- matrix(c(1e-08, 20, 1e-07, 1, 1e-06, 1, 1e-05, 2.999999, 1e-07, 50, -3, 0, 1e-10, 100, -100, 100, 1e-2, 100), nrow = 9, ncol = 2, byrow = TRUE)#
+	rownames(bounds) <- c("beta", "lambda", "kappa", "delta", "alpha", "a", "nv", "mu", "scalar"); colnames(bounds) <- c("min", "max")#
+ 	bounds <- t(bounds)
+beta.start
+results <- list(lnl = shiftOut$logLikelihood, root.state = as.numeric(shiftOut$phyloMean), beta = o$par[1], alpha=o$par[2], focalnode = node);#
+  results$aic <- 2 * k - 2 * shiftOut$logLikelihood#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * shiftOut$logLikelihood#
+  results$k <- k#
+  return(results)
+bounds[, "beta"]
+cladeMode <- function(phy, y, node, model=c("BM", "EB", "nestedEB", "nestedEBRate", "rateShift")) {#
+	if(is.null(names(y)) == T) stop("please provide data names")#
+	if(model == "BM") {#
+		k <- 2#
+		picMark <- phyIC(phy, y)#
+		results <- list(lnl = picMark$logLikelihood, root.state = as.numeric(picMark$phyloMean), beta = picMark$sigmaSq)#
+		results$aic <- 2 * k - 2 * picMark$logLikelihood#
+  		results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * picMark$logLikelihood#
+  		results$k <- k#
+  	return(results)#
+	}#
+###### node eb nested#
+#
+if(model == "nestedEB") {#
+	n <- Ntip(phy)#
+    beta.start <- var(y)/max(BranchingTimesFossil(phy))#
+    startBM = beta.start#
+    lowerBM = 1e-08#
+    upperBM = 2e+01#
+	allTimes <- BranchingTimesFossil(phy)#
+  	relations_num <- monoClade(phy, node)#
+  	originTimeFocal <- allTimes[which(names(allTimes) == node)]#
+  	names(allTimes)[((Nnode(phy)+1):(Nnode(phy)+Ntip(phy)))] <- 1:Ntip(phy)#
+  	times <- c()#
+  	for(u in 1:length(allTimes)) times[which(phy$edge[,1] == names(allTimes)[u])] <- allTimes[u]#
+  	branches <- match(relations_num , phy$edge[,2])#
+  	lowerEB <- as.numeric(log(10^-5)/originTimeFocal)#
+  	k <- 3	#
+  	start <- c(startBM, -0.01)#
+  	upper <- c(upperBM, -0.000001)#
+  	lower <- c(lowerBM, lowerEB)#
+#
+	foo <- function(x) {#
+    	ebTree <- ebSubClade(phy, a=x[2], node=node, branches, times, originTimeFocal)#
+    	-1 * phyICOptim(ebTree, y, x[1])$logLikelihood#
+#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+  ebTree <- ebSubClade(phy, a=o$par[2], node=node, branches, times, originTimeFocal)#
+  ebOut <- phyICOptim(ebTree, y, o$par[1])#
+  results <- list(lnl = ebOut$logLikelihood, root.state = as.numeric(ebOut$phyloMean), beta = o$par[1], a = o$par[2], focalnode = node);#
+  results$aic <- 2 * k - 2 * ebOut$logLikelihood#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * ebOut$logLikelihood#
+  results$k <- k#
+  return(results)#
+  }#
+#
+###### node eb nested rate#
+#
+if(model == "nestedEBRate") {#
+	n <- Ntip(phy)#
+    beta.start <- var(y)/max(BranchingTimesFossil(phy))#
+    startBM = beta.start#
+    lowerBM = 1e-08#
+    upperBM = 2e+01#
+#
+	allTimes <- BranchingTimesFossil(phy)#
+  	relations_num <- monoClade(phy, node)#
+  	originTimeFocal <- allTimes[which(names(allTimes) == node)]#
+  	names(allTimes)[((Nnode(phy)+1):(Nnode(phy)+Ntip(phy)))] <- 1:Ntip(phy)#
+  	times <- c()#
+  	for(u in 1:length(allTimes)) times[which(phy$edge[,1] == names(allTimes)[u])] <- allTimes[u]#
+  	branches <- match(relations_num , phy$edge[,2])#
+  	lowerEB <- as.numeric(log(10^-5)/originTimeFocal)#
+  	k <- 4#
+	start <- c(startBM, startBM,  -0.01)#
+	upper <- c(upperBM, upperBM, -0.000001)#
+	lower <- c(lowerBM, lowerBM,  lowerEB)#
+  foo <- function(x) {#
+    ebTree <- ebSubClade(phy, a=x[3], node, branches, times, originTimeFocal, newRate=x[2])#
+    -1 * phyICOptim(ebTree, y, x[1])$logLikelihood#
+  }#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+#
+  ebTree <- ebSubClade(phy, a=o$par[3], node=node, branches, times, originTimeFocal, o$par[2])#
+  ebOut <- phyICOptim(ebTree, y, o$par[1])#
+#
+	results <- list(lnl = ebOut$logLikelihood, root.state = as.numeric(ebOut$phyloMean), beta = o$par[1], betaClade=o$par[2], a = o$par[3], focalnode = node);#
+  results$aic <- 2 * k - 2 * ebOut$logLikelihood#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * ebOut$logLikelihood#
+  results$k <- k#
+  return(results)#
+  }#
+###### rate slowdown#
+if(model == "rateShift") {#
+	n <- Ntip(phy)#
+    beta.start <- var(y)/max(BranchingTimesFossil(phy))#
+    startBM = beta.start#
+    lowerBM = 1e-08#
+    upperBM = 2e+01#
+	allTimes <- BranchingTimesFossil(phy)#
+  	relations_num <- monoClade(phy, node)#
+  	originTimeFocal <- allTimes[which(names(allTimes) == node)]#
+  	names(allTimes)[((Nnode(phy)+1):(Nnode(phy)+Ntip(phy)))] <- 1:Ntip(phy)#
+  	times <- c()#
+  	for(u in 1:length(allTimes)) times[which(phy$edge[,1] == names(allTimes)[u])] <- allTimes[u]#
+  	branches <- match(relations_num , phy$edge[,2])#
+  	lowerEB <- as.numeric(log(10^-5)/originTimeFocal)#
+  	k <- 4#
+	start <- c(startBM, startBM)#
+	upper <- c(upperBM, upperBM)#
+	lower <- c(lowerBM, lowerBM)#
+	foo <- function(x) {#
+		phyOut <- shiftClade(phy, rate=x[2], branches)#
+		-1 * phyICOptim(phyOut, y, x[1])$logLikelihood#
+#
+    }#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+#
+  phyOut <- shiftClade(phy, rate=o$par[2], branches)#
+  shiftOut <- phyICOptim(phyOut, y, o$par[1])#
+#
+  results <- list(lnl = shiftOut$logLikelihood, root.state = as.numeric(shiftOut$phyloMean), beta = o$par[1], betaClade=o$par[2], focalnode = node);#
+  results$aic <- 2 * k - 2 * shiftOut$logLikelihood#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * shiftOut$logLikelihood#
+  results$k <- k#
+  return(results)  #
+  }#
+###### shift to OU#
+if(model == "nestedOU") {#
+	n <- Ntip(phy)#
+    beta.start <- var(y)/max(BranchingTimesFossil(phy))#
+    startBM = beta.start#
+    lowerBM = 1e-08#
+    upperBM = 2e+01#
+	k <- 3#
+	start <- c(startBM, 0.05)#
+	upper <- c(upperBM, 50)#
+	lower <- c(lowerBM, 1e-8)#
+	release.mat <- split.vcv.node(phy, node)#
+	bm.mat <- release.mat[[1]]#
+	shift.mat <- release.mat[[2]]#
+	foo <- function(x) {#
+    	vv <- bm.mat + ouMatrix(shift.mat, x[2])#
+    	-1 * phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+  ml.vcv <- exp(o$par[1]) * (bm.mat + (ouMatrix(shift.mat, exp(o$par[2]))))#
+  root.state <- phylogMean(ml.vcv, y)#
+  results <- list(lnl = -o$value, root.state = root.state, beta = exp(o$par[1]), alpha = o$par[2], focalnode = node);#
+  results$aic <- 2 * k - 2 * results$lnl#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * results$lnl#
+  results$k <- k#
+  return(results)  #
+  vv <- bm.mat + ouMatrix(shift.mat, o$par[2])#
+  shiftOut <- phyICOptim(vcv2phylo(vv), y, o$par[1])#
+  results <- list(lnl = shiftOut$logLikelihood, root.state = as.numeric(shiftOut$phyloMean), beta = o$par[1], alpha=o$par[2], focalnode = node);#
+  results$aic <- 2 * k - 2 * shiftOut$logLikelihood#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * shiftOut$logLikelihood#
+  results$k <- k#
+  return(results) #
+  }#
+####### EB overall tree#
+if(model == "EB") {#
+	n <- Ntip(phy)#
+    beta.start <- var(y)/max(BranchingTimesFossil(phy))#
+    startBM = beta.start#
+    lowerBM = 1e-08#
+    upperBM = 2e+01#
+	node=Ntip(phy) + 1#
+	allTimes <- BranchingTimesFossil(phy)#
+  	relations_num <- monoClade(phy, node)#
+  	originTimeFocal <- allTimes[which(names(allTimes) == node)]#
+  	names(allTimes)[((Nnode(phy)+1):(Nnode(phy)+Ntip(phy)))] <- 1:Ntip(phy)#
+  	times <- c()#
+  	for(u in 1:length(allTimes)) times[which(phy$edge[,1] == names(allTimes)[u])] <- allTimes[u]#
+  	branches <- match(relations_num , phy$edge[,2])#
+  	lowerEB <- as.numeric(log(10^-5)/originTimeFocal)#
+  	k <- 3	#
+  	start <- c(startBM, -0.01)#
+  	upper <- c(upperBM, -0.000001)#
+  	lower <- c(lowerBM, lowerEB)#
+  	n <- Ntip(phy)#
+#
+	foo <- function(x) {#
+    	ebTree <- ebSubClade(phy, a=x[2], node=node, branches, times, originTimeFocal)#
+    	-1 * phyICOptim(ebTree, y, x[1])$logLikelihood#
+#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+  ebTree <- ebSubClade(phy, a=o$par[2], node=node, branches, times, originTimeFocal)#
+  ebOut <- phyICOptim(ebTree, y, o$par[1])#
+  results <- list(lnl = ebOut$logLikelihood, root.state = as.numeric(ebOut$phyloMean), beta = o$par[1], a = o$par[2], focalnode = node);#
+  results$aic <- 2 * k - 2 * ebOut$logLikelihood#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * ebOut$logLikelihood#
+  results$k <- k#
+  return(results)#
+	}#
+	if(model == "OU") {#
+	n <- Ntip(phy)#
+    beta.start <- var(y)/max(BranchingTimesFossil(phy))#
+    startBM = beta.start#
+    lowerBM = 1e-08#
+    upperBM = 2e+01#
+	k <- 3#
+	start <- c(startBM, 0.05)#
+	upper <- c(upperBM, 50)#
+	lower <- c(lowerBM, 1e-8)#
+	n <- Ntip(phy)#
+	shift.mat <- vcv(phy)#
+	foo <- function(x) {#
+    	vv <- ouMatrix(shift.mat, x[2])#
+    	-1 * phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+#
+  results <- list(lnl = shiftOut$logLikelihood, root.state = as.numeric(shiftOut$phyloMean), beta = o$par[1], alpha=o$par[2], focalnode = node);#
+  results$aic <- 2 * k - 2 * shiftOut$logLikelihood#
+  results$aicc <- 2 * k * (n - 1)/(n - k - 2) - 2 * shiftOut$logLikelihood#
+  results$k <- k#
+  return(results) #
+}
+}
+rm( list  = ls() )#
+	require( ape )#
+	require( mvtnorm )#
+	library(motmot); library(geiger)#
+n <- 60#
+phy <- rcoal(n)#
+V <- vcv.phylo( phy )#
+y <- matrix( rmvnorm( 1, sigma = V), ncol  =1)#
+rownames(y) <- rownames(V)#
+source("/Volumes/mp1728/Postdoc/shiftModels/cladeMode.R")
+source("~/Desktop/cladeMode.R")
+n <- 60#
+phy <- rcoal(n)#
+V <- vcv.phylo( phy )#
+y <- matrix( rmvnorm( 1, sigma = V), ncol  =1)#
+rownames(y) <- rownames(V)#
+source("~/Desktop/cladeMode.R")#
+picMark <- phyIC(phy, y)#
+picMark$logLikelihood#
+picMark$phyloMean#
+picMark$sigmaSq#
+kok <- fitContinuous(dat=y[,1], phy, model="BM")#
+kok[[4]]$lnL#
+kok[[4]]$sigsq#
+kok[[4]]$z0
+args(cladeMode)
+cladeMode(phy, y, node=75, model="BM")
+y
+cladeMode(phy, y[,1], node=75, model="BM")
+cladeMode(phy, y[,1], node=75, model="EB")
+cladeMode(phy, y[,1], node=75, model="nestedEB")
+cladeMode(phy, y[,1], node=75, model="nestedEBRate")
+cladeMode(phy, y[,1], node=75, model="rateShift")
+rm( list  = ls() )#
+	require( ape )#
+	require( mvtnorm )#
+	library(motmot); library(geiger)#
+n <- 60#
+phy <- rcoal(n)#
+V <- vcv.phylo( phy )#
+y <- matrix( rmvnorm( 1, sigma = V), ncol  =1)#
+rownames(y) <- rownames(V)#
+source("~/Desktop/cladeMode.R")#
+picMark <- phyIC(phy, y)#
+picMark$logLikelihood#
+picMark$phyloMean#
+picMark$sigmaSq#
+kok <- fitContinuous(dat=y[,1], phy, model="BM")#
+kok[[4]]$lnL#
+kok[[4]]$sigsq#
+kok[[4]]$z0#
+#
+function (phy, y, node, model = c("BM", "EB", "nestedEB", "nestedEBRate", #
+    "rateShift")) #
+#
+cladeMode(phy, y[,1], node=75, model="rateShift")
+cladeMode(phy, y[,1], node=75, model="rateShift")
+cladeMode(phy, y[,1], node=75, model="OU")
+rm( list  = ls() )#
+	require( ape )#
+	require( mvtnorm )#
+	library(motmot); library(geiger)#
+n <- 60#
+phy <- rcoal(n)#
+V <- vcv.phylo( phy )#
+y <- matrix( rmvnorm( 1, sigma = V), ncol  =1)#
+rownames(y) <- rownames(V)#
+source("~/Desktop/cladeMode.R")#
+picMark <- phyIC(phy, y)#
+picMark$logLikelihood#
+picMark$phyloMean#
+picMark$sigmaSq#
+kok <- fitContinuous(dat=y[,1], phy, model="BM")#
+kok[[4]]$lnL#
+kok[[4]]$sigsq#
+kok[[4]]$z0#
+#
+function (phy, y, node, model = c("BM", "EB", "nestedEB", "nestedEBRate", #
+    "rateShift")) #
+#
+cladeMode(phy, y[,1], node=75, model="OU")
+cladeMode(phy, y[,1], node=75, model="OU")
+rm( list  = ls() )#
+	require( ape )#
+	require( mvtnorm )#
+	library(motmot); library(geiger)#
+n <- 60#
+phy <- rcoal(n)#
+V <- vcv.phylo( phy )#
+y <- matrix( rmvnorm( 1, sigma = V), ncol  =1)#
+rownames(y) <- rownames(V)#
+source("~/Desktop/cladeMode.R")#
+picMark <- phyIC(phy, y)#
+picMark$logLikelihood#
+picMark$phyloMean#
+picMark$sigmaSq#
+kok <- fitContinuous(dat=y[,1], phy, model="BM")#
+kok[[4]]$lnL#
+kok[[4]]$sigsq#
+kok[[4]]$z0#
+#
+#function (phy, y, node, model = c("BM", "EB", "nestedEB", "nestedEBRate",  "rateShift")) #
+#
+cladeMode(phy, y[,1], node=75, model="OU")
+fitContinuous(phy, y[,1], model="OU")
+cladeMode(phy, y[,1], node=75, model="BM")
+fitContinuous(phy, y[,1], model="BM")
+fitContinuous(phy, y[,1], model="OU")
+n <- Ntip(phy)#
+    beta.start <- var(y)/max(BranchingTimesFossil(phy))#
+    startBM = beta.start#
+    lowerBM = 1e-08#
+    upperBM = 2e+01#
+	k <- 3#
+	start <- c(startBM, 0.05)#
+	upper <- c(upperBM, 50)#
+	lower <- c(lowerBM, 1e-8)#
+	n <- Ntip(phy)#
+	shift.mat <- vcv(phy)
+foo <- function(x) {#
+    	vv <- ouMatrix(shift.mat, x[2])#
+    	-1 * phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");
+o
+phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood
+x=start
+x
+vv <- ouMatrix(shift.mat, x[2])
+-1 * phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood
+phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood
+vcv2phylo(vv)
+y
+x[1]
+n <- Ntip(phy)#
+    beta.start <- var(y)/max(BranchingTimesFossil(phy))#
+    startBM = beta.start#
+    lowerBM = 1e-08#
+    upperBM = 2e+01#
+	k <- 3#
+	start <- c(startBM, 0.05)#
+	upper <- c(upperBM, 50)#
+	lower <- c(lowerBM, 1e-8)#
+	n <- Ntip(phy)#
+	shift.mat <- vcv(phy)#
+	foo <- function(x) {#
+    	vv <- ouMatrix(shift.mat, log(x[2]))#
+    	-1 * phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+  vv <- ouMatrix(shift.mat, o$par[2])
+vv <- ouMatrix(shift.mat, log(x[2]))
+-1 * phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood
+n <- Ntip(phy)#
+    beta.start <- var(y)/max(BranchingTimesFossil(phy))#
+    startBM = beta.start#
+    lowerBM = 1e-08#
+    upperBM = 2e+01#
+	k <- 3#
+	start <- c(startBM, 0.05)#
+	upper <- c(upperBM, 50)#
+	lower <- c(lowerBM, 1e-8)#
+	n <- Ntip(phy)#
+	shift.mat <- vcv(phy)#
+	foo <- function(x) {#
+    	vv <- ouMatrix(shift.mat, x[2])#
+    	-1 * phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood#
+    	}
+ouMatrix
+phyICOptim(vcv2phylo(vv), y, x[1])
+cladeMode(phy, y[,1], node=75, model="EB")
+fitContinuous(phy, y[,1], model="EB")
+cladeMode(phy, y[,1], node=75, model="nestedEB")
+cladeMode(phy, y[,1], node=75, model="nestedEBRate")
+cladeMode(phy, y[,1], node=75, model="rateShift")
+cladeMode(phy, y[,1], node=75, model="OUnested")
+cladeMode(phy, y[,1], node=75, model="nestedOU")
+n <- Ntip(phy)#
+    beta.start <- var(y)/max(BranchingTimesFossil(phy))#
+    startBM = beta.start#
+    lowerBM = 1e-08#
+    upperBM = 2e+01#
+	k <- 3#
+	start <- c(startBM, 0.05)#
+	upper <- c(upperBM, 50)#
+	lower <- c(lowerBM, 1e-8)#
+	shift.mat <- vcv(phy)
+x
+vv <- ouMatrix(shift.mat, x[2])
+-1 * phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood
+x[1]
+ouMatrix(shift.mat, x[2])
+foo <- function(x) {#
+    	vv <- ouMatrix(shift.mat, x[2])#
+    	-1 * phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+  vv <- ouMatrix(shift.mat, o$par[2])#
+  shiftOut <- phyICOptim(vcv2phylo(vv), y, o$par[1])
+o
+fitContinuous(phy, y[,1], model="OU")
+vv <- ouMatrix(shift.mat,0.773616)
+phyICOptim(vcv2phylo(vv), y, 1.268737)
+vv <- ouMatrix(shift.mat,0.773616)
+vv
+n <- Ntip(phy)#
+    beta.start <- var(y)/max(BranchingTimesFossil(phy))#
+    startBM = beta.start#
+    lowerBM = 1e-08#
+    upperBM = 2e+01#
+	k <- 3#
+	start <- c(startBM, 0.05)#
+	upper <- c(upperBM, 50)#
+	lower <- c(lowerBM, 1e-8)#
+	shift.mat <- vcv(phy)#
+	foo <- function(x) {#
+    	vv <- ouMatrix(shift.mat, x[2])#
+    	-1 * phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood#
+    	}#
+  o <- optim(foo, p = start, lower = lower, upper = upper, method = "L");#
+  vv <- ouMatrix(shift.mat, o$par[2])#
+  shiftOut <- phyICOptim(vcv2phylo(vv), y, o$par[1])#
+    	   vv <- ouMatrix(shift.mat,0.773616)#
+#
+    	 phyICOptim(vcv2phylo(vv), y, 1.268737)
+phyICOptim(vcv2phylo(vv), y, 1.268737)$logLikelihood
+vcv2phylo(vv)
+n <- Ntip(phy)#
+    beta.start <- var(y)/max(BranchingTimesFossil(phy))#
+    startBM = beta.start#
+    lowerBM = 1e-08#
+    upperBM = 2e+01#
+	k <- 3#
+	start <- c(startBM, 0.05)#
+	upper <- c(upperBM, 50)#
+	lower <- c(lowerBM, 1e-8)#
+	shift.mat <- vcv(phy)
+vv <- ouMatrix(shift.mat,0)
+vv
+vv <- ouMatrix(shift.mat,0.0000001)
+phyICOptim(vcv2phylo(vv), y, x[1])$logLikelihood
+rownames(vv)
+phy$tip.label
+plot(phylo)
+plot(phy)
+dev.new()
+plot(vcv2phylo(vv)
+)
+phyICOptim(vcv2phylo(vv), y, x[1])
+cladeMode(phy, y[,1], node=75, model="EB")
+fitContinuous(phy, y[,1], model="EB")
+n <- Ntip(phy)#
+    beta.start <- var(y)/max(BranchingTimesFossil(phy))#
+    startBM = beta.start#
+    lowerBM = 1e-08#
+    upperBM = 2e+01#
+	k <- 3#
+	start <- c(startBM, 0.05)#
+	upper <- c(upperBM, 50)#
+	lower <- c(lowerBM, 1e-8)#
+	shift.mat <- vcv(phy)
+ouMatrix
+phyICOptim(vcv2phylo(vv), y, 1.268737)$logLikelihood
+phyICOptim(vcv2phylo(vv), y, log(1.268737))$logLikelihood
+phyICOptim(vcv2phylo(vv), y, exp(1.268737))$logLikelihood
+phyICOptim(vcv2phylo(vv), y, 1.268737)$logLikelihood
+phyICOptim(phy, y, 1.268737)$logLikelihood
+vcv2phylo(vv)
+phy
+phyICOptim
+phyICOptim(vcv2phylo(vv), y, 1.268737)$logLikelihood
+compar.ou(rnorm(23), bird.orders)
+data(bird.orders)
+compar.ou(rnorm(23), bird.orders)
+compar.ou
+library(devtools)
+install_github("PuttickMacroevolution/MCMCTreeR")
+library(MCMCTreeR)
+estimateCauchy
+?estimateCauchy
+install_github("PuttickMacroevolution/MCMCTreeR")
+install_github("PuttickMacroevolution/MCMCTreeR", force=TRUE)
+library(MCMCTreeR)
+?estimateSkewNormal
+install_github("PuttickMacroevolution/MCMCTreeR")
+rm(list=ls(all=T))#
+library("devtools")#
+library(roxygen2)#
+setwd("~/Documents/MCMCTreeR_parent/")#
+setwd("./MCMCTreeR")#
+document()#
+setwd("..")#
+install("MCMCTreeR")
+data(apeData)
+apeData
+load("/Users/mp1728/Documents/MCMCTreeR_parent/MCMCTreeR/data/apeData.RData")
+apeData
+dataApes
+monophyleticGroups <- list()#
+	# Node One. We will specify a the root node#
+	monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", "gorilla", "sumatran", "orangutan", "gibbon")#
+	# Node Two. We will specify a node at the human-gorilla divergence#
+	monophyleticGroups[[2]] <- c("human", "chimpanzee", "bonobo", "gorilla")#
+	# Node Three. We will specify a node at the human-chimp divergence#
+	monophyleticGroups[[3]] <- c("human", "chimpanzee", "bonobo")#
+	# Node Four. We will specify a node at the sumatran-orangutan divergence#
+	monophyleticGroups[[4]] <- c("sumatran", "orangutan")#
+#
+# We will now specify a sequence of minimum and maximum ages for the node times#
+minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13)#
+maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20)#
+#
+#we will rescale this ages so they are in the age range for mcmctree input (0-10). We will divide all ages by 10#
+#
+minimumTimes <- minimumTimes / 10#
+maximumTimes <- maximumTimes / 10#
+#
+apeTree <- read.tree(text="((((human, (chimpanzee, bonobo)), gorilla), (orangutan, sumatran)), gibbon);")#
+#
+apeData <- list()#
+apeData$minimumTimes <- minimumTimes#
+apeData$maximumTimes <- maximumTimes#
+apeData$monophyleticGroups <- monophyleticGroups#
+apeData$apeTree <- apeTree#
+#
+save(apeData, file="data/apeData.RData")
+setwd("./MCMCTreeR")
+save(apeData, file="data/apeData.RData")

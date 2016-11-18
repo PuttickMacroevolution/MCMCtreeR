@@ -21,7 +21,7 @@ uniformMCMCTree <- function(xRange=c(0.1, 4), tL, tU, minProb, maxProb) {
         if(time > tU) numero[rc] <- minProb * omegaTwo * exp(-omegaTwo * (time - tU))
         rc <- rc + 1
     }
-    return(cbind(xx, numero))
+    time <- xx ; density <- numero
+    return(cbind(time, density))
 }
-
 

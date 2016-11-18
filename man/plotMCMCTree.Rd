@@ -5,7 +5,7 @@
 \title{Plot distribution from MCMCTree node estimations}
 \usage{
 plotMCMCTree(parameters, method = c("skewT", "skewNormal", "cauchy", "gamma",
-  "bound"), title, upperTime)
+  "bound"), title, upperTime, plotMCMCTreeData = FALSE)
 }
 \arguments{
 \item{parameters}{output parameters from node estimation function}
@@ -15,9 +15,13 @@ plotMCMCTree(parameters, method = c("skewT", "skewNormal", "cauchy", "gamma",
 \item{title}{title for the plot}
 
 \item{upperTime}{maxmimum age for x-axis plot}
+
+\item{plotMCMCTreeData}{If TRUE returns co-ordinates to plot distributions to allow greater flexibility (default = FALSE)}
 }
 \value{
 plot of the specified prior applied for a node
+
+If plotMCMCTreeData=TRUE x and y coordinates of distributions from 0 to upperTime on x axis
 }
 \description{
 Estimate the offset and scale paramaters of a soft-tailed cauchy distribution and output trees for MCMCTree input
@@ -31,6 +35,9 @@ monophyleticGroups[[3]] <- c("human", "chimpanzee", "bonobo")
 monophyleticGroups[[4]] <- c("sumatran", "orangutan")
 minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13) / 10
 maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 10
-estimateCauchy(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, offset=0.5, phy=apeTree, plot=F)
+cauchy <- estimateCauchy(minAge=minimumTimes[1], maxAge=maximumTimes[1], monoGroups=monophyleticGroups[[1]], offset=0.5, phy=apeTree, plot=F)
+plotMCMCTree(parameters=cauchy$parameters, method="cauchy", title="cauchyPlot", upperTime=maximumTimes[1]+1)
+bound <- estimateBound(minAge=minimumTimes[1], maxAge=maximumTimes[1], monoGroups=monophyleticGroups[[1]], minProb=0.1, rightTail=0.1, phy=apeTree, plot=F)
+plotMCMCTree(parameters=bound$parameters, method="bound", title="uniformPlot", upperTime=maximumTimes[1]+1)
 }
 

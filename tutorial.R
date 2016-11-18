@@ -25,31 +25,26 @@ setwd("")
 install.packages("devtools")
 library(devtools)
 install_github("PuttickMacroevolution/MCMCTreeR")
+library(MCMCTreeR)
 
-# we will use an example tree of apes from the paml examples
-apeTree <- read.tree(text="((((human, (chimpanzee, bonobo)), gorilla), (orangutan, sumatran)), gibbon);")
+# with the library installed we can check the help for any function: i.e, 
+
+?estimateCauchy
 		
-# for the input nodes in the methods we need the descendants of the node. We will specify a list containing the species in the clade of interest
+# we'll get some data for apes: a phylogeny, a list containing members of each clade of a node of interest, and vectors of maximum and minimum times
 
-monophyleticGroups <- list()
-		
-	# Node One. We will specify a the root node
-	monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", "gorilla", "sumatran", "orangutan", "gibbon")
-	# Node Two. We will specify a node at the human-gorilla divergence
-	monophyleticGroups[[2]] <- c("human", "chimpanzee", "bonobo", "gorilla")
-	# Node Three. We will specify a node at the human-chimp divergence
-	monophyleticGroups[[3]] <- c("human", "chimpanzee", "bonobo")
-	# Node Four. We will specify a node at the sumatran-orangutan divergence
-	monophyleticGroups[[4]] <- c("sumatran", "orangutan")
+data(apeData)
+attach(apeData)
+names(apeData)
 
-# We will now specify a sequence of minimum and maximum ages for the node times
-minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13)
-maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20)
+# [1] "minimumTimes"       "maximumTimes"      
+# [3] "monophyleticGroups" "apeTree"  
 
-#we will rescale this ages so they are in the age range for mcmctree input (0-10). We will divide all ages by 10
+# minimumTimes - vector of minimum bounds
+# maximumTimes - vector of maximum bounds
+# monophyleticGroups - list containing species in each clade
+# apeTree - species phhylogeny of apes in APE format
 
-minimumTimes <- minimumTimes / 10
-maximumTimes <- maximumTimes / 10
 
 ##################################################################################
 #########################	 Estimate parameters  ################################

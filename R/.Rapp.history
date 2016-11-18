@@ -1,0 +1,45 @@
+library(MCMCTreeR)
+?estimateCauchy
+apeTree <- read.tree(text="((((human, (chimpanzee, bonobo)), gorilla), (orangutan, sumatran)), gibbon);")#
+monophyleticGroups <- list()#
+monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", "gorilla", "sumatran", "orangutan", "gibbon")#
+monophyleticGroups[[2]] <- c("human", "chimpanzee", "bonobo", "gorilla")#
+monophyleticGroups[[3]] <- c("human", "chimpanzee", "bonobo")#
+monophyleticGroups[[4]] <- c("sumatran", "orangutan")#
+minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13) / 10#
+maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 10#
+estimateCauchy(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, offset=0.5, phy=apeTree, plot=F)
+cauchy <- estimateCauchy(minAge=minimumTimes[1], maxAge=maximumTimes[1], monoGroups=monophyleticGroups[[1]], offset=0.5, phy=apeTree, plot=F)
+?plotMCMCTree
+plotMCMCTree(parameters=cauchy$parameters, method="cauchy", title="cauchyPlot", upperTime=maximumTimes[1]+0.5)
+plotMCMCTree(parameters=cauchy$parameters, method="cauchy", title="cauchyPlot", upperTime=maximumTimes[1]+1)
+uniform <- estimateBound(minAge=minimumTimes[1], maxAge=maximumTimes[1], monoGroups=monophyleticGroups[[1]], phy=apeTree, plot=F)
+uniform <- estimateBound(minAge=minimumTimes[1], maxAge=maximumTimes[1], monoGroups=monophyleticGroups[[1]], phy=apeTree, plot=F)#
+plotMCMCTree(parameters=boundparameters, method="bound", title="uniformPlot", upperTime=maximumTimes[1]+1)
+bound <- estimateBound(minAge=minimumTimes[1], maxAge=maximumTimes[1], monoGroups=monophyleticGroups[[1]], phy=apeTree, plot=F)#
+plotMCMCTree(parameters=bound$parameters, method="bound", title="uniformPlot", upperTime=maximumTimes[1]+1)
+estimateBound
+bound <- estimateBound(minAge=minimumTimes[1], maxAge=maximumTimes[1], monoGroups=monophyleticGroups[[1]], minProb=0.1, rightTail=0.1, phy=apeTree, plot=F)#
+plotMCMCTree(parameters=bound$parameters, method="bound", title="uniformPlot", upperTime=maximumTimes[1]+1)
+bound <- estimateSkewt(minAge=minimumTimes[1], maxAge=maximumTimes[1], monoGroups=monophyleticGroups[[1]], minProb=0.1, rightTail=0.1, phy=apeTree, plot=F)
+bound <- estimateSkewt(minAge=minimumTimes[1], maxAge=maximumTimes[1], monoGroups=monophyleticGroups[[1]] phy=apeTree, plot=F)
+bound <- estimateSkewt(minAge=minimumTimes[1], maxAge=maximumTimes[1], monoGroups=monophyleticGroups[[1]], phy=apeTree, plot=F)
+parameters <- bound$parameters
+curve(dst(x, xi=parameters[1], omega=parameters[2], alpha=parameters[3], nu=parameters[4]),lty=1, col=col, lwd=2, xlim=timeScale, xaxs="i", yaxs="i", bty="l", las=1, ylab="density", xlab="Ma", main=paste(title), cex=0.8)
+timeScale <- c(0, maximumTimes[1])#
+curve(dst(x, xi=parameters[1], omega=parameters[2], alpha=parameters[3], nu=parameters[4]),lty=1, col=col, lwd=2, xlim=timeScale, xaxs="i", yaxs="i", bty="l", las=1, ylab="density", xlab="Ma", main=paste(title), cex=0.8)
+curve(dst(x, xi=parameters[1], omega=parameters[2], alpha=parameters[3], nu=parameters[4]),lty=1, col="grey20", lwd=2, xlim=timeScale, xaxs="i", yaxs="i", bty="l", las=1, ylab="density", xlab="Ma", main=paste(title), cex=0.8)
+rst(x, xi=parameters[1], omega=parameters[2], alpha=parameters[3], nu=parameters[4])
+rst(timeScale, xi=parameters[1], omega=parameters[2], alpha=parameters[3], nu=parameters[4])
+timeScale
+seq(0, timeScale[2], 0.0001)
+rst(timeScale, xi=parameters[1], omega=parameters[2], alpha=parameters[3], nu=parameters[4])
+?rst
+dst(timeScale, xi=parameters[1], omega=parameters[2], alpha=parameters[3], nu=parameters[4])
+dst(seq(0, timeScale[2], 0.0001), xi=parameters[1], omega=parameters[2], alpha=parameters[3], nu=parameters[4])
+dst(seq(0, timeScale[2], 0.01), xi=parameters[1], omega=parameters[2], alpha=parameters[3], nu=parameters[4])
+xx <- dst(seq(0, timeScale[2], 0.01), xi=parameters[1], omega=parameters[2], alpha=parameters[3], nu=parameters[4])
+plot(seq(0, timeScale[2], 0.01), xx)
+plot(seq(0, timeScale[2], 0.01), xx, type="l")
+estimateSkewNormal
+estimateGamma
