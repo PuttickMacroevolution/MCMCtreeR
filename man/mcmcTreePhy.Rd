@@ -61,9 +61,9 @@ list containing node estimates for each distribution
  \item{"nodeLabels"}{ node labels in MCMCTreeR format}
 }
 
-plot of distributions in file 'pdfOutput' written to current working directory
+If plot=TRUE plot of distributions in file 'pdfOutput' written to current working directory
 
-tree in MCMCTree format in file "mcmcTreeName" written to current working directory
+If writeMCMCTree=TRUE tree in MCMCTree format in file "mcmcTreeName" written to current working directory
 }
 \description{
 Wrapper function to estimate node distributions and add them to tree and output MCMCTree format phylogeny file. If parameter values are in vectors shorter than the number of nodes they are recycled.

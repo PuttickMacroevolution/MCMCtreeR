@@ -29,13 +29,9 @@
 #'  \item{"mcmctree"}{ phylogeny in MCMCTree format}
 #'  \item{"nodeLabels"}{ node labels in MCMCTreeR format}
 #' }
-#' @return plot of distributions in file 'pdfOutput' written to current working directory
-#' @return tree in MCMCTree format in file "mcmcTreeName" written to current working directory
+#' @return If plot=TRUE plot of distributions in file 'pdfOutput' written to current working directory
+#' @return If writeMCMCTree=TRUE tree in MCMCTree format in file "mcmcTreeName" written to current working directory
 #' @export
-#' parameters estimated parameters for each node
-#' apePhy phylogeny in ape format with node labels showing node distributions
-#' mcmctree phylogeny in MCMCTree format
-#' nodeLabels node labels in MCMCTreeR format
 #' @examples
 #' apeTree <- read.tree(text="((((human, (chimpanzee, bonobo)), gorilla), (orangutan, sumatran)), gibbon);")
 #' monophyleticGroups <- list()
