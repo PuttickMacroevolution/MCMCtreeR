@@ -10,7 +10,7 @@
 mcmcPhyOneNode <- function(minAgeOne, maxAgeOne, phyOne, monoGroupOne, methodOne, offsetOne, dfOne, shapeOne, minProbOne, maxProbOne, scaleOne, estimateScaleOne, estimateShapeOne, alphaInputOne, betaInputOne, estimateAlphaOne, estimateBetaOne, rightTailOne, addModeOne, estimateModeOne) {
 	
 	if(methodOne == "cauchy") {
-		nodeEsts <- estimateCauchy(minAge = minAgeOne, maxAge = maxAgeOne, phy=phyOne, scale=scaleOne, offset=offsetOne, minProb=minProbOne, maxProb=maxProbOne,  monoGroups=monoGroupOne, estimateScale=estimateScaleOne)
+		nodeEsts <- estimateCauchy(minAge = minAgeOne, maxAge = maxAgeOne, phy=phyOne, scale=scaleOne, offset=offsetOne, minProb=minProbOne, maxProb=maxProbOne,  monoGroups=monoGroupOne, estimateScale=estimateScaleOne, plot=F)
 	}
 	
 	if(methodOne == "upper") {
@@ -22,19 +22,19 @@ mcmcPhyOneNode <- function(minAgeOne, maxAgeOne, phyOne, monoGroupOne, methodOne
 	}
 	
 	if(methodOne == "bound") {
-		nodeEsts <- estimateBound(minAge=minAgeOne, maxAge=maxAgeOne, minProb=minProbOne, rightTail=rightTailOne, phy=phyOne, monoGroups=monoGroupOne)
+		nodeEsts <- estimateBound(minAge=minAgeOne, maxAge=maxAgeOne, minProb=minProbOne, rightTail=rightTailOne, phy=phyOne, monoGroups=monoGroupOne, plot=F)
 	}
 	
 		if(methodOne == "gamma") {
-		nodeEsts <- estimateGamma(minAge=minAgeOne, maxAge=maxAgeOne, phy=phyOne,  alpha=alphaInputOne, beta=betaInputOne, offset=offsetOne, estimateAlpha=alphaInputOne, estimateBeta=estimateBetaOne,  monoGroups=monoGroupOne)
+		nodeEsts <- estimateGamma(minAge=minAgeOne, maxAge=maxAgeOne, phy=phyOne,  alpha=alphaInputOne, beta=betaInputOne, offset=offsetOne, estimateAlpha=alphaInputOne, estimateBeta=estimateBetaOne,  monoGroups=monoGroupOne, plot=F)
 	}
 	
 			if(methodOne == "skewNormal") {
-		nodeEsts <- estimateSkewNormal(minAge=minAgeOne, maxAge=maxAgeOne, phy=phyOne, shape=shapeOne, scale=scaleOne, estimateScale=estimateScaleOne, estimateShape=estimateShapeOne, monoGroups=monoGroupOne, addMode=addModeOne, maxProb=maxProbOne, minProb=minProbOne, estimateMode=estimateModeOne)
+		nodeEsts <- estimateSkewNormal(minAge=minAgeOne, maxAge=maxAgeOne, phy=phyOne, shape=shapeOne, scale=scaleOne, estimateScale=estimateScaleOne, estimateShape=estimateShapeOne, monoGroups=monoGroupOne, addMode=addModeOne, maxProb=maxProbOne, minProb=minProbOne, estimateMode=estimateModeOne, plot=F)
 	}
 	
 		if(methodOne == "skewT") {
-		nodeEsts <- estimateSkewt(minAge=minAgeOne, maxAge=maxAgeOne, phy=phyOne, shape=shapeOne, scale=scaleOne, df=dfOne, estimateScale=estimateScaleOne, estimateShape=estimateShapeOne,  monoGroups=monoGroupOne, addMode=addMeanOne, maxProb=maxProbOne, minProb=minProbOne, estimateMode=estimateModeOne)
+		nodeEsts <- estimateSkewt(minAge=minAgeOne, maxAge=maxAgeOne, phy=phyOne, shape=shapeOne, scale=scaleOne, df=dfOne, estimateScale=estimateScaleOne, estimateShape=estimateShapeOne,  monoGroups=monoGroupOne, addMode=addMeanOne, maxProb=maxProbOne, minProb=minProbOne, estimateMode=estimateModeOne, plot=F)
 	}
 	
 	return(nodeEsts)

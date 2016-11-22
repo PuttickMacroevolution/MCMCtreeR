@@ -9,22 +9,30 @@ mcmcTreePhy(phy, minAges, maxAges, monoGroups, method = c("cauchy", "upper",
   shape = 50, scale = 1.5, minProb = 1e-08, addMode = 0,
   maxProb = 0.975, rightTail = 0.025, alphaInput = 188, betaInput = 100,
   estimateScale = T, estimateShape = F, estimateMode = F,
-  estimateAlpha = TRUE, estimateBeta = FALSE)
+  estimateAlpha = TRUE, estimateBeta = FALSE, plot = FALSE,
+  plotPDF = "nodeDistributions.pdf", writeMCMCTree = TRUE,
+  writeTreeName = "output.tre")
 }
 \arguments{
 \item{phy}{fully resolved phylogeny in ape format}
 
+\item{minAges}{vector of minimum age bounds for nodes matching order in monoGroups}
+
+\item{maxAges}{vector of maximum age bounds for nodes matching order in monoGroups}
+
 \item{monoGroups}{list  with each element containing species that define a node of interest}
 
-\item{offset}{offset value for distribution (default = 50) (p in PAML manual page 49)}
+\item{offset}{offset value for distribution (default = 50)}
 
 \item{df}{degrees of freedom for skew-t distribution (default = 1)}
 
 \item{shape}{shape value for skew-t distribution (default = 50)}
 
-\item{scale}{scale value for distribution (default = 1.5) (c in PAML manual page 49)}
+\item{scale}{scale value for distribution (default = 1.5)}
 
 \item{minProb}{probability of left tail (minimum bound) - default to hard minimum (minProb=0)}
+
+\item{addMode}{addition to the minimum age to give the location of the distribution}
 
 \item{maxProb}{probability of right tail (maximum bound. default = 0.975)}
 
@@ -34,21 +42,19 @@ mcmcTreePhy(phy, minAges, maxAges, monoGroups, method = c("cauchy", "upper",
 
 \item{estimateShape}{logical specifying whether to estimate beta with a given alpha value (default = FALSE)}
 
+\item{estimateMode}{logical speciftying whether to estimate the scale that produces probabilities of each tail that corresponds roughly to the values given by minProb (lower tail) and maxProb (upper tail)}
+
 \item{estimateAlpha}{logical specifying whether to estimate alpha with a given beta value (default = TRUE)}
-
-\item{minAge}{vector of minimum age bounds for nodes matching order in monoGroups}
-
-\item{maxAge}{vector of maximum age bounds for nodes matching order in monoGroups}
-
-\item{alpha}{alpha value for gamma distribution (default = 188) (p in PAML manual page 49)}
-
-\item{beta}{beta value for gamma distribution (default = 2690) (c in PAML manual page 49)}
 
 \item{plot}{logical specifying whether to plot to PDF}
 
-\item{pdfOutput}{pdf output file name}
-
 \item{writeMCMCTree}{logical whether to write tree in format that is compatible with mcmcTree to file}
+
+\item{alpha}{alpha value for gamma distribution (default = 188)}
+
+\item{beta}{beta value for gamma distribution (default = 2690)}
+
+\item{pdfOutput}{pdf output file name}
 
 \item{mcmcTreeName}{mcmcTree output file name}
 }
@@ -69,14 +75,6 @@ If writeMCMCTree=TRUE tree in MCMCTree format in file "mcmcTreeName" written to 
 Wrapper function to estimate node distributions and add them to tree and output MCMCTree format phylogeny file. If parameter values are in vectors shorter than the number of nodes they are recycled.
 }
 \examples{
-apeTree <- read.tree(text="((((human, (chimpanzee, bonobo)), gorilla), (orangutan, sumatran)), gibbon);")
-monophyleticGroups <- list()
-monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", "gorilla", "sumatran", "orangutan", "gibbon")
-monophyleticGroups[[2]] <- c("human", "chimpanzee", "bonobo", "gorilla")
-monophyleticGroups[[3]] <- c("human", "chimpanzee", "bonobo")
-monophyleticGroups[[4]] <- c("sumatran", "orangutan")
-minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13) / 10
-maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 10
-estimateCauchy(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, offset=0.5, phy=apeTree, plot=F)
+mcmcTreePhy()
 }
 
