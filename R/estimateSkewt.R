@@ -163,7 +163,7 @@ estimateSkewt <- function(minAge, maxAge, monoGroups, phy, shape=50, scale=1.5, 
 			}
 	 	pdf(paste0(pdfOutput), family="Times")
 		for(k in 1:dim(prm)[1]) {
-			plotMCMCTree(prm[k,], methodDist="skewT",  paste0(rownames(prm)[k], " skewT"), upperTime = max(maxAge)+1)
+			plotMCMCTree(prm[k,], method="skewT",  paste0(rownames(prm)[k], " skewT"), upperTime = max(maxAge)+1)
 			}
 		dev.off()
 		}	

@@ -161,7 +161,7 @@ estimateSkewNormal <- function(minAge, maxAge, monoGroups, phy, shape=50, scale=
 			}
 	 	pdf(paste0(pdfOutput), family="Times")
 		for(k in 1:dim(prm)[1]) {
-			plotMCMCTree(prm[k,], methodDist="skewNormal",  paste0(rownames(prm)[k], " skewNormal"), upperTime = max(maxAge)+1)
+			plotMCMCTree(prm[k,], method="skewNormal",  paste0(rownames(prm)[k], " skewNormal"), upperTime = max(maxAge)+1)
 			}
 		dev.off()
 		}	

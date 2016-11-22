@@ -99,7 +99,7 @@ estimateGamma <- function(minAge, maxAge, phy, monoGroups, alpha=188, beta=2690,
 			}
 	 	pdf(paste0(pdfOutput), family="Times")
 		for(k in 1:dim(prm)[1]) {
-			plotMCMCTree(prm[k,], methodDist="gamma",  paste0(rownames(prm)[k], " gamma"), upperTime = max(maxAge)+1)
+			plotMCMCTree(prm[k,], method="gamma",  paste0(rownames(prm)[k], " gamma"), upperTime = max(maxAge)+1)
 			}
 		dev.off()
 		}	

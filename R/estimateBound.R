@@ -71,7 +71,7 @@ estimateBound <- function(minAge, maxAge, minProb=0.025, rightTail=0.025, phy, m
 			}
 	 	pdf(paste0(pdfOutput), family="Times")
 		for(k in 1:dim(prm)[1]) {
-			plotMCMCTree(prm[k,], methodDist="bound",  paste0(rownames(prm)[k], " bound"), upperTime = maxAge[k] +1)
+			plotMCMCTree(prm[k,], method="bound",  paste0(rownames(prm)[k], " bound"), upperTime = maxAge[k] +1)
 			}
 		dev.off()
 		}	

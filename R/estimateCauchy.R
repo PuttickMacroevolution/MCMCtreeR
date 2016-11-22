@@ -105,7 +105,7 @@ estimateCauchy <- function(minAge, maxAge, phy, monoGroups, scale=0.2, offset=0.
 			}
 	 	pdf(paste0(pdfOutput), family="Times")
 		for(k in 1:dim(prm)[1]) {
-			plotMCMCTree(prm[k,], methodDist="cauchy",  paste0(rownames(prm)[k], " cauchy"), upperTime = max(maxAge)+1)
+			plotMCMCTree(prm[k,], method="cauchy",  paste0(rownames(prm)[k], " cauchy"), upperTime = max(maxAge)+1)
 			}
 		dev.off()
 		}	
