@@ -80,7 +80,7 @@ mcmcTreePhy <- function(phy, minAges, maxAges, monoGroups, method=c("cauchy", "u
 		
 if(plot == TRUE) {
 	pdf(paste(plotPDF), family="serif")		
-	for(x in 1:lMin) plotMCMCTree(paramsAll[[x]], method=method[x], title=paste("node", x), upperTime=maximum[x]/100)
+	for(x in 1:lMin) plotMCMCTree(paramsAll[[x]], method=method[x], title=paste("node", x), upperTime=maximum[x]/100 + 0.15)
 	dev.off()
 }		
 		
