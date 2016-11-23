@@ -5,7 +5,7 @@
 \title{Plot distribution from MCMCTree node estimations}
 \usage{
 plotMCMCTree(parameters, method = c("skewT", "skewNormal", "cauchy", "gamma",
-  "bound"), title, upperTime, plotMCMCTreeData = FALSE)
+  "bound"), title, upperTime, lowerTime = 0, plotMCMCTreeData = FALSE)
 }
 \arguments{
 \item{parameters}{output parameters from node estimation function}
@@ -15,6 +15,8 @@ plotMCMCTree(parameters, method = c("skewT", "skewNormal", "cauchy", "gamma",
 \item{title}{title for the plot}
 
 \item{upperTime}{maxmimum age for x-axis plot}
+
+\item{lowerTime}{maxmimum age for x-axis plot (default = 0)}
 
 \item{plotMCMCTreeData}{If TRUE returns co-ordinates to plot distributions to allow greater flexibility (default = FALSE)}
 }
