@@ -74,7 +74,7 @@ mcmcTreePhy <- function(phy, minAges, maxAges, monoGroups, method=c("cauchy", "u
 	paramsNode <- c()
 	for(x in 1:	lMin) {		
 		nodeCurrent <- mcmcPhyOneNode(minAgeOne=minAges[x], maxAgeOne=maxAges[x], phyOne=phy, monoGroupOne=monoGroups[[x]], methodOne=method[x], shapeOne=shape[x], offsetOne=offset[x],  dfOne=df[x], minProbOne=minProb[x], maxProbOne=maxProb[x], scaleOne=scale[x], estimateScaleOne=estimateScale[x], estimateShapeOne=estimateShape[x], alphaInputOne=alphaInput[x], betaInputOne=betaInput[x], estimateAlphaOne=estimateAlpha[x], estimateBetaOne=estimateBeta[x], rightTailOne=rightTail[x], addModeOne=addMode[x], estimateModeOne=estimateMode[x])
-		phy <- nodeCurrent$apeTree
+		phy <- nodeCurrent$apePhy
 	  	paramsAll[[x]] <- nodeCurrent$parameters
 	  	if(x == lMin && writeMCMCTree == TRUE) write.table(nodeCurrent$mcmctree, paste0(writeTreeName), quote=F, col.names=F, row.names=F)
  }
