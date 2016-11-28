@@ -37,31 +37,31 @@ priorPosterior <- function(mcmcPrior, mcmcPosterior, inputTree) {
 		if(nodeType == "B") {
 			nums <- as.numeric(noders[2:3])
 			pr <- density(mcmcPrior[, paste0("t_n", colNum)])	
-			post <- density(mcmcPost[, paste0("t_n", colNum)])
+			post <- density(mcmcPosterior[, paste0("t_n", colNum)])
 			names(nums) <- c("tL", "tU", "pL", "pU")[1:length(nums)]
 			}
 		if(nodeType == "SN") {
 			nums <- as.numeric(noders[-1])
 			pr <- density(mcmcPrior[, paste0("t_n", colNum)])	
-			post <- density(mcmcPost[,paste0("t_n", colNum)])
+			post <- density(mcmcPosterior[,paste0("t_n", colNum)])
 			names(nums) <- c("location", "scale", "shape")
 			}
 		if(nodeType == "ST") {
 			nums <- as.numeric(noders[-1])
 			pr <- density(mcmcPrior[, paste0("t_n", colNum)])	
-			post <- density(mcmcPost[,paste0("t_n", colNum)])
+			post <- density(mcmcPosterior[,paste0("t_n", colNum)])
 			names(nums) <- c("location", "scale", "shape", "df")
 			}
 		if(nodeType == "G") {
 			nums <- as.numeric(noders[2:3])
 			pr <- density(mcmcPrior[, paste0("t_n", colNum)])	
-			post <- density(mcmcPost[,paste0("t_n", colNum)])
+			post <- density(mcmcPosterior[,paste0("t_n", colNum)])
 			names(nums) <- c("alpha", "beta")
 			}
 		if(nodeType == "L") {
 			nums <- as.numeric(noders[-1])
 			pr <- density(mcmcPrior[, paste0("t_n", colNum)])	
-			post <- density(mcmcPost[,paste0("t_n", colNum)])
+			post <- density(mcmcPosterior[,paste0("t_n", colNum)])
 			names(nums) <- c("tL", "p", "c", "pL")
 			}
 		
