@@ -35,7 +35,7 @@ priorPosterior <- function(mcmcPrior, mcmcPosterior, inputTree) {
 		noders <- strsplit(phylo$node.label[nodeInfo[tt]], "~")[[1]]
 		nodeType <- as.character(noders[1])
 		if(nodeType == "B") {
-			nums <- as.numeric(noders[2:3])
+			nums <- as.numeric(noders[2:5])
 			pr <- density(mcmcPrior[, paste0("t_n", colNum)])	
 			post <- density(mcmcPosterior[, paste0("t_n", colNum)])
 			names(nums) <- c("tL", "tU", "pL", "pU")[1:length(nums)]
