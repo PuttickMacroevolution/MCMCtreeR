@@ -29,7 +29,7 @@
     endPoint <- gregexpr("[}]", stepOne[1])[[1]] - 1
     startPoint <- gregexpr("[{]", stepOne[1])[[1]] + 1
     CIs <- t(sapply(1:length(stepOne), function(k) as.numeric(strsplit(substr(stepOne[k], startPoint, endPoint), ",")[[1]])))
-  CIs <- CIs[ order(match(nodingOrder+103, phy$edge[,1]) )   ,]
+  CIs <- CIs[ order(match(nodingOrder+Nnode(phy), phy$edge[,1]) )   ,]
     mean <- branching.times(phy)
     allAges <- cbind(  mean, CIs)
 	 output <- list()
