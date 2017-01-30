@@ -11,28 +11,32 @@
 
  readMCMCTree <- function (inputPhy) 
 {
-    tree <- scan(paste0(inputPhy), what = "", sep = "\t")
+      tree <- scan(paste0(inputPhy), what = "", sep = "\t")
     phys <- gsub("\\[.*?\\]", "", tree)
     phy <- read.tree(text = phys[4])
-    #phy <- ladderize(phy)
     phyInt <- phy
     phyInt$node.label <- 1:Nnode(phy)
     phyInt$edge.length <- NULL
-    phyInt$tip.label[which(unlist(gregexpr("[0-9]", phyInt$tip.label)) != 
-        -1)] <- paste0(sample(letters, replace = T, 3), collapse = "")
+    phyInt$root.edge <- NULL    
+    phyInt$tip.label <- rep(paste0(sample(letters, replace = T, 4), collapse = ""), Ntip(phyInt))
 	nodingOrder <- as.numeric(as.character(unlist(strsplit(write.tree(phyInt)[[1]], 
         "[^0-9]+"))[-1]))
-    openB <- gregexpr("[[]", tree[4])[[1]]
+	openB <- gregexpr("[[]", tree[4])[[1]]
     closeB <- gregexpr("[]]", tree[4])[[1]]
-    stepOne <- sapply(1:length(openB), function(r) substr(tree[4], 
-        openB[r], closeB[r]))
-    endPoint <- gregexpr("[}]", stepOne[1])[[1]] - 1
-    startPoint <- gregexpr("[{]", stepOne[1])[[1]] + 1
-    CIs <- t(sapply(1:length(stepOne), function(k) as.numeric(strsplit(substr(stepOne[k], startPoint, endPoint), ",")[[1]])))
-  CIs <- CIs[ order(match(nodingOrder+Nnode(phy), phy$edge[,1]) )   ,]
+    stepOne <- sapply(1:length(openB), function(r) substr(tree[4], openB[r], closeB[r]))
+        
+  CIs <- t(sapply(1:length(stepOne), function(k) {
+    	    	endPoint <- gregexpr("[}]", stepOne[k])[[1]] - 1
+    	startPoint <- gregexpr("[{]", stepOne[k])[[1]] + 1
+    		as.numeric(strsplit(substr(stepOne[k], startPoint, endPoint), ",")[[1]])
+    		}
+    	 )    
+    )   
+    reOrderNodes <- match(nodingOrder + Nnode(phy), phy$edge[, 1])         
+    CIs <- CIs[order(reOrderNodes), ]
     mean <- branching.times(phy)
-    allAges <- cbind(  mean, CIs)
-	 output <- list()
+    allAges <- cbind(mean, CIs)
+    output <- list()
     output$apePhy <- phy
     colnames(allAges) <- c("mean", "95%_lower", "95%_upper")
     output$nodeAges <- allAges
