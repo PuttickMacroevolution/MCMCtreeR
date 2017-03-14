@@ -17,22 +17,21 @@ commonAnc <- function(phy, tipNames) {
 	for(i in 1:length(numTips)) {
 		store <- c()
 		tp <- phy$edge[,2]
-		here <- match(numTips[i], tp)
-		numTip <- phy$edge[here, 1]
-		store <- c(store, numTip)
-		while(1 == 1) {
-				here <- match(numTip, tp)
-				numTip <- phy$edge[here, 1]
-				if(is.na(numTip)) break()
+		hereLocal <- match(numTips[i], tp)
+		numTip <- phy$edge[hereLocal, 1]
+		stopLoop <- is.na(numTip)
+		while(stopLoop == FALSE) {
 				store <- c(store, numTip)
+				hereLocal <- match(numTip, tp)
+				numTip <- phy$edge[hereLocal, 1]
+				stopLoop <- is.na(numTip)
 			}
 		rez[[i]] <- store	
 		}
 		
-			targ <- length(numTips)
-
-	k <- as.numeric(names(table(unlist(rez)))[which(table(unlist(rez)) == targ	)])
-	ans <- match(k, rez[[1]])	
-	commonAnc <- k[which(ans == min(ans))]
+	targ <- length(numTips)
+	nodeNames <- as.numeric(names(table(unlist(rez)))[which(table(unlist(rez)) == targ)])
+	ans <- match(nodeNames, rez[[1]])	
+	commonAnc <- nodeNames[which(ans == min(ans, na.rm=T))]
 	return(commonAnc)
 }

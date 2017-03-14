@@ -11,7 +11,7 @@
 
  readMCMCTree <- function (inputPhy) 
 {
-         tree <- scan(paste0(inputPhy), what = "", sep = "\t")
+    tree <- scan(paste0(inputPhy), what = "", sep = "\t", quiet=TRUE)
     phys <- gsub("\\[.*?\\]", "", tree)
     phy <- read.tree(text = phys[4])
     phyInt <- phy
