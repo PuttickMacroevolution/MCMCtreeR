@@ -2,6 +2,7 @@
 #'
 #' Read MCMCTree output tree into R to produce time-scaled tree in APE format, and a table of the mean and 95% HPD ages
 #' @param inputPhy file directory of 'Figtree' output from MCMCTree
+#' @param forceUltrametric alters branch lengths at tips so tree is fully ultrametric (default = TRUE)
 #' @keywords 
 #' @return apePhy time-scaled output tree from MCMCTree in APE format
 #' @return nodeAges mean and 95% HPD ages for each node on the tree
@@ -9,7 +10,7 @@
 #' @examples
 #' readMCMCTree()
 
- readMCMCTree <- function (inputPhy) 
+ readMCMCTree <- function (inputPhy, forceUltrametric = TRUE) 
 {
     tree <- scan(paste0(inputPhy), what = "", sep = "\t", quiet=TRUE)
     phys <- gsub("\\[.*?\\]", "", tree)
@@ -40,6 +41,26 @@
     mean <- branching.times(phy)
     allAges <- cbind(mean, CIs)
     output <- list()
+    
+    if(forceUltrametric == TRUE)  {
+		outer <- phy$edge[,2]
+		inner <- phy$edge[,1]
+		totalPath <- c()
+			for(i in which(outer<=Ntip(phy))) {
+				start <- i
+				end <- inner[start]
+				edgeTimes <- phy$edge.length[start]
+				while(end != inner[1]) {
+					start <- which(outer == end)
+					end <- inner[start]
+					edgeTimes <- c(edgeTimes, phy$edge.length[start])
+					}
+			  totalPath <- c(totalPath, sum(edgeTimes))
+			}
+			addLength <- max(totalPath) - totalPath
+			phy$edge.length[which(outer <= Ntip(phy))] <- phy$edge.length[which(outer <= Ntip(phy))] + addLength
+    	}
+    
     output$apePhy <- phy
     colnames(allAges) <- c("mean", "95%_lower", "95%_upper")
     output$nodeAges <- allAges

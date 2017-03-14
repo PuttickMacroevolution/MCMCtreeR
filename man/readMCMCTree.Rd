@@ -4,10 +4,12 @@
 \alias{readMCMCTree}
 \title{Read MCMCTree output tree into R}
 \usage{
-readMCMCTree(inputPhy)
+readMCMCTree(inputPhy, forceUltrametric = TRUE)
 }
 \arguments{
 \item{inputPhy}{file directory of 'Figtree' output from MCMCTree}
+
+\item{forceUltrametric}{alters branch lengths at tips so tree is fully ultrametric (default = TRUE)}
 }
 \value{
 apePhy time-scaled output tree from MCMCTree in APE format
