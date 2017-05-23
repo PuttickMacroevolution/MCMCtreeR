@@ -89,7 +89,7 @@ plotMCMCTree <- function (parameters, method = c("skewT", "skewNormal", "cauchy"
     }
     if (method == "bound") {
         timeScale <- c(lowerTime, upperTime)
-        if (plotMCMCTreeData == F) {
+        if (plotMCMCTreeData == TRUE) {
         plot(uniformMCMCTree(xRange = timeScale, tL = parameters[1], 
             tU = parameters[2], minProb = parameters[3], maxProb = parameters[4]), 
             lty = 1, col = "grey20", type = "l", xlim = timeScale, 
