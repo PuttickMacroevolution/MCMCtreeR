@@ -34,7 +34,7 @@ mcmcPhyOneNode <- function(minAgeOne, maxAgeOne, phyOne, monoGroupOne, methodOne
 	}
 	
 		if(methodOne == "skewT") {
-		nodeEsts <- estimateSkewt(minAge=minAgeOne, maxAge=maxAgeOne, phy=phyOne, shape=shapeOne, scale=scaleOne, df=dfOne, estimateScale=estimateScaleOne, estimateShape=estimateShapeOne,  monoGroups=monoGroupOne, addMode=addMeanOne, maxProb=maxProbOne, minProb=minProbOne, estimateMode=estimateModeOne, plot=F)
+		nodeEsts <- estimateSkewt(minAge=minAgeOne, maxAge=maxAgeOne, phy=phyOne, shape=shapeOne, scale=scaleOne, df=dfOne, estimateScale=estimateScaleOne, estimateShape=estimateShapeOne,  monoGroups=monoGroupOne, addMode=addModeOne, maxProb=maxProbOne, minProb=minProbOne, estimateMode=estimateModeOne, plot=F)
 	}
 	
 	return(nodeEsts)
