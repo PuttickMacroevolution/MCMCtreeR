@@ -22,7 +22,7 @@ rm(list=ls(all=T))
 library(ape)
 setwd("")
 
-install.packages("devtools")
+#install.packages("devtools")
 library(devtools)
 install_github("PuttickMacroevolution/MCMCTreeR")
 library(MCMCTreeR)
@@ -87,7 +87,7 @@ skewT_results$mcmctree
 #we can look at the results. the parameters show the input for the mcmctree format - the location (lower node age), scale, shape, and degrees of freedom
 
 par(mfrow=c(2,2), family="Times")
-for(i in 1:4) plotMCMCTree(skewT_results$parameters[i,], methodDist="skewT", title=paste0("node ", i), upperTime=max(maximumTimes))
+for(i in 1:4) plotMCMCTree(skewT_results$parameters[i,], method="skewT", title=paste0("node ", i), upperTime=max(maximumTimes))
 
 #if we're happy with this we can write the file to the input format of mcmctree
 
@@ -116,7 +116,7 @@ skewT_results$parameters
 skewT_results <- estimateSkewt(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, shape=20, estimateShape=F, estimateScale=F, estimateMode=T, maxProb=0.975, minProb=0.03,  phy=apeTree, plot=T, pdfOutput="skewTPlot.pdf", writeMCMCTree=T, mcmcTreeName="skewTInput.tre")
 skewT_results$parameters
 par(mfrow=c(2,2), family="Times")
-for(i in 1:4) plotMCMCTree(skewT_results$parameters[i,], methodDist="skewT", title=paste0("node ", i), upperTime=max(maximumTimes))
+for(i in 1:4) plotMCMCTree(skewT_results$parameters[i,], method="skewT", title=paste0("node ", i), upperTime=max(maximumTimes))
 
 
 #########################	 produce tree with given shape and given scale
@@ -154,7 +154,7 @@ skewNormal_results <- estimateSkewNormal(minAge=minimumTimes, maxAge=maximumTime
 skewNormal_results$parameters
 
 par(mfrow=c(2,2), family="Times")
-for(i in 1:4) plotMCMCTree(skewNormal_results$parameters[i,], methodDist="skewNormal", title=paste0("node ", i), upperTime=max(maximumTimes))
+for(i in 1:4) plotMCMCTree(skewNormal_results$parameters[i,], method="skewNormal", title=paste0("node ", i), upperTime=max(maximumTimes))
 
 
 ##################################################################################
@@ -184,7 +184,7 @@ for(i in 1:4) plotMCMCTree(skewNormal_results$parameters[i,], methodDist="skewNo
 
 example_page_50 <- estimateCauchy(minAge=1, maxAge=4.32, monoGroups=monophyleticGroups[[1]],   phy=apeTree,  offset=0.5, minProb=0.025, plot=F)[[1]]
 dev.new()
-plotMCMCTree(example_page_50, methodDist="cauchy", title=paste0("node ", i), upperTime=max(maximumTimes))
+plotMCMCTree(example_page_50, method="cauchy", title=paste0("node ", i), upperTime=max(maximumTimes))
 
 #########################	 estimate scale with a given shape
 # The function will take input minimum input times, and estimate the value of the scale that will produce a cauchy distribution with the 97.5% cumulative probability of the distribution at the maximum age.
@@ -193,7 +193,7 @@ cauchy_results <- estimateCauchy(minAge=minimumTimes, maxAge=maximumTimes, monoG
 cauchy_results$parameters
 
 par(mfrow=c(2,2), family="Times")
-for(i in 1:4) plotMCMCTree(cauchy_results$parameters[i,], methodDist="cauchy", title=paste0("node ", i), upperTime=max(maximumTimes))
+for(i in 1:4) plotMCMCTree(cauchy_results$parameters[i,], method="cauchy", title=paste0("node ", i), upperTime=max(maximumTimes))
 
 # we may have constrained our distribution too much for the 2nd, 3rd, and 4th distribution so we can modify that to allow for smaller offset
 
@@ -201,7 +201,7 @@ cauchy_results <- estimateCauchy(minAge=minimumTimes, maxAge=maximumTimes, monoG
 cauchy_results$parameters
 
 par(mfrow=c(2,2), family="Times")
-for(i in 1:4) plotMCMCTree(cauchy_results$parameters[i,], methodDist="cauchy", title=paste0("node ", i), upperTime=maximumTimes[i])
+for(i in 1:4) plotMCMCTree(cauchy_results$parameters[i,], method="cauchy", title=paste0("node ", i), upperTime=maximumTimes[i])
 
 
 
@@ -225,7 +225,7 @@ uniform_results <- estimateBound(minAge=minimumTimes, maxAge=maximumTimes, monoG
 uniform_results$parameters
 
 par(mfrow=c(2,2), family="Times")
-for(i in 1:4) plotMCMCTree(uniform_results$parameters[i,], methodDist="bound", title=paste0("node ", i), upperTime=maximumTimes[i]+1)
+for(i in 1:4) plotMCMCTree(uniform_results$parameters[i,], method="bound", title=paste0("node ", i), upperTime=maximumTimes[i]+1)
 
 
 
@@ -253,7 +253,7 @@ gamma_results <- estimateGamma(minAge=minimumTimes, maxAge=maximumTimes, monoGro
 gamma_results$parameters
 
 par(mfrow=c(2,2), family="Times")
-for(i in 1:4) plotMCMCTree(gamma_results$parameters[i,], methodDist="gamma", title=paste0("node ", i), upperTime=maximumTimes[i])
+for(i in 1:4) plotMCMCTree(gamma_results$parameters[i,], method="gamma", title=paste0("node ", i), upperTime=maximumTimes[i])
 
 
 #########################	 Upper Age and fixed ages  ###################################
@@ -284,7 +284,7 @@ fixed_results <- estimateFixed(minAge=minimumTimes[1], monoGroups=monophyleticGr
 
 # mcmcTreePhy <- function(phy, minAges, maxAges, monoGroups, method=c("cauchy", "upper", "lowerUpper", "gamma", "skewNormal", "skewT", "fixed"), offset=0.1, df=1, shape=50, scale=1.5, minProb=1e-8, maxProb=0.975, rightTail=0.025, rate=100, plotDist=TRUE, estimateScale=T, estimateShape=F, estimateAlpha=TRUE, estimateBeta=FALSE)	
 
-methodApe <- c("fixed", "cauchy", "gamma", "upper")
+methodApe <- c("skewT", "cauchy", "gamma", "upper")
 
 outputFull <- mcmcTreePhy(phy=apeTree, minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, method=methodApe)
 
