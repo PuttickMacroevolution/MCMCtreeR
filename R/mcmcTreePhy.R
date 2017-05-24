@@ -40,6 +40,9 @@
 
 mcmcTreePhy <- function(phy, minAges, maxAges, monoGroups, method=c("cauchy", "upper", "bound", "gamma", "skewNormal", "skewT", "fixed"), offset=0.1, df=1, shape=50, scale=1.5, minProb=1e-8, addMode=0, maxProb=0.975, rightTail=0.025, alphaInput=188, betaInput=100, estimateScale=T, estimateShape=F, estimateMode=F, estimateAlpha=TRUE, estimateBeta=FALSE, plot=FALSE, plotPDF="nodeDistributions.pdf", writeMCMCTree=TRUE, writeTreeName="output.tre")	{
 	
+		corMethod <- match(method, c("cauchy", "upper", "bound", "gamma", "skewNormal", "skewT", "fixed"))
+	if(any(is.na(corMethod))) stop("Method ", paste0("'", method[which(is.na(corMethod))], "'", collapse=" "), " not found - check case and spelling ")
+	
 	lMin <- length(minAges)
 	lMax <- length(maxAges)
 	if(lMin != lMax) stop("length of ages do not match")

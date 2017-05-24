@@ -37,9 +37,9 @@
 #' monophyleticGroups[[4]] <- c("sumatran", "orangutan")
 #' minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13) / 10
 #' maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 10
-#' estimateSkewt(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, phy=apeTree, plot=F)
+#' estimateSkewT(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, phy=apeTree, plot=F)
 
-estimateSkewt <- function(minAge, maxAge, monoGroups, phy, shape=50, scale=1.5, df=1, addMode=0, maxProb=0.975, minProb=0.003, estimateScale=TRUE, estimateShape=FALSE, estimateMode=F, plot=FALSE, pdfOutput="skewTPlot.pdf", writeMCMCTree=FALSE, mcmcTreeName="skewTInput.tre")	{
+estimateSkewT <- function(minAge, maxAge, monoGroups, phy, shape=50, scale=1.5, df=1, addMode=0, maxProb=0.975, minProb=0.003, estimateScale=TRUE, estimateShape=FALSE, estimateMode=F, plot=FALSE, pdfOutput="skewTPlot.pdf", writeMCMCTree=FALSE, mcmcTreeName="skewTInput.tre")	{
 
 	lMin <- length(minAge)
 	lMax <- length(maxAge)

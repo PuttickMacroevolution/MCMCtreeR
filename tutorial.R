@@ -50,13 +50,13 @@ names(apeData)
 #########################	 Estimate parameters  ################################
 ##################################################################################
 
-# We have our phylogeny and node ages. We can now estimate the appropriate parameters for a skew t distribution. In this estimateSkewt function the default assumes we want to estimate scale with a given shape value (the default shape value is 50). 
+# We have our phylogeny and node ages. We can now estimate the appropriate parameters for a skew t distribution. In this estimateSkewT function the default assumes we want to estimate scale with a given shape value (the default shape value is 50). 
 
 ##################################################################################
 # details of the function
 #########################	 Skew t distribution  ################################
 
-#estimateSkewt(minAge, maxAge, monoGroups, phy, shape=50, scale=1.5, df=1, addMode=0, maxProb=0.975, minProb=0.003, estimateScale=TRUE, estimateShape=FALSE, estimateMode=F, plot=FALSE, pdfOutput="skewTPlot.pdf", writeMCMCTree=FALSE, mcmcTreeName="skewTInput.tre")
+#estimateSkewT(minAge, maxAge, monoGroups, phy, shape=50, scale=1.5, df=1, addMode=0, maxProb=0.975, minProb=0.003, estimateScale=TRUE, estimateShape=FALSE, estimateMode=F, plot=FALSE, pdfOutput="skewTPlot.pdf", writeMCMCTree=FALSE, mcmcTreeName="skewTInput.tre")
 
 # minAge - vector of minimum age bounds for nodes matching order in monoGroups
 # maxAge - vector of maximum age bounds for nodes matching order in monoGroups
@@ -80,7 +80,7 @@ names(apeData)
 
 # The function will take input minimum input times, and estimate the value of the scale that will produce a distribution with the 97.5% cumulative probability of the distribution at the maximum age.
 
-skewT_results <- estimateSkewt(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, phy=apeTree, plot=F)
+skewT_results <- estimateSkewT(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, phy=apeTree, plot=F)
 
 skewT_results$mcmctree
 
@@ -95,25 +95,25 @@ write.table(skewT_results$mcmctree, "mcmcInputTree.tre", quote=F, row.names=F, c
 
 #alternatively we could have set this as default in the estimateSkewt function using the "writeMCMCtree" argument, and set the name in the mcmcTreeName argument. Additionally, we could have requested a pdf output of the estimate distributions by using 'plot=TRUE' and specifying the file of this name using the pdfOutput
 
-skewT_results <- estimateSkewt(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, phy=apeTree, plot=T, pdfOutput="skewTPlot.pdf", writeMCMCTree=T, mcmcTreeName="skewTInput.tre")
+skewT_results <- estimateSkewT(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, phy=apeTree, plot=T, pdfOutput="skewTPlot.pdf", writeMCMCTree=T, mcmcTreeName="skewTInput.tre")
 
 # we can change the scale and shape (and in skew t the df arguments from the default values)
 
 # we can change the value of shape to be different for each distribution
 
-skewT_results <- estimateSkewt(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, shape=c(9, 10, 8, 10),  phy=apeTree, plot=T, pdfOutput="skewTPlot.pdf", writeMCMCTree=T, mcmcTreeName="skewTInput.tre")
+skewT_results <- estimateSkewT(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, shape=c(9, 10, 8, 10),  phy=apeTree, plot=T, pdfOutput="skewTPlot.pdf", writeMCMCTree=T, mcmcTreeName="skewTInput.tre")
 skewT_results$parameters
 
 
 #########################	 estimate shape with a given scale
 
-skewT_results <- estimateSkewt(minAge=minimumTimes[2], maxAge=maximumTimes[2], monoGroups=monophyleticGroups, scale=0.05, estimateShape=T, estimateScale=F,  phy=apeTree, plot=T, pdfOutput="skewTPlot.pdf", writeMCMCTree=T, mcmcTreeName="skewTInput.tre")
+skewT_results <- estimateSkewT(minAge=minimumTimes[2], maxAge=maximumTimes[2], monoGroups=monophyleticGroups, scale=0.05, estimateShape=T, estimateScale=F,  phy=apeTree, plot=T, pdfOutput="skewTPlot.pdf", writeMCMCTree=T, mcmcTreeName="skewTInput.tre")
 skewT_results$parameters
 
 
 #########################	 estimate the location to produce tails of 3% lower and 97.5% upper probability at the minimum and maximum ages 
 
-skewT_results <- estimateSkewt(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, shape=20, estimateShape=F, estimateScale=F, estimateMode=T, maxProb=0.975, minProb=0.03,  phy=apeTree, plot=T, pdfOutput="skewTPlot.pdf", writeMCMCTree=T, mcmcTreeName="skewTInput.tre")
+skewT_results <- estimateSkewT(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, shape=20, estimateShape=F, estimateScale=F, estimateMode=T, maxProb=0.975, minProb=0.03,  phy=apeTree, plot=T, pdfOutput="skewTPlot.pdf", writeMCMCTree=T, mcmcTreeName="skewTInput.tre")
 skewT_results$parameters
 par(mfrow=c(2,2), family="Times")
 for(i in 1:4) plotMCMCTree(skewT_results$parameters[i,], method="skewT", title=paste0("node ", i), upperTime=max(maximumTimes))
@@ -121,7 +121,7 @@ for(i in 1:4) plotMCMCTree(skewT_results$parameters[i,], method="skewT", title=p
 
 #########################	 produce tree with given shape and given scale
 
-skewT_results <- estimateSkewt(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, shape=10,  scale=0.5, estimateShape=F, estimateScale=F, phy=apeTree, plot=T, pdfOutput="skewTPlot.pdf", writeMCMCTree=T, mcmcTreeName="skewTInput.tre")
+skewT_results <- estimateSkewT(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, shape=10,  scale=0.5, estimateShape=F, estimateScale=F, phy=apeTree, plot=T, pdfOutput="skewTPlot.pdf", writeMCMCTree=T, mcmcTreeName="skewTInput.tre")
 skewT_results$parameters
 
 ##################################################################################
