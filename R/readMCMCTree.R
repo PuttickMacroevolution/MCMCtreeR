@@ -1,11 +1,11 @@
 #' Read MCMCTree output tree into R
 #'
-#' Read MCMCTree output tree into R to produce time-scaled tree in APE format, and a table of the mean and 95% HPD ages
+#' Read MCMCTree output tree into R to produce time-scaled tree in APE format, and a table of the mean and the 95% equal-tailed credibility interval ages
 #' @param inputPhy file directory of 'Figtree' output from MCMCTree
 #' @param forceUltrametric alters branch lengths at tips so tree is fully ultrametric (default = TRUE)
 #' @keywords 
 #' @return apePhy time-scaled output tree from MCMCTree in APE format
-#' @return nodeAges mean and 95% HPD ages for each node on the tree
+#' @return nodeAges mean and 95% equal-tailed credibility interval ages for each node on the tree
 #' @export
 #' @examples
 #' readMCMCTree()
