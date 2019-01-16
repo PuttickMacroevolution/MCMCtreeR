@@ -12,9 +12,24 @@
 </div>
 
 
+
+<div class="figure" style="text-align: center">
+<img src="https://github.com/PuttickMacroevolution/MCMCTreeR/blob/master/vignettes/MCMCtree_plot_fig/plot1.png", align="middle",  alt="MCMCTreeR plotting" width="576" />
+<p class="caption">
+MCMCTreeR plotting
+</p>
+</div>
+
+<ul>
+<li>A guide to plotting mcmc trees and showing uncertainty like the ones show above can be found as a PDF <a href="https://github.com/PuttickMacroevolution/MCMCTreeR/blob/master/vignettes/MCMCtree_plot.pdf">here</a></li>
+<li>A guide to setting-up MCMCtree analyses is shown below and a PDF is available <a href="https://github.com/PuttickMacroevolution/MCMCTreeR/blob/master/vignettes/MCMCtree.pdf">here</a></li>
+</ul>
+
 <p><a href="http://abacus.gene.ucl.ac.uk/software/paml.html">mcmctree</a> is a Bayesian program contained in the software paml to estimate divergence times on fixed topologies using molecular data developed by Ziheng Yang. The program requires various inputs from the user: a phylogeny, molecular data, and selected model parameters.</p>
 <p>A vital part of divergence time estimation in a Bayesian context are priors placed on nodes that are used to reflect <strong>a priori</strong> knowledge on when those lineages diverged. The guide here for mcmctreer is designed to help choose the best parameters to reflect age information for prior age distributions, visualise priors, and output files that can be read into mcmctree for analysis.</p>
 <p>This guide does not include details about which priors are appropriate for the data, etc, so please see the <a href="http://abacus.gene.ucl.ac.uk/software/pamlDOC.pdf">mcmctree manual</a>.</p>
+
+
 <div id="installation" class="section level1">
 <h1>Installation</h1>
 <pre class="r"><code>## uncomment if devtools not previously installed
