@@ -18,9 +18,6 @@
 
 <div class="figure" style="text-align: center">
 <img src="https://github.com/PuttickMacroevolution/MCMCTreeR/blob/master/vignettes/MCMCtree_plot_fig/plot1.png", alt="MCMCTreeR plotting" width="576" />
-<p class="caption">
-<strong>rr</strong>
-</p>
 </div>
 
 
