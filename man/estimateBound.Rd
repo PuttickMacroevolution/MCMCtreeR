@@ -56,4 +56,3 @@ minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13) / 10
 maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 10
 estimateBound(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, phy=apeTree)
 }
-

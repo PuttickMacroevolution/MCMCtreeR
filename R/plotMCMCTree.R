@@ -7,7 +7,6 @@
 #' @param upperTime maxmimum age for x-axis plot
 #' @param lowerTime maxmimum age for x-axis plot (default = 0)
 #' @param plotMCMCTreeData If TRUE returns co-ordinates to plot distributions to allow greater flexibility (default = TRUE)
-#' @keywords 
 #' @return plot of the specified prior applied for a node
 #' @return If plotMCMCTreeData=TRUE x and y coordinates of distributions from 0 to upperTime on x axis
 #' @export

@@ -1,11 +1,6 @@
 #' uniformMCMCTree - internal function
 #'
 #' Produce soft-bounded uniform distribution
-#' @param
-#' @keywords 
-#' @export
-#' @examples
-
 
 uniformMCMCTree <- function(xRange=c(0.1, 4), tL, tU, minProb, maxProb) {
     

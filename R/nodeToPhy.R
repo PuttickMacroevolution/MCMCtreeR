@@ -5,10 +5,8 @@
 #' @param phy fully resolved phylogeny in ape format
 #' @param nodeCon node distributions in MCMCTreeR format
 #' @param returnPhy logical specifying whether to return phy to console or write MCMCTree for input (default = TRUE)
-#' @keywords 
 #' @return If returnPhy=TRUE phylogeny with node labels in ape format
 #' @return If returnPhy=FALSE phylogeny with node labels in MCMCTree format
-#' @export
 #' @examples
 #' apeTree <- read.tree(text="((((human, (chimpanzee, bonobo)), gorilla), (orangutan, sumatran)), gibbon);")
 #' monophyleticGroups <- list()

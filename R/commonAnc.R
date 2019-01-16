@@ -3,7 +3,6 @@
 #' This function allows you to find the common ancestor of a common clade
 #' @param phy user tree in ape format
 #' @param tipNames monophyletic members of a clade
-#' @keywords 
 #' @export
 #' @examples
 #' phy <- rcoal(10)

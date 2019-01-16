@@ -23,4 +23,3 @@ names(apeData)
 Yang 2014
 }
 \keyword{datasets}
-

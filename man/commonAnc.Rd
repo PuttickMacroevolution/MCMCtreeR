@@ -19,4 +19,3 @@ phy <- rcoal(10)
 tips <- phy$tip.label[4:7]
 commonAnc(phy, tipNames)
 }
-

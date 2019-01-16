@@ -1,11 +1,6 @@
 #' cauchyMCMCTree - internal function
 #'
 #' Produce soft-bounded cauchy distribution
-#' @param
-#' @keywords 
-#' @export
-#' @examples
-
 
 cauchyMCMCTree <- function(xRange=c(0, 2), tL=1, p=0.5, c=0.2, minProb=0.025, maxProb=0.975) {
 

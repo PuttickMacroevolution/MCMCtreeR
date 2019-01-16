@@ -43,4 +43,3 @@ minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13) / 10
 maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 10
 estimateFixed(minAge=minimumTimes[1], monoGroups=monophyleticGroups[[1]], phy=apeTree)
 }
-

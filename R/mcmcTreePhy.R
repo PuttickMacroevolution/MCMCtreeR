@@ -23,7 +23,6 @@
 #' @param pdfOutput pdf output file name
 #' @param writeMCMCTree logical whether to write tree in format that is compatible with mcmcTree to file
 #' @param mcmcTreeName mcmcTree output file name
-#' @keywords 
 #' @return list containing node estimates for each distribution
 #' \itemize{
 #'  \item{"parameters"}{ estimated parameters for each node}

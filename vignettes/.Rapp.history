@@ -1,0 +1,1111 @@
+library(ape)#
+set.seed(202)#
+par(mfrow=c(3,3), mar=c(0,0,0,0))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 3)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)
+library(ape)#
+set.seed(202)#
+par(mfrow=c(3,3), mar=c(0,0,0,0))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 1.2)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)
+library(ape)#
+set.seed(202)#
+par(mfrow=c(3,3), mar=c(0,0,0,0))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)
+library(ape)#
+set.seed(203)#
+par(mfrow=c(3,3), mar=c(0,0,0,0))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)
+library(ape)#
+set.seed(2033)#
+par(mfrow=c(3,3), mar=c(0,0,0,0))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)
+library(ape)#
+set.seed(20343)#
+par(mfrow=c(3,3), mar=c(0,0,0,0))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)
+library(ape)#
+set.seed(202)#
+par(mfrow=c(3,3), mar=c(0,0,0,0))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)
+library(ape)#
+set.seed(202)#
+par(mfrow=c(3,3), mar=c(0,0,0,0))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,5), show.tip.label=F, edge.width=3)
+library(ape)#
+set.seed(202)#
+par(mfrow=c(3,3), mar=c(0,0,0,0))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,3), show.tip.label=F, edge.width=3)
+library(ape)#
+set.seed(202)#
+par(mfrow=c(3,3), mar=c(0,0,0,0))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+box()#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,3), show.tip.label=F, edge.width=3)
+library(ape)#
+set.seed(202)#
+par(mfrow=c(3,3), mar=c(1,1,1,1))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+box()#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,3), show.tip.label=F, edge.width=3)
+library(ape)#
+set.seed(202)#
+par(mfrow=c(3,3), mar=c(1,1,1,1))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,3), show.tip.label=F, edge.width=3)
+library(ape)#
+set.seed(202)#
+par(mfrow=c(3,3), mar=c(1,1,1,1))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+box(lwd=2)#
+#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+box(lwd=2)
+library(ape)#
+set.seed(202)#
+par(mfrow=c(3,3), mar=c(0.1, 0.1, 0.1, 0.1))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+box(lwd=2)#
+#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+box(lwd=2)
+library(ape)#
+set.seed(202)#
+par(mfrow=c(3,3), mar=c(0.1, 0.1, 0.1, 0.1), oma=c(4,4,4,4))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+box(lwd=2)#
+#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+box(lwd=2)
+library(ape)#
+set.seed(202)#
+par(mfrow=c(3,3), mar=c(0,0,0,0), oma=c(4,4,4,4))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+box(lwd=2)#
+#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+box(lwd=2)
+library(ape)#
+set.seed(202)#
+par(mfrow=c(3,3), mar=c(0,0,0,0), oma=c(2,2,2,2))#
+tre <- rtree(10)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+plot(tre, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+plot(tre, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+#
+plot(tre, x.lim=c(0,5), show.tip.label=F, edge.width=3)#
+tre4 <- tre#
+box(lwd=2)#
+#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,10), show.tip.label=F, edge.width=3)#
+box(lwd=2)#
+tre4$edge.length <- tre$edge.length * rexp(length(tre$edge.length))#
+plot(tre4, x.lim=c(0,3), show.tip.label=F, edge.width=3)#
+box(lwd=2)
+library(motmot.2.0)
+stree(32, type="r")
+tre <- stree(32, type="r")
+tre <- stree(32, type="b")
+tre$edge.length <- rep(1, Ntip(tre) * 2 - 2)
+tre$edge.length
+plot(tre)
+transformPhylo.sim
+as.matrix(t(rmvnorm(n, mean = samp.means, sigma = (V))))
+as.matrix(t(rmvnorm(Ntip(tre), mean = rep(0, Ntip(tre)), sigma = (vcv(tre)))))
+traits <- as.matrix(t(rmvnorm(Ntip(tre), mean = rep(0, Ntip(tre)), sigma = (vcv(tre)))))
+.bincode(traits, c(-1, 0, 1))
+.bincode(traits, c(-Inf, -1, 0, 1))
+.bincode(traits, c(-Inf, -1, 0, 1), include.lowest=TRUE)
+.bincode(traits, c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE)
+.bincode(traits[,1], c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE)
+traits <- .bincode(traits[,1], c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE)
+traits <- .bincode(traits[,2], c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE)
+traits <- as.matrix(t(rmvnorm(Ntip(tre), mean = rep(0, Ntip(tre)), sigma = (vcv(tre)))))#
+#
+.bincode(traits, c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE)
+t.r <- .bincode(traits, c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE)
+library(phangorn)
+?CI
+as.phyDat(t.r, type="User", levels=unique(t.r))
+as.phyDat(data.frame(t.r), type="User", levels=unique(t.r))
+as.phyDat(data.frame(t.r), type="user", levels=unique(t.r))
+as.phyDat(data.frame(t.r), type="USER", levels=unique(t.r))
+data.frame(t.r)
+traits <- as.matrix(t(rmvnorm(1, mean = rep(0, Ntip(tre)), sigma = (vcv(tre)))))
+rownames(traits) <- tre$tip.label
+traits
+t.r <- .bincode(traits, c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE)
+t.r
+as.phyDat(t.r, type="USER", levels=unique(t.r))
+as.phyDat(data.frame(t.r), type="USER", levels=unique(t.r))
+data.frame(t.r)
+rownames(tr) <- tre$tip.label
+as.phyDat(data.frame(t.r), type="USER", levels=unique(t.r))
+traits <- as.matrix(t(rmvnorm(1, mean = rep(0, Ntip(tre)), sigma = (vcv(tre)))))#
+rownames(traits) <- tre$tip.label#
+t.r <- as.matrix(.bincode(traits, c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE))#
+rownames(tr) <- tre$tip.label
+rownames(t.r) <- tre$tip.label
+as.phyDat(data.frame(t.r), type="USER", levels=unique(t.r))
+t.r
+as.phyDat(t.r, type="USER", levels=unique(t.r))
+phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))
+CI(tre, phy.d)
+traits <- as.matrix(t(rmvnorm(1, mean = rep(0, Ntip(tre)), sigma = (vcv(tre)))))#
+rownames(traits) <- tre$tip.label#
+t.r <- as.matrix(.bincode(traits, c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE))#
+rownames(t.r) <- tre$tip.label#
+phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+CI(tre, phy.d)
+CIs <- sapply(1:1000, function(xx) {#
+	traits <- as.matrix(t(rmvnorm(1, mean = rep(0, Ntip(tre)), sigma = (vcv(tre)))))#
+	rownames(traits) <- tre$tip.label#
+	t.r <- as.matrix(.bincode(traits, c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+CIs
+plot(CIs)
+hist(CIs)
+phy <- tre
+CIs <- sapply(1:1000, function(xx) {#
+	tre <- phy#
+	tre$edge.length <- tre$edge.length * runif(Ntip(tre) * 2 - 2, 0, 1)#
+	traits <- as.matrix(t(rmvnorm(1, mean = rep(0, Ntip(tre)), sigma = (vcv(tre)))))#
+	rownames(traits) <- tre$tip.label#
+	t.r <- as.matrix(.bincode(traits, c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs)
+CIs <- sapply(1:1000, function(xx) {#
+	tre <- phy#
+	tre$edge.length <- rexp(Ntip(tre) * 2 - 2)#
+	traits <- as.matrix(t(rmvnorm(1, mean = rep(0, Ntip(tre)), sigma = (vcv(tre)))))#
+	rownames(traits) <- tre$tip.label#
+	t.r <- as.matrix(.bincode(traits, c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs)
+CIs <- sapply(1:1000, function(xx) {#
+	tre <- phy#
+	tre$edge.length <- rexp(Ntip(tre) * 2 - 2, 10)#
+	traits <- as.matrix(t(rmvnorm(1, mean = rep(0, Ntip(tre)), sigma = (vcv(tre)))))#
+	rownames(traits) <- tre$tip.label#
+	t.r <- as.matrix(.bincode(traits, c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs)
+CIs <- sapply(1:1000, function(xx) {#
+	tre <- phy#
+	tre$edge.length <- rexp(Ntip(tre) * 2 - 2, 20)#
+	traits <- as.matrix(t(rmvnorm(1, mean = rep(0, Ntip(tre)), sigma = (vcv(tre)))))#
+	rownames(traits) <- tre$tip.label#
+	t.r <- as.matrix(.bincode(traits, c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs)
+library(motmot.2.0)#
+library(phangorn)#
+tre <- stree(32, type="b")#
+#
+tre$edge.length <- rep(1, Ntip(tre) * 2 - 2)#
+#
+plot(tre)
+phy <- tre
+transformPhylo(tre, model="lambda", lambda=0.1)
+CIs <- sapply(1:1000, function(xx) {#
+	tre <- phy#
+	tre <- transformPhylo(tre, model="lambda", lambda=0.1)#
+	traits <- as.matrix(t(rmvnorm(1, mean = rep(0, Ntip(tre)), sigma = (vcv(tre)))))#
+	rownames(traits) <- tre$tip.label#
+	t.r <- as.matrix(.bincode(traits, c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs)
+CIs <- sapply(1:1000, function(xx) {#
+	tre <- phy#
+	tre <- transformPhylo(tre, model="lambda", lambda=1e-8)#
+	traits <- as.matrix(t(rmvnorm(1, mean = rep(0, Ntip(tre)), sigma = (vcv(tre)))))#
+	rownames(traits) <- tre$tip.label#
+	t.r <- as.matrix(.bincode(traits, c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs, xlim=c(0,1))
+CIs <- sapply(1:1000, function(xx) {#
+	tre <- phy#
+	tre <- transformPhylo(tre, model="lambda", lambda=1)#
+	traits <- as.matrix(t(rmvnorm(1, mean = rep(0, Ntip(tre)), sigma = (vcv(tre)))))#
+	rownames(traits) <- tre$tip.label#
+	t.r <- as.matrix(.bincode(traits, c(-Inf, -1, 0, 1, Inf), include.lowest=TRUE))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs, xlim=c(0,1))
+?ape
+rTraitDisc(tre)
+rTraitDisc(tre, states=c(0,1,2,3))
+?rTraitDisc
+rTraitDisc(tre, states=c(0,1,2,3), k=4)
+tre <- stree(32, type="b")#
+#
+tre$edge.length <- rep(1, Ntip(tre) * 2 - 2)
+CIs <- sapply(1:1000, function(xx) {#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs, xlim=c(0,1))
+CIs <- sapply(1:1000, function(xx) {#
+	tre$edge.length <- rexp(Ntip(tre) * 2 - 2, 20)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs, xlim=c(0,1))
+tre <- stree(32, type="b")#
+#
+tre$edge.length <- rep(1, Ntip(tre) * 2 - 2)
+CIs <- sapply(1:1000, function(xx) {#
+	tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs, xlim=c(0,1))
+CIs <- sapply(1:1000, function(xx) {#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs, xlim=c(0,1))
+CIs <- sapply(1:1000, function(xx) {#
+	tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs, xlim=c(0,1))
+CIs <- sapply(1:1000, function(xx) {#
+	phy <- tre#
+	tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs, xlim=c(0,1))
+runif(length(tre$edge.length), 1e-8, 2)
+CIs <- sapply(1:1000, function(xx) {#
+	phy <- tre#
+	tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+tre <- stree(32, type="b")#
+tre$edge.length <- rep(1, Ntip(tre) * 2 - 2)#
+phy <- tre
+hist(CIs, clim=c(0,1))
+hist(CIs, xlim=c(0,1))
+CIs <- sapply(1:1000, function(xx) {#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+#
+hist(CIs, xlim=c(0,1))
+tre <- stree(32, type="b")#
+tre$edge.length <- rep(1, Ntip(tre) * 2 - 2)#
+phy <- tre#
+#
+par(mfrow=c(2,2))#
+#
+CIs.cm <- sapply(1:1000, function(xx) {#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+#
+hist(CIs.cm, xlim=c(0,1))#
+#
+CIs.ncm <- sapply(1:1000, function(xx) {#
+	phy <- tre#
+	tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+hist(CIs.ncm, xlim=c(0,1))
+t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, ancestor=TRUE))
+t.r
+rTraitDisc(tre, states=c(0,1,2,3), k=4, ancestor=TRUE)
+par(mfrow=c(2,2))#
+#
+CIs.cm <- sapply(1:1000, function(xx) {#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+#
+hist(CIs.cm, xlim=c(0,1))
+tre <- stree(64, type="b")#
+tre$edge.length <- rep(1, Ntip(tre) * 2 - 2)#
+phy <- tre#
+#
+par(mfrow=c(2,2))#
+#
+CIs.cm <- sapply(1:1000, function(xx) {#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+#
+hist(CIs.cm, xlim=c(0,1))#
+#
+CIs.ncm <- sapply(1:1000, function(xx) {#
+	phy <- tre#
+	tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs.ncm, xlim=c(0,1))
+tre <- stree(32, type="b")#
+tre$edge.length <- rep(1, Ntip(tre) * 2 - 2)#
+phy <- tre#
+#
+par(mfrow=c(2,2))#
+#
+CIs.cm <- sapply(1:64, function(xx) {#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+#
+hist(CIs.cm, xlim=c(0,1))#
+#
+CIs.ncm <- sapply(1:64, function(xx) {#
+	phy <- tre#
+	tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+hist(CIs.ncm, xlim=c(0,1))
+c(0,1,2,3)
+t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=c(0.1, 0.3, 0.2, 0.4)))
+par(mfrow=c(2,2))#
+#
+CIs.cm <- sapply(1:64, function(xx) {#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=c(0.1, 0.3, 0.2, 0.4)))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+#
+hist(CIs.cm, xlim=c(0,1))
+tre <- stree(32, type="b")#
+tre$edge.length <- rep(1, Ntip(tre) * 2 - 2)#
+phy <- tre#
+#
+par(mfrow=c(2,2))#
+#
+CIs.cm <- sapply(1:64, function(xx) {#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=c(0.1, 0.3, 0.2, 0.4)))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+#
+hist(CIs.cm, xlim=c(0,1))
+sample(runif(1e-8, 1))
+sample(4, runif(1e-8, 1))
+runif(4, 1e-8, 1)
+x <- runif(4, 1e-8, 1)
+x / sum(x)
+tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat))
+CIs.cm <- sapply(1:64, function(xx) {#
+	tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs.cm, xlim=c(0,1))
+tre <- stree(32, type="b")#
+tre$edge.length <- rep(1, Ntip(tre) * 2 - 2)#
+phy <- tre#
+#
+par(mfrow=c(2,2))#
+CIs.cm <- sapply(1:1000, function(xx) {#
+	tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+#
+hist(CIs.cm, xlim=c(0,1))
+CIs.ncm <- sapply(1:64, function(xx) {#
+	phy <- tre#
+	tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+	tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})
+hist(CIs.ncm, xlim=c(0,1))
+hist(CIs.cm, xlim=c(0,1), freq=T, ylim=c(0, 500))
+hist(CIs.ncm, xlim=c(0,1), freq=T, ylim=c(0, 500))
+hist(CIs.cm, xlim=c(0,1), freq=T, ylim=c(0, 500))#
+#
+CIs.ncm <- sapply(1:1000, function(xx) {#
+	phy <- tre#
+	tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+	tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+hist(CIs.ncm, xlim=c(0,1), freq=T, ylim=c(0, 500))
+hist(CIs.ncm, xlim=c(0,1), freq=T, ylim=c(0, 500), breaks=seq(0,1,0.1))
+par(mfrow=c(2,2))#
+CIs.cm <- sapply(1:1000, function(xx) {#
+	tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+#
+hist(CIs.cm, xlim=c(0,1), freq=T, ylim=c(0, 500), breaks=seq(0,1,0.1))#
+#
+CIs.ncm <- sapply(1:1000, function(xx) {#
+	phy <- tre#
+	tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+	tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+hist(CIs.ncm, xlim=c(0,1), freq=T, ylim=c(0, 500), breaks=seq(0,1,0.1))
+hist(CIs.cm, xlim=c(0,1), freq=T, ylim=c(0, 400), breaks=seq(0,1,0.1), las=1, main="CM")
+par(mfrow=c(2,2))#
+CIs.cm <- sapply(1:1000, function(xx) {#
+	tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+#
+hist(CIs.cm, xlim=c(0,1), freq=T, ylim=c(0, 400), breaks=seq(0,1,0.1), las=1, main="CM")#
+#
+CIs.ncm <- sapply(1:1000, function(xx) {#
+	phy <- tre#
+	tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+	tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+hist(CIs.ncm, xlim=c(0,1), freq=T, ylim=c(0, 400), breaks=seq(0,1,0.1), main="NCM")
+plot(rgamma(1000))
+plot(rgamma(1000, 1))
+hist(rgamma(1000, 1))
+dev.off()
+hist(rgamma(1000, 1))
+hist(rgamma(1000, 1, 1, 1))
+hist(rgamma(1000, 1, 1))
+hist(rgamma(1000, 0.5, 0.5))
+rgam <- rgamma(1000, 0.5, 0.5)
+quantile(rgam, c(0, 0.25, 0.5, 0.75, 1))
+.bincode(rgam, quantile(rgam, c(0, 0.25, 0.5, 0.75, 1)))
+.bincode(rgam, quantile(rgam, c(0, 0.25, 0.5, 0.75, 1)), include.lowest=TRUE)
+sample.rate <- .bincode(rgam, quantile(rgam, c(0, 0.25, 0.5, 0.75, 1)), include.lowest=TRUE)
+rgam
+tapply(sample.rate, rgam, function(x) x)
+tapply(rgam, sample.rate, function(x) x)
+tapply(rgam, sample.rate, function(x) mean(x))
+rgam <- rgamma(1000, 0.5, 0.5)#
+sample.rate <- .bincode(rgam, quantile(rgam, c(0, 0.25, 0.5, 0.75, 1)), include.lowest=TRUE)#
+rate.mult <- tapply(rgam, sample.rate, function(x) mean(x))
+tre <- stree(32, type="b")#
+tre$edge.length <- rep(1, Ntip(tre) * 2 - 2)#
+phy <- tre#
+#
+par(mfrow=c(2,2))#
+#
+rgam <- rgamma(1000, 0.5, 0.5)#
+sample.rate <- .bincode(rgam, quantile(rgam, c(0, 0.25, 0.5, 0.75, 1)), include.lowest=TRUE)#
+rate.mult <- tapply(rgam, sample.rate, function(x) mean(x))#
+CIs.cm <- sapply(1:1000, function(xx) {#
+	tre <- phy#
+	tre$edge.length <- tre$edge.length * sample(rate.mult, 1)#
+	tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+#
+hist(CIs.cm, xlim=c(0,1), freq=T, ylim=c(0, 400), breaks=seq(0,1,0.1), las=1, main="CM")
+CIs.ncm <- sapply(1:1000, function(xx) {#
+	tre <- phy#
+	tre$edge.length <- tre$edge.length * sample(rate.mult, 1)#
+	tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+	tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+hist(CIs.ncm, xlim=c(0,1), freq=T, ylim=c(0, 400), breaks=seq(0,1,0.1), main="NCM")
+CIs.ncm <- sapply(1:1000, function(xx) {#
+	tre <- phy#
+	tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+	tre$edge.length <- tre$edge.length * sample(rate.mult, 1)#
+	tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+hist(CIs.ncm, xlim=c(0,1), freq=T, ylim=c(0, 400), breaks=seq(0,1,0.1), main="NCM")
+rgam <- rgamma(1000, 0.5, 0.5)#
+sample.rate <- .bincode(rgam, quantile(rgam, c(0, 0.25, 0.5, 0.75, 1)), include.lowest=TRUE)#
+rate.mult <- tapply(rgam, sample.rate, function(x) mean(x))#
+CIs.cm <- sapply(1:1000, function(xx) {#
+	tre <- phy#
+	tre$edge.length <- tre$edge.length * sample(rate.mult, 1)#
+	tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+#
+hist(CIs.cm, xlim=c(0,1), freq=T, ylim=c(0, 400), breaks=seq(0,1,0.1), las=1, main="CM")#
+CIs.ncm <- sapply(1:1000, function(xx) {#
+	tre <- phy#
+	tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+	tre$edge.length <- tre$edge.length * sample(rate.mult, 1)#
+	tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+hist(CIs.ncm, xlim=c(0,1), freq=T, ylim=c(0, 400), breaks=seq(0,1,0.1), main="NCM")
+par(mfrow=c(2,2))#
+#
+rgam <- rgamma(1000, 0.5, 0.5)#
+sample.rate <- .bincode(rgam, quantile(rgam, c(0, 0.25, 0.5, 0.75, 1)), include.lowest=TRUE)#
+rate.mult <- tapply(rgam, sample.rate, function(x) mean(x))#
+CIs.cm <- sapply(1:1000, function(xx) {#
+	tre <- phy#
+	tre$edge.length <- tre$edge.length * sample(rate.mult, 1)#
+	tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+#
+hist(CIs.cm, xlim=c(0,1), freq=T, ylim=c(0, 400), breaks=seq(0,1,0.1), las=1, main="CM")#
+CIs.ncm <- sapply(1:1000, function(xx) {#
+	tre <- phy#
+	tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+	tre$edge.length <- tre$edge.length * sample(rate.mult, 1)#
+	tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat))#
+	rownames(t.r) <- tre$tip.label#
+	phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+	CI(tre, phy.d)#
+})#
+hist(CIs.ncm, xlim=c(0,1), freq=T, ylim=c(0, 400), breaks=seq(0,1,0.1), main="NCM")
+rm(list=ls(all=T))
+library(motmot.2.0)#
+library(phangorn)#
+tre <- stree(32, type="b")#
+tre$edge.length <- rep(1, Ntip(tre) * 2 - 2)#
+phy <- tre#
+#
+par(mfrow=c(2,2))#
+#
+	# set up rate variance between characters#
+	rgam <- rgamma(1000, 0.5, 0.5)#
+	sample.rate <- .bincode(rgam, quantile(rgam, c(0, 0.25, 0.5, 0.75, 1)), include.lowest=TRUE)#
+	rate.mult <- tapply(rgam, sample.rate, function(x) mean(x))#
+	## simulate and estimate CI for character matrix with all branch lengths with the same relative lengths#
+	CIs.cm <- sapply(1:1000, function(xx) {#
+		tre <- phy#
+		# relative lengths increased or decreased by single value#
+		tre$edge.length <- tre$edge.length * sample(rate.mult, 1)#
+		# state frequncies unequal for every character#
+		tr.mat <- runif(4, 1e-8, 1)#
+		tr.mat <- tr.mat / sum(tr.mat)#
+		# simulate data#
+		t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat))#
+		rownames(t.r) <- tre$tip.label#
+		# calculate CI#
+		phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+		CI(tre, phy.d)#
+		}#
+	)#
+#
+	hist(CIs.cm, xlim=c(0,1), freq=T, ylim=c(0, 400), breaks=seq(0,1,0.1), las=1, main="CM")#
+#
+	## simulate and estimate CI for character matrix with different character rates, and uneven branch lengths#
+#
+	CIs.ncm <- sapply(1:1000, function(xx) {#
+		tre <- phy#
+		# change relative lengths#
+		tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+		# change absolute lengths#
+		tre$edge.length <- tre$edge.length * sample(rate.mult, 1)#
+		tr.mat <- runif(4, 1e-8, 1)#
+		tr.mat <- tr.mat / sum(tr.mat)#
+		# simulate data#
+		t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat))#
+		rownames(t.r) <- tre$tip.label#
+		phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+		CI(tre, phy.d)#
+		}#
+	)#
+	hist(CIs.ncm, xlim=c(0,1), freq=T, ylim=c(0, 400), breaks=seq(0,1,0.1), main="NCM")
+library(motmot.2.0)#
+library(phangorn)#
+tre <- stree(32, type="b")#
+tre$edge.length <- rep(1, Ntip(tre) * 2 - 2)#
+phy <- tre#
+#
+par(mfrow=c(2,2))#
+#
+	# set up rate variance between characters#
+	rgam <- rgamma(1000, 0.5, 0.5)#
+	sample.rate <- .bincode(rgam, quantile(rgam, c(0, 0.25, 0.5, 0.75, 1)), include.lowest=TRUE)#
+	rate.mult <- tapply(rgam, sample.rate, function(x) mean(x))#
+	## simulate and estimate CI for character matrix with all branch lengths with the same relative lengths#
+	CIs.cm <- sapply(1:1000, function(xx) {#
+		tre <- phy#
+		# relative lengths increased or decreased by single value#
+		tre$edge.length <- tre$edge.length * sample(rate.mult, 1)#
+		# state frequncies unequal for every character#
+		tr.mat <- runif(4, 1e-8, 1)#
+		tr.mat <- tr.mat / sum(tr.mat)#
+		# simulate data#
+		t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat))#
+		rownames(t.r) <- tre$tip.label#
+		# calculate CI#
+		phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+		CI(tre, phy.d)#
+		}#
+	)#
+#
+	hist(CIs.cm, xlim=c(0,1), freq=T, ylim=c(0, 400), breaks=seq(0,1,0.1), las=1, main="CM", xlab="CI")#
+#
+	## simulate and estimate CI for character matrix with different character rates, and uneven branch lengths#
+#
+	CIs.ncm <- sapply(1:1000, function(xx) {#
+		tre <- phy#
+		# change relative lengths#
+		tre$edge.length <- tre$edge.length * runif(length(tre$edge.length), 1e-8, 2)#
+		# change absolute lengths#
+		tre$edge.length <- tre$edge.length * sample(rate.mult, 1)#
+		tr.mat <- runif(4, 1e-8, 1)#
+		tr.mat <- tr.mat / sum(tr.mat)#
+		# simulate data#
+		t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat))#
+		rownames(t.r) <- tre$tip.label#
+		phy.d <- as.phyDat(t.r, type="USER", levels=unique(t.r))#
+		CI(tre, phy.d)#
+		}#
+	)#
+	hist(CIs.ncm, xlim=c(0,1), freq=T, ylim=c(0, 400), breaks=seq(0,1,0.1), main="NCM", xlab="CI")
+t.r <- as.matrix(rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat, ancestor=TRUE))
+rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat, ancestor=TRUE)
+tr.mat <- runif(4, 1e-8, 1)#
+	tr.mat <- tr.mat / sum(tr.mat)#
+	rTraitDisc(tre, states=c(0,1,2,3), k=4, freq=tr.mat, ancestor=TRUE)
+tab <- read.table("~/Documents/word.match/words.txt")
+head(tab)
+head(write.table(tab))
+write.table(tab[1:10,])
+write.table(tab[1:10,], quote=F)
+write.table(tab[1:10,], quote=F, row.names=F)
+write.table(tab[1:10,], quote=F, row.names=FALSE)
+write.table(tab[1:10,2], quote=F, row.names=FALSE)
+write.table(tab[2:10,2], quote=F, row.names=FALSE)
+write.table(tab[3:10,2], quote=F, row.names=FALSE)
+write.table(tab[5:10,2], quote=F, row.names=FALSE)
+write.table(tab[1:10,2], quote=F, row.names=FALSE)
+write.table(tab[1:10,2], quote=F, row.names=FALSE, header=FALSE)
+write.table(tab[1:10,2], quote=F, row.names=FALSE, col.names=FALSE)
+write.table(tab[ , 2],  "~/Documents/word.match/words.txt", quote=F, row.names=FALSE, col.names=FALSE)
+load('~/Documents/MCMCTreeR_parent/MCMCTreeR/data/mcmc.out.RData')
+names(mcmc.out)
+names(mcmc.phy)
+ls()
+names(list.out)
+mcmc.out <- list.out
+save(list=mcmc.out, '~/Documents/MCMCTreeR_parent/MCMCTreeR/data/mcmc.out.RData')
+mcmc.out
+save(mcmc.out, '~/Documents/MCMCTreeR_parent/MCMCTreeR/data/mcmc.out.RData')
+mcmc.out <- read.table("~/Downloads/paml4.8/examples/DatingSoftBound/mcmc.txt", header=TRUE)#
+mcmc.phy <- readMCMCTree("~/Downloads/paml4.8/examples/DatingSoftBound/FigTree.tre")#
+#
+mcmc.out <- list(mcmc.out=mcmc.out, mcmc.phy=mcmc.phy)#
+#
+names(mcmc.out)#
+attach(mcmc.out)#
+#
+save(mcmc.out, '~/Documents/MCMCTreeR_parent/MCMCTreeR/data/mcmc.out.RData')
+save(list=mcmc.out, '~/Documents/MCMCTreeR_parent/MCMCTreeR/data/mcmc.out.RData')
+save(mcmc.out, file='~/Documents/MCMCTreeR_parent/MCMCTreeR/data/mcmc.out.RData')
+load('~/Documents/MCMCTreeR_parent/MCMCTreeR/data/mcmc.out.RData')
+ls()
+attach(mcmc.out)
+names(mcmc.out)
+mcmc.out <- read.table("~/Downloads/paml4.8/examples/DatingSoftBound/mcmc.txt", header=TRUE)#
+mcmc.phy <- readMCMCTree("~/Downloads/paml4.8/examples/DatingSoftBound/FigTree.tre")#
+#
+mcmc.out <- list(mcmc.out=mcmc.out, mcmc.phy=mcmc.phy)#
+#
+names(mcmc.out)#
+attach(mcmc.out)
+mcmc.out
+mcmc.phy
+mcmc.phy <- readMCMCTree("~/Downloads/paml4.8/examples/DatingSoftBound/FigTree.tre")
+library(MCMCTreeR)
+mcmc.phy <- readMCMCTree("~/Downloads/paml4.8/examples/DatingSoftBound/FigTree.tre")
+mcmc.out <- list(mcmc.out=mcmc.out, mcmc.phy=mcmc.phy)#
+#
+names(mcmc.out)#
+attach(mcmc.out)#
+#
+save(mcmc.out, '~/Documents/MCMCTreeR_parent/MCMCTreeR/data/mcmc.out.RData')
+save(mcmc.out, file='~/Documents/MCMCTreeR_parent/MCMCTreeR/data/mcmc.out.RData')
+load('~/Documents/MCMCTreeR_parent/MCMCTreeR/data/mcmc.out.RData')
+attach(mcmc.out)
+names(mcmc.out)
+mcmc.chain <- read.table("~/Downloads/paml4.8/examples/DatingSoftBound/mcmc.txt", header=TRUE)#
+mcmc.phy <- readMCMCTree("~/Downloads/paml4.8/examples/DatingSoftBound/FigTree.tre")#
+#
+mcmc.out <- list(mcmc.chain=mcmc.chain, mcmc.phy=mcmc.phy)#
+#
+names(mcmc.out)#
+attach(mcmc.out)#
+#
+save(mcmc.out, file='~/Documents/MCMCTreeR_parent/MCMCTreeR/data/mcmc.out.RData')
+library(MCMCTreeR)
+mcmc.chain <- read.table("~/Downloads/paml4.8/examples/DatingSoftBound/mcmc.txt", header=TRUE)#
+mcmc.phy <- readMCMCTree("~/Downloads/paml4.8/examples/DatingSoftBound/FigTree.tre")#
+#
+mcmc.out <- list(mcmc.chain=mcmc.chain, mcmc.phy=mcmc.phy)#
+#
+names(mcmc.out)#
+attach(mcmc.out)#
+#
+save(mcmc.out, file='~/Documents/MCMCTreeR_parent/MCMCTreeR/data/mcmc.out.RData')
+load('~/Documents/MCMCTreeR_parent/MCMCTreeR/data/mcmc.out.RData')
+attach(mcmc.out)
+mcmc.chain
+mcmc.phy
+library(ape)
+mcmc.phy
+mcmc.chain
+## uncomment if devtools not previously installed#
+# install.packages("devtools")#
+library(devtools)#
+install_github("PuttickMacroevolution/MCMCTreeR")
+library(MCMCTreeR)
+data(apeData)#
+attach(apeData)#
+names(apeData)
+skewT_results <- estimateSkewT(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, phy=apeTree, plot=FALSE)
+getwd()
+getwd("~/Documents/MCMCTreeR_parent/MCMCTreeR/vignettes/")
+setwd("~/Documents/MCMCTreeR_parent/MCMCTreeR/vignettes/")
+skewT_results <- estimateSkewT(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, phy=apeTree, plot=FALSE)
+par(mfrow=c(2,2), family="Palatino")#
+for(i in 1:4) plotMCMCTree(skewT_results$parameters[i,], method="skewT", title=paste0("node ", i), upperTime=max(maximumTimes))
+skewT_results <- estimateSkewT(minAge=minimumTimes[2], maxAge=maximumTimes[2], monoGroups=monophyleticGroups, scale=0.05, estimateShape=TRUE, estimateScale=FALSE, phy=apeTree, plot=FALSE, writeMCMCTree=FALSE)#
+skewT_results$parameters
+skewT_results <- estimateSkewT(minAge=minimumTimes[2], maxAge=maximumTimes[2], monoGroups=monophyleticGroups, scale=0.05, estimateShape=TRUE, estimateScale=FALSE, phy=apeTree, plot=FALSE, writeMCMCTree=FALSE)#
+skewT_results$parameters
+skewNormal_results <- estimateSkewNormal(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, addMode=0.05, phy=apeTree, plot=FALSE)
+par(mfrow=c(2,2), family="Palatino")#
+for(i in 1:4) plotMCMCTree(skewNormal_results$parameters[i,], method="skewNormal", title=paste0("node ", i), upperTime=max(maximumTimes))
+par(mfrow=c(2,2), family="Palatino")#
+for(i in 1:4) plotMCMCTree(skewNormal_results$parameters[i,], method="skewNormal", title=paste0("node ", i), upperTime=max(maximumTimes))
+cauchy_results <- estimateCauchy(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups,  offset=0.5, phy=apeTree, plot=FALSE)
+par(mfrow=c(2,2), family="Times")#
+for(i in 1:4) plotMCMCTree(cauchy_results$parameters[i,], method="cauchy", title=paste0("node ", i), upperTime=max(maximumTimes
+))
+cauchy_results <- estimateCauchy(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups,  offset=c(0.5, 0.1, 0.1, 0.05), phy=apeTree, plot=FALSE)
+par(mfrow=c(2,2), family="Times")#
+for(i in 1:4) plotMCMCTree(cauchy_results$parameters[i,], method="cauchy", title=paste0("node ", i), upperTime=maximumTimes[i])
+uniform_results <- estimateBound(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, phy=apeTree)
+uniform_results <- estimateBound(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, phy=apeTree, plot=FALSE)
+par(mfrow=c(2,2), family="Palatino")#
+for(i in 1:4) plotMCMCTree(uniform_results$parameters[i,], method="bound", title=paste0("node ", i), upperTime=maximumTimes[i]+1)
+gamma_results <- estimateGamma(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, alpha=188, beta=2690, offset=0.1, phy=apeTree, plot=F)
+upper_results <- estimateUpper(maxAge=maximumTimes, monoGroups=monophyleticGroups, rightTail=0.025, phy=apeTree)#
+upper_results$parameters
+fixed_results <- estimateFixed(minAge=minimumTimes[1], monoGroups=monophyleticGroups[[1]], phy=apeTree)#
+fixed_results
+each.node.method <- c("skewT", "cauchy", "gamma", "upper")#
+output.full <- mcmcTreePhy(phy=apeTree, minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, method=each.node.method)
+each.node.method <- c("skewT", "cauchy", "gamma", "upper")#
+output.full <- mcmcTreePhy(phy=apeTree, minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, method=each.node.method)
+?mcmcTreePhy

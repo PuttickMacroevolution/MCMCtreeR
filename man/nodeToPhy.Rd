@@ -35,4 +35,3 @@ maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 1
 boundEst <- estimateBound(minAge=minimumTimes[1], maxAge=maximumTimes[1], monoGroups=monophyleticGroups[[1]], phy=apeTree)
 nodeToPhy <- function(phy=apeTree, monoGroups=monophyleticGroups[[1]], nodeCon=boundEst$nodeLabels, returnPhy=T)
 }
-

@@ -6,7 +6,6 @@
 #' @param phy fully resolved phylogeny in ape format
 #' @param writeMCMCTree logical whether to write tree in format that is compatible with mcmcTree to file
 #' @param mcmcTreeName mcmcTree output file name
-#' @keywords 
 #' @return list containing node estimates for each distribution
 #' \itemize{
 #'  \item{"parameters"}{ estimated parameters for each node}
@@ -15,7 +14,6 @@
 #'  \item{"nodeLabels"}{ node labels in MCMCTreeR format}
 #' }
 #' @return If writeMCMCTree=TRUE tree in MCMCTree format in file "mcmcTreeName" written to current working directory
-#' @export
 #' @examples
 #' apeTree <- read.tree(text="((((human, (chimpanzee, bonobo)), gorilla), (orangutan, sumatran)), gibbon);")
 #' monophyleticGroups <- list()
@@ -26,6 +24,7 @@
 #' minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13) / 10
 #' maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 10
 #' estimateFixed(minAge=minimumTimes[1], monoGroups=monophyleticGroups[[1]], phy=apeTree)
+#' @export
 
 estimateFixed <- function(minAge, phy, monoGroups,  writeMCMCTree=FALSE, mcmcTreeName="estimateFixed.tre")	 {
 

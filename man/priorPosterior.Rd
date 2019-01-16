@@ -27,4 +27,3 @@ Analyse prior and posterior node distributions from MCMCTree analysis
 \examples{
 priorPosterior()
 }
-

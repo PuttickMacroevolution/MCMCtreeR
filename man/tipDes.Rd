@@ -20,4 +20,3 @@ commonAnc(phy, node)
 }
 \keyword{ancestor}
 \keyword{node}
-

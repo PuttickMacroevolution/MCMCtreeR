@@ -4,8 +4,9 @@
 \alias{plotMCMCTree}
 \title{Plot distribution from MCMCTree node estimations}
 \usage{
-plotMCMCTree(parameters, method = c("skewT", "skewNormal", "cauchy", "gamma",
-  "bound"), title, upperTime, lowerTime = 0, plotMCMCTreeData = TRUE)
+plotMCMCTree(parameters, method = c("skewT", "skewNormal", "cauchy",
+  "gamma", "bound"), title, upperTime, lowerTime = 0,
+  plotMCMCTreeData = TRUE)
 }
 \arguments{
 \item{parameters}{output parameters from node estimation function}
@@ -42,4 +43,3 @@ plotMCMCTree(parameters=cauchy$parameters, method="cauchy", title="cauchyPlot", 
 bound <- estimateBound(minAge=minimumTimes[1], maxAge=maximumTimes[1], monoGroups=monophyleticGroups[[1]], minProb=0.1, rightTail=0.1, phy=apeTree, plot=F)
 plotMCMCTree(parameters=bound$parameters, method="bound", title="uniformPlot", upperTime=maximumTimes[1]+1)
 }
-

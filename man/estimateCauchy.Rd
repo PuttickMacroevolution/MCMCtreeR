@@ -4,9 +4,9 @@
 \alias{estimateCauchy}
 \title{Estimate Cauchy Distribution for MCMCTree}
 \usage{
-estimateCauchy(minAge, maxAge, phy, monoGroups, scale = 0.2, offset = 0.1,
-  estimateScale = T, minProb = 0, maxProb = 0.975, plot = FALSE,
-  pdfOutput = "cauchyPlot.pdf", writeMCMCTree = FALSE,
+estimateCauchy(minAge, maxAge, phy, monoGroups, scale = 0.2,
+  offset = 0.1, estimateScale = T, minProb = 0, maxProb = 0.975,
+  plot = FALSE, pdfOutput = "cauchyPlot.pdf", writeMCMCTree = FALSE,
   mcmcTreeName = "cauchyInput.tre")
 }
 \arguments{
@@ -63,4 +63,3 @@ minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13) / 10
 maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 10
 estimateCauchy(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, offset=0.5, phy=apeTree, plot=F)
 }
-

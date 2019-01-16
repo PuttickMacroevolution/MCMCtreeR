@@ -4,22 +4,23 @@
 \alias{readMCMCTree}
 \title{Read MCMCTree output tree into R}
 \usage{
-readMCMCTree(inputPhy, forceUltrametric = TRUE)
+readMCMCTree(inputPhy, forceUltrametric = TRUE, from.file = TRUE)
 }
 \arguments{
 \item{inputPhy}{file directory of 'Figtree' output from MCMCTree}
 
 \item{forceUltrametric}{alters branch lengths at tips so tree is fully ultrametric (default = TRUE)}
+
+\item{from.file}{Logical. Read a tree from file or locally from within R?}
 }
 \value{
 apePhy time-scaled output tree from MCMCTree in APE format
 
-nodeAges mean and 95% HPD ages for each node on the tree
+nodeAges mean and 95% Equal-tail CI ages for each node on the tree
 }
 \description{
-Read MCMCTree output tree into R to produce time-scaled tree in APE format, and a table of the mean and 95% HPD ages
+Read MCMCTree output tree into R to produce time-scaled tree in APE format, and a table of the mean and 95% Equal-tail CI
 }
 \examples{
 readMCMCTree()
 }
-

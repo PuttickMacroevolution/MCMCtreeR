@@ -4,7 +4,6 @@
 #' @param mcmcPrior prior of mcmc file from MCMCTree analysis using data=0
 #' @param mcmcPosterior posterior of mcmc file from MCMCTree analysis using data
 #' @param inputTree phylogeny in MCMCTree format used in MCMCTree analysis
-#' @keywords 
 #' @return list containing node estimates for each distribution
 #' \itemize{
 #'  \item{"prior"}{ distribution of effective prior}

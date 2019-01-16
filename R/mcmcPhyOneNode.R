@@ -1,11 +1,6 @@
 #' mcmcPhyOneNode - internal function
 #'
 #' Produce fixed age trees for PAML
-#' @param
-#' @keywords 
-#' @export
-#' @examples
-
 
 mcmcPhyOneNode <- function(minAgeOne, maxAgeOne, phyOne, monoGroupOne, methodOne, offsetOne, dfOne, shapeOne, minProbOne, maxProbOne, scaleOne, estimateScaleOne, estimateShapeOne, alphaInputOne, betaInputOne, estimateAlphaOne, estimateBetaOne, rightTailOne, addModeOne, estimateModeOne) {
 	

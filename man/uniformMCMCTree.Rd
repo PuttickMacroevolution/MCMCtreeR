@@ -9,4 +9,3 @@ uniformMCMCTree(xRange = c(0.1, 4), tL, tU, minProb, maxProb)
 \description{
 Produce soft-bounded uniform distribution
 }
-

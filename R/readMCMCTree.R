@@ -1,18 +1,22 @@
 #' Read MCMCTree output tree into R
 #'
-#' Read MCMCTree output tree into R to produce time-scaled tree in APE format, and a table of the mean and the 95% equal-tailed credibility interval ages
+#' Read MCMCTree output tree into R to produce time-scaled tree in APE format, and a table of the mean and 95% Equal-tail CI
 #' @param inputPhy file directory of 'Figtree' output from MCMCTree
 #' @param forceUltrametric alters branch lengths at tips so tree is fully ultrametric (default = TRUE)
-#' @keywords 
+#' @param from.file Logical. Read a tree from file or locally from within R?
 #' @return apePhy time-scaled output tree from MCMCTree in APE format
-#' @return nodeAges mean and 95% equal-tailed credibility interval ages for each node on the tree
+#' @return nodeAges mean and 95% Equal-tail CI ages for each node on the tree
 #' @export
 #' @examples
 #' readMCMCTree()
 
- readMCMCTree <- function (inputPhy, forceUltrametric = TRUE) 
+ readMCMCTree <- function (inputPhy, forceUltrametric = TRUE, from.file=TRUE) 
 {
-    tree <- scan(paste0(inputPhy), what = "", sep = "\t", quiet=TRUE)
+    if(from.file) {
+    	tree <- scan(paste0(inputPhy), what = "", sep = "\t", quiet=TRUE)
+    	} else {
+    		tree <- inputPhy
+    	}
     phys <- gsub("\\[.*?\\]", "", tree)
     phy <- read.tree(text = phys[4])
     phyInt <- phy
@@ -64,5 +68,6 @@
     output$apePhy <- phy
     colnames(allAges) <- c("mean", "95%_lower", "95%_upper")
     output$nodeAges <- allAges
+    class(output) <- "mcmctreer"
     return(output)
 }

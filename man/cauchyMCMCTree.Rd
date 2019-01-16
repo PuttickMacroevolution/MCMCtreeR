@@ -10,4 +10,3 @@ cauchyMCMCTree(xRange = c(0, 2), tL = 1, p = 0.5, c = 0.2,
 \description{
 Produce soft-bounded cauchy distribution
 }
-
