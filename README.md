@@ -8,10 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
-
-
-
-<title>MCMCTreeR</title>
 <h1 class="title toc-ignore">MCMCTreeR</h1>
 </div>
 
