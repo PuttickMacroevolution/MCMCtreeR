@@ -14,9 +14,9 @@
 
 
 <div class="figure" style="text-align: center">
-<img src="https://github.com/PuttickMacroevolution/MCMCTreeR/blob/master/vignettes/MCMCtree_plot_fig/plot1.png", align="middle",  alt="MCMCTreeR plotting" width="576" />
+<img src="https://github.com/PuttickMacroevolution/MCMCTreeR/blob/master/vignettes/MCMCtree_plot_fig/plot1.png", align="align",  alt="MCMCTreeR plotting" width="576" />
 <p class="caption">
-MCMCTreeR plotting
+<strong>MCMCTreeR plotting</strong>
 </p>
 </div>
 
