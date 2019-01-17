@@ -28,20 +28,12 @@
 
 <div id="installation" class="section level1">
 <h1>Installation</h1>
-<pre class="r"><code>## uncomment if devtools not previously installed
-## install.packages('devtools')
+<pre class="r"><code>
+## check for devtools and install if necessary
+if(!any(rownames(installed.packages()) == "devtools")) install.packages("devtools")
 library(devtools)
-# install_github('PuttickMacroevolution/MCMCTreeR')
-library(MCMCTreeR)</code></pre>
-<pre><code>## Loading required package: ape</code></pre>
-<pre><code>## Loading required package: sn</code></pre>
-<pre><code>## Loading required package: stats4</code></pre>
-<pre><code>## 
-## Attaching package: 'sn'</code></pre>
-<pre><code>## The following object is masked from 'package:stats':
-## 
-##     sd</code></pre>
-<pre><code>## Loading required package: coda</code></pre>
+install_github("PuttickMacroevolution/MCMCTreeR", quiet=TRUE)
+</code></pre>
 <p>For the examples here, the data are a phylogeny of apes <code>apeTree</code>. Also contained in the data are the minimum ages <code>minimumTimes</code> and maximum ages <code>maximumTimes</code> for nodes, and the tip labels descending from each node <code>monophyleticGroups</code>. These example data can be substituted for other data</p>
 <pre class="r"><code>data(apeData)
 attach(apeData)
