@@ -4,7 +4,7 @@
 #' @param phy A timescaled phylogeny, unless analysis.type="mcmctree" and build.tree=TRUE
 #' @param analysis.type The method used to generate the time-scale tree, one of mcmctree, MrBayes, RevBayes, or User.
 #' @param mcmc.chain The full posterior of age estimates for all nodes (default NULL)
-#' @param node.ages User-supplied node ages applicable for analysis.type user
+#' @param node.ages List of user-supplied node ages applicable for analysis.type user. Either all nodes or a selection of nodes. Each list element must be named with its corresponding node label from the APE format.
 #' @param directory.files The directory for files to summarise for MrBayes and RevBayes analyses
 #' @param plot.type The plotting method for the phylogram corresponding to the APE definition. Phylogram is available for all analysis types, but cladogram is only avilable for mcmctree analyses at present. Type distributions plots a phylogram with density distributions on each of the nodes.
 #' @param build.tree Logical. Only applicable to mcmctree analyses, whether to timescale the phylogeny based on the full mcmc chain
@@ -189,6 +189,10 @@ mcmc.tree.plot <- function(phy=NULL, analysis.type="mcmctree", mcmc.chain=NULL, 
 		
 		if(is.null(all.nodes)) {
 			ext.node <- which(last.plot.coord$edge[,2] > Ntip(phy))
+		} else {
+			ext.node <- match(all.nodes, last.plot.coord$edge[,2])
+		}	
+			
 			if(length(col.age) < length(ext.node)) col.age <- rep(col.age, length(ext.node) + 1)
 			if(node.method == "full.length") {
 				polygon(c(xx[1], xx[2], xx[2], xx[1]), matrix(c(0, 0, Ntip(phy), Ntip(phy)), ncol=2), col=col.age[1], border=FALSE)
@@ -198,12 +202,10 @@ mcmc.tree.plot <- function(phy=NULL, analysis.type="mcmctree", mcmc.chain=NULL, 
 			}
 			if(node.method == "bar") {
 				lines(c(xx[1], xx[2]), rep(structure[1,1], 2), col=col.age[1], lwd=lwd.bar)
-			}
-		} else {
-			ext.node <- match(all.nodes, last.plot.coord$edge[,2])
+			}			
 			
 			if(length(col.age) == length(ext.node)) col.age <- rep(col.age, length(ext.node) + 1)
-			}
+			
 		
 		counter <- 2
 		
@@ -428,13 +430,13 @@ mcmc.tree.plot <- function(phy=NULL, analysis.type="mcmctree", mcmc.chain=NULL, 
 			}
 			
 		if(analysis.type == "user") {
-			all.nodes <- (Ntip(phy) + 1 ):(Nnode(phy) + Ntip(phy))
+			all.nodes <- as.numeric(names(node.ages))
 			int <- last.plot.coord$yy[last.plot.coord$edge[,1]]
 			ext <- last.plot.coord$yy[last.plot.coord$edge[,2]]
 			len.all.nd <- length(all.nodes)
 			if(length(density.col) < len.all.nd) density.col <- rep(density.col, len.all.nd)
 			if(length(density.border.col) < len.all.nd) density.border.col <- rep(density.border.col, len.all.nd)
-			
+						
 			for(k in 1:len.all.nd) {
 				lower.hpd <- hpd.ages[1, k]
 				upper.hpd <- hpd.ages[2, k]

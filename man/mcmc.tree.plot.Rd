@@ -26,7 +26,7 @@ mcmc.tree.plot(phy = NULL, analysis.type = "mcmctree",
 
 \item{mcmc.chain}{The full posterior of age estimates for all nodes (default NULL)}
 
-\item{node.ages}{User-supplied node ages applicable for analysis.type user}
+\item{node.ages}{List of user-supplied node ages applicable for analysis.type user. Either all nodes or a selection of nodes. Each list element must be named with its corresponding node label from the APE format.}
 
 \item{directory.files}{The directory for files to summarise for MrBayes and RevBayes analyses}
 
