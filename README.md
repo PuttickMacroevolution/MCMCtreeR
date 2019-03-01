@@ -60,7 +60,8 @@ names(apeData)
 To make these data more easily available, extract them into separate variables (as used in the code below)
 <pre class="r"><code>minimumTimes <- apeData$minimumTimes
 maximumTimes <- apeData$maximumTimes
-monophyleticGroups <- apeData$monophyleticGroups</code></pre>
+monophyleticGroups <- apeData$monophyleticGroups
+apeTree <- apeData$apeTree</code></pre>
 </div>
 <div id="estimate-parameters-for-node-input-parameters" class="section level1">
 <h1>Estimate parameters for node input parameters</h1>
