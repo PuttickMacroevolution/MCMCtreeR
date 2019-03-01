@@ -57,6 +57,10 @@ install_github(&quot;PuttickMacroevolution/MCMCTreeR&quot;, quiet = TRUE)</code>
 names(apeData)
 ## [1] &quot;minimumTimes&quot;       &quot;maximumTimes&quot;       &quot;monophyleticGroups&quot;
 ## [4] &quot;apeTree&quot;</code></pre>
+To make these data more easily available, extract them into separate variables (as used in the code below)
+<pre class="r"><code>minimumTimes <- apeData$minimumTimes
+maximumTimes <- apeData$maximumTimes
+monophyleticGroups <- apeData$monophyleticGroups</code></pre>
 </div>
 <div id="estimate-parameters-for-node-input-parameters" class="section level1">
 <h1>Estimate parameters for node input parameters</h1>
