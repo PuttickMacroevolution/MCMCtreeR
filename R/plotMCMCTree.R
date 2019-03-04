@@ -4,8 +4,8 @@
 #' @param parameters output parameters from node estimation function
 #' @param method one of skewT, skewNormal, cauchy, gamma, or bound
 #' @param title title for the plot
-#' @param upperTime maxmimum age for x-axis plot
-#' @param lowerTime maxmimum age for x-axis plot (default = 0)
+#' @param upperTime maximum age for x-axis plot
+#' @param lowerTime minimum age for x-axis plot (default = 0)
 #' @param plotMCMCTreeData If TRUE returns co-ordinates to plot distributions to allow greater flexibility (default = TRUE)
 #' @return plot of the specified prior applied for a node
 #' @return If plotMCMCTreeData=TRUE x and y coordinates of distributions from 0 to upperTime on x axis
