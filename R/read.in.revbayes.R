@@ -1,5 +1,4 @@
 read.in.revbayes <- function(directory.rb) {
-	require(ape)
 	## read in revbayes trees
 	# read in tree ape
 	revbayes.tree <- read.nexus(directory.rb)

@@ -1,9 +1,9 @@
 #' priorPosterior
 #'
-#' Analyse prior and posterior node distributions from MCMCTree analysis
-#' @param mcmcPrior prior of mcmc file from MCMCTree analysis using data=0
-#' @param mcmcPosterior posterior of mcmc file from MCMCTree analysis using data
-#' @param inputTree phylogeny in MCMCTree format used in MCMCTree analysis
+#' Analyse prior and posterior node distributions from MCMCtree analysis
+#' @param MCMCPrior prior of MCMC file from MCMCtree analysis using data=0
+#' @param MCMCPosterior posterior of MCMC file from MCMCtree analysis using data
+#' @param inputTree phylogeny in MCMCtree format used in MCMCtree analysis
 #' @return list containing node estimates for each distribution
 #' \itemize{
 #'  \item{"prior"}{ distribution of effective prior}
@@ -12,12 +12,15 @@
 #' }
 #' @export
 #' @examples
-#' priorPosterior()
+#' data(MCMCtree.output)
+#' # priorPosterior(MCMCPrior, 
+#' # MCMCPosterior=MCMCtree.output$MCMCtree.posterior, 
+#' # path.to.input.tree)
+
+priorPosterior <- function(MCMCPrior, MCMCPosterior, inputTree) {
 
 
-priorPosterior <- function(mcmcPrior, mcmcPosterior, inputTree) {
-
-	s <- read.table(inputTree, row.names=1)[,2]
+	s <- utils::read.table(inputTree, row.names=1)[,2]
 	s <- strsplit(as.character(s), "'")[[1]]
 	nodePr <- c(grep("SN[(]", s), grep("ST[(]", s), grep("B[(]", s), grep("U[(]", s), grep("L[(]", s), grep("U[(]", s))
 	s[nodePr] <- gsub("[(]", "~",s[nodePr])
@@ -35,32 +38,32 @@ priorPosterior <- function(mcmcPrior, mcmcPosterior, inputTree) {
 		nodeType <- as.character(noders[1])
 		if(nodeType == "B") {
 			nums <- as.numeric(noders[2:5])
-			pr <- density(mcmcPrior[, paste0("t_n", colNum)])	
-			post <- density(mcmcPosterior[, paste0("t_n", colNum)])
+			pr <- stats::density(MCMCPrior[, paste0("t_n", colNum)])	
+			post <- stats::density(MCMCPosterior[, paste0("t_n", colNum)])
 			names(nums) <- c("tL", "tU", "pL", "pU")[1:length(nums)]
 			}
 		if(nodeType == "SN") {
 			nums <- as.numeric(noders[-1])
-			pr <- density(mcmcPrior[, paste0("t_n", colNum)])	
-			post <- density(mcmcPosterior[,paste0("t_n", colNum)])
+			pr <- stats::density(MCMCPrior[, paste0("t_n", colNum)])	
+			post <- stats::density(MCMCPosterior[,paste0("t_n", colNum)])
 			names(nums) <- c("location", "scale", "shape")
 			}
 		if(nodeType == "ST") {
 			nums <- as.numeric(noders[-1])
-			pr <- density(mcmcPrior[, paste0("t_n", colNum)])	
-			post <- density(mcmcPosterior[,paste0("t_n", colNum)])
+			pr <- stats::density(MCMCPrior[, paste0("t_n", colNum)])	
+			post <- stats::density(MCMCPosterior[,paste0("t_n", colNum)])
 			names(nums) <- c("location", "scale", "shape", "df")
 			}
 		if(nodeType == "G") {
 			nums <- as.numeric(noders[2:3])
-			pr <- density(mcmcPrior[, paste0("t_n", colNum)])	
-			post <- density(mcmcPosterior[,paste0("t_n", colNum)])
+			pr <- stats::density(MCMCPrior[, paste0("t_n", colNum)])	
+			post <- stats::density(MCMCPosterior[,paste0("t_n", colNum)])
 			names(nums) <- c("alpha", "beta")
 			}
 		if(nodeType == "L") {
 			nums <- as.numeric(noders[-1])
-			pr <- density(mcmcPrior[, paste0("t_n", colNum)])	
-			post <- density(mcmcPosterior[,paste0("t_n", colNum)])
+			pr <- stats::density(MCMCPrior[, paste0("t_n", colNum)])	
+			post <- stats::density(MCMCPosterior[,paste0("t_n", colNum)])
 			names(nums) <- c("tL", "p", "c", "pL")
 			}
 		

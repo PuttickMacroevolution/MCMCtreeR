@@ -1,5 +1,4 @@
 read.in.mrbayes <- function(directory.mb) {
-	require(ape)
 	## read in mrbayes trees
 	# read in tree ape
 	mrbayes.tree <- read.nexus(directory.mb)
@@ -9,7 +8,7 @@ read.in.mrbayes <- function(directory.mb) {
 	scan.in <- scan.in[-which(scan.in == "")]
 
 	names.tree <- (which(unlist(gregexpr("begin trees", scan.in)) != -1) + 2):which(unlist(gregexpr("end;", scan.in)) != -1)[2]
-	tree.locale <- tail(names.tree, 2)[1]
+	tree.locale <- utils::tail(names.tree, 2)[1]
 	names.tree <- names.tree[-c(which(tree.locale==names.tree):length(names.tree))]
 
 	tip.names <- scan.in[names.tree[seq(2, length(names.tree), 2)]]
@@ -86,7 +85,7 @@ read.in.mrbayes <- function(directory.mb) {
 	colnames(node.num) <- sapply(labels.nodes[1,], function(x) strsplit(x, "=")[[1]][1])
 	node.location <- c(which(regexpr("[)]", start.orig[seq(1, length(start.orig)-2, 2)]) != -1), dim(tres$edge)[1] + 1)
 	
-	node.local <- c(tail(node.location, 1), node.location[-length(node.location)])
+	node.local <- c(utils::tail(node.location, 1), node.location[-length(node.location)])
 	
 	edges.num <- apply(labels.edges, 2, function(xu) {
 	sapply(xu, function(xx) {

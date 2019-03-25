@@ -2,10 +2,10 @@
 % Please edit documentation in R/estimateUpper.R
 \name{estimateUpper}
 \alias{estimateUpper}
-\title{Estimate Upper Age for MCMCTree}
+\title{Estimate Upper Age for MCMCtree analysis}
 \usage{
 estimateUpper(maxAge, rightTail = 0.025, phy, monoGroups,
-  writeMCMCTree = FALSE, mcmcTreeName = "estimateUpper.tre")
+  writeMCMCtree = FALSE, MCMCtreeName = "estimateUpper.tre")
 }
 \arguments{
 \item{maxAge}{vector of maximum age bounds for nodes matching order in monoGroups}
@@ -16,34 +16,40 @@ estimateUpper(maxAge, rightTail = 0.025, phy, monoGroups,
 
 \item{monoGroups}{list  with each element containing species that define a node of interest}
 
-\item{writeMCMCTree}{logical whether to write tree in format that is compatible with mcmcTree to file}
+\item{writeMCMCtree}{logical whether to write tree in format that is compatible with MCMCTree to file}
 
-\item{mcmcTreeName}{mcmcTree output file name}
+\item{MCMCtreeName}{MCMCtree.output file name}
 }
 \value{
 list containing node estimates for each distribution
 \itemize{
  \item{"parameters"}{ estimated parameters for each node}
- \item{"apePhy"}{ phylogeny in ape format with node labels showing node distributions}
- \item{"mcmctree"}{ phylogeny in MCMCTree format}
- \item{"nodeLabels"}{ node labels in MCMCTreeR format}
+ \item{"apePhy"}{ phylogeny in \pkg{APE} format with node labels showing node distributions}
+ \item{"MCMCtree"}{ phylogeny in MCMCtree format}
+ \item{"nodeLabels"}{ node labels in MCMCtreeR format}
 }
 
 If plot=TRUE plot of distributions in file 'pdfOutput' written to current working directory
 
-If writeMCMCTree=TRUE tree in MCMCTree format in file "mcmcTreeName" written to current working directory
+If writeMCMCtree=TRUE tree in MCMCtree format in file "MCMCtreeName" written to current working directory
 }
 \description{
-Estimate the upper age distribution and output trees for MCMCTree input
+Estimate the upper age distribution and output trees for MCMCtree input
 }
 \examples{
-apeTree <- read.tree(text="((((human, (chimpanzee, bonobo)), gorilla), (orangutan, sumatran)), gibbon);")
+data(apeData)
+attach(apeData)
 monophyleticGroups <- list()
-monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", "gorilla", "sumatran", "orangutan", "gibbon")
-monophyleticGroups[[2]] <- c("human", "chimpanzee", "bonobo", "gorilla")
-monophyleticGroups[[3]] <- c("human", "chimpanzee", "bonobo")
+monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", 
+"gorilla", "sumatran", "orangutan", "gibbon")
+getMRCA(apeTree, c("human", "chimpanzee", "bonobo", "gorilla"))
+monophyleticGroups[[2]] <-  tipDes(apeTree, 10)
+monophyleticGroups[[3]] <- tipDes(apeTree, 11)
 monophyleticGroups[[4]] <- c("sumatran", "orangutan")
-minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13) / 10
-maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 10
-estimateUpper(maxAge=maximumTimes, monoGroups=monophyleticGroups, rightTail=0.025, phy=apeTree)
+minimumTimes <- c("nodeOne"=15, "nodeTwo"=6,
+"nodeThree"=8, "nodeFour"=13) / 10
+maximumTimes <- c("nodeOne" = 30, "nodeTwo" = 12,
+"nodeThree"=12, "nodeFour" = 20) / 10
+estimateUpper(maxAge=maximumTimes, monoGroups=monophyleticGroups,
+rightTail=0.025, phy=apeTree)
 }

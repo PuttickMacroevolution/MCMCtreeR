@@ -1,6 +1,6 @@
-#' Estimate Gamma Distribution for MCMCTree
+#' Estimate Gamma Distribution for MCMCtree analysis
 #'
-#' Estimate the offset and scale paramaters of a soft-tailed cauchy distribution and output trees for MCMCTree input
+#' Estimate the offset and scale paramaters of a soft-tailed cauchy distribution and output trees for MCMCtree input
 #' @param minAge vector of minimum age bounds for nodes matching order in monoGroups
 #' @param maxAge vector of maximum age bounds for nodes matching order in monoGroups
 #' @param monoGroups list  with each element containing species that define a node of interest
@@ -9,34 +9,42 @@
 #' @param beta beta value for gamma distribution (default = 2690) (c in PAML manual page 49)
 #' @param offset distance of mean value from minimum bound#' @param minProb probability of left tail (minimum bound) - default to hard minimum (minProb=0)
 #' @param estimateAlpha logical specifying whether to estimate alpha with a given beta value (default = TRUE)
-#' @param estimateShape logical specifying whether to estimate beta with a given alpha value (default = FALSE)
+#' @param estimateBeta logical specifying whether to estimate beta with a given alpha value (default = FALSE)
 #' @param plot logical specifying whether to plot to PDF
 #' @param pdfOutput pdf output file name
-#' @param writeMCMCTree logical whether to write tree in format that is compatible with mcmcTree to file
-#' @param mcmcTreeName mcmcTree output file name
+#' @param writeMCMCtree logical whether to write tree in format that is compatible with MCMCTree to file
+#' @param MCMCtreeName MCMCtree.output file name
 #' @return list containing node estimates for each distribution
 #' \itemize{
 #'  \item{"parameters"}{ estimated parameters for each node}
-#'  \item{"apePhy"}{ phylogeny in ape format with node labels showing node distributions}
-#'  \item{"mcmctree"}{ phylogeny in MCMCTree format}
-#'  \item{"nodeLabels"}{ node labels in MCMCTreeR format}
+#'  \item{"apePhy"}{ phylogeny in \pkg{APE} format with node labels showing node distributions}
+#'  \item{"MCMCtree"}{ phylogeny in MCMCtreeR format}
+#'  \item{"nodeLabels"}{ node labels in MCMCtreeR format}
 #' }
 #' @return If plot=TRUE plot of distributions in file 'pdfOutput' written to current working directory
-#' @return If writeMCMCTree=TRUE tree in MCMCTree format in file "mcmcTreeName" written to current working directory
+#' @return If writeMCMCtree=TRUE tree in MCMCtree format in file "MCMCtreeName" written to current working directory
 #' @export
 #' @examples
-#' apeTree <- read.tree(text="((((human, (chimpanzee, bonobo)), gorilla), (orangutan, sumatran)), gibbon);")
+#' data(apeData)
+#' attach(apeData)
 #' monophyleticGroups <- list()
-#' monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", "gorilla", "sumatran", "orangutan", "gibbon")
-#' monophyleticGroups[[2]] <- c("human", "chimpanzee", "bonobo", "gorilla")
-#' monophyleticGroups[[3]] <- c("human", "chimpanzee", "bonobo")
+#' monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", 
+#' "gorilla", "sumatran", "orangutan", "gibbon")
+#' getMRCA(apeTree, c("human", "chimpanzee", "bonobo", "gorilla"))
+#' monophyleticGroups[[2]] <-  tipDes(apeTree, 10)
+#' monophyleticGroups[[3]] <- tipDes(apeTree, 11)
 #' monophyleticGroups[[4]] <- c("sumatran", "orangutan")
-#' minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13) / 10
-#' maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 10
-#' estimateGamma(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, alpha=188, beta=2690, offset=0.1, phy=apeTree, plot=F)
+#' minimumTimes <- c("nodeOne"=15, "nodeTwo"=6,
+#' "nodeThree"=8, "nodeFour"=13) / 10
+#' maximumTimes <- c("nodeOne" = 30, "nodeTwo" = 12,
+#' "nodeThree"=12, "nodeFour" = 20) / 10
+#' estimateGamma(minAge=minimumTimes, maxAge=maximumTimes, 
+#' monoGroups=monophyleticGroups, alpha=188, beta=2690, 
+#' offset=0.1, phy=apeTree, plot=FALSE)
 
 
-estimateGamma <- function(minAge, maxAge, phy, monoGroups, alpha=188, beta=2690, offset=0.1, estimateAlpha=TRUE, estimateBeta=F,  plot=FALSE, pdfOutput="gammaPlot.pdf", writeMCMCTree=FALSE, mcmcTreeName="gammaInput.tre") {
+
+estimateGamma <- function(minAge, maxAge, phy, monoGroups, alpha=188, beta=2690, offset=0.1, estimateAlpha=TRUE, estimateBeta=FALSE, plot=FALSE, pdfOutput="gammaPlot.pdf", writeMCMCtree=FALSE, MCMCtreeName="gammaInput.tre") {
 	
 	lMin <- length(minAge)
 	lMax <- length(maxAge)
@@ -46,63 +54,53 @@ estimateGamma <- function(minAge, maxAge, phy, monoGroups, alpha=188, beta=2690,
 	if(length(offset) < lMin) { offset <- rep_len(offset, lMin) ; print("warning - offset parameter value recycled") }
 	if(length(estimateAlpha) < lMin) { estimateAlpha <- rep_len(estimateAlpha, lMin) ; print("warning - estimateAlpha argument recycled") }
 	if(length(estimateBeta) < lMin) { estimateBeta <- rep_len(estimateBeta, lMin) ; print("warning - estimateBeta argument recycled") }
-
-		
 	
-	nodeFun <- function(x){
-	
+	nodeFun <- function(x) {
 		betaInt <- beta[x]
 		alphaInt <- alpha[x]
 		offsetInt <- offset[x]
 		estimateAlphaInt <- estimateAlpha[x]
 		estimateBetaInt <- estimateBeta[x]
-
-		if(estimateAlphaInt == F && estimateBetaInt == F) {
-			
+		if(estimateAlphaInt == FALSE && estimateBetaInt == FALSE) {
 			alphaInt <- alphaInt ; betaInt <- betaInt
-			
-			} else
-			{
-			
-		if(estimateAlphaInt) {
-			alphaInt <- betaInt * (minAge[x] + offsetInt)
-		} 
-		if(estimateBetaInt) {
-			betaInt <- (minAge[x] + offsetInt) / alphaInt
+		} else {			
+			if(estimateAlphaInt) {
+				alphaInt <- betaInt * (minAge[x] + offsetInt)
+				} 
+			if(estimateBetaInt) {
+				betaInt <- (minAge[x] + offsetInt) / alphaInt
+				}
 			}
+		nodeCon <- paste0("'G[", alphaInt, "~", betaInt, "]'")
+		parameters <- c(alphaInt, betaInt)
+		return(list(nodeCon, parameters))
 		}
-		
-	nodeCon <- paste0("'G[", alphaInt, "~", betaInt, "]'")
-	parameters <- c(alphaInt, betaInt)
-	return(list(nodeCon, parameters))
-		}
-	
+
 	out <- sapply(1:lMin, nodeFun)
 	output <- c()
-	prm <- matrix(unlist(out[2,]), ncol=2, byrow=T)
+	prm <- matrix(unlist(out[2,]), ncol=2, byrow=TRUE)
 	rownames(prm) <- paste0("node_", 1:lMin)
 	colnames(prm) <-  c("alpha", "beta")
 	output$parameters <- prm
-	
-	output$apePhy <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), T) 
-	output$mcmctree <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), F) 
+	output$apePhy <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), TRUE) 
+	output$MCMCtree <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), FALSE) 
 
-	if(writeMCMCTree == T) {
-		outputTree <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), returnPhy=F) 
-		write.table(outputTree, paste0(mcmcTreeName), quote=F, row.names=F, col.names=F)
+	if(writeMCMCtree == TRUE) {
+		outputTree <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), returnPhy=FALSE) 
+		utils::write.table(outputTree, paste0(MCMCtreeName), quote=FALSE, row.names=FALSE, col.names=FALSE)
 		}
-	if(plot == T) {
+		
+	if(plot == TRUE) {
 		if(length(list.files(pattern=paste0(pdfOutput))) != 0) {
 			cat(paste0("warning - deleting and over-writing file ", pdfOutput))
 			file.remove(paste0(pdfOutput))
 			}
-	 	pdf(paste0(pdfOutput), family="Times")
+	 	grDevices::pdf(paste0(pdfOutput), family="Times")
 		for(k in 1:dim(prm)[1]) {
-			plotMCMCTree(prm[k,], method="gamma",  paste0(rownames(prm)[k], " gamma"), upperTime = max(maxAge)+1)
+			plotMCMCtree(prm[k,], method="gamma",  paste0(rownames(prm)[k], " gamma"), upperTime = max(maxAge)+1)
 			}
-		dev.off()
+		grDevices::dev.off()
 		}	
-	
 	output$nodeLabels <- unlist(out[1,])	
 	return(output)
 }

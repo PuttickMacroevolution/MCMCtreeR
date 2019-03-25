@@ -2,13 +2,13 @@
 % Please edit documentation in R/estimateSkewT.R
 \name{estimateSkewT}
 \alias{estimateSkewT}
-\title{Estimate Skew-t Distribution for MCMCTree}
+\title{Estimate Skew-t Distribution for MCMCtree analysis}
 \usage{
 estimateSkewT(minAge, maxAge, monoGroups, phy, shape = 50, scale = 1.5,
   df = 1, addMode = 0, maxProb = 0.975, minProb = 0.003,
-  estimateScale = TRUE, estimateShape = FALSE, estimateMode = F,
-  plot = FALSE, pdfOutput = "skewTPlot.pdf", writeMCMCTree = FALSE,
-  mcmcTreeName = "skewTInput.tre")
+  estimateScale = TRUE, estimateShape = FALSE, estimateMode = FALSE,
+  plot = FALSE, pdfOutput = "skewTPlot.pdf", writeMCMCtree = FALSE,
+  MCMCtreeName = "skewTInput.tre")
 }
 \arguments{
 \item{minAge}{vector of minimum age bounds for nodes matching order in monoGroups}
@@ -29,6 +29,8 @@ estimateSkewT(minAge, maxAge, monoGroups, phy, shape = 50, scale = 1.5,
 
 \item{maxProb}{probability of right tail (maximum bound default = 0.975)}
 
+\item{minProb}{probability of left tail (maximum bound default = 0.003)}
+
 \item{estimateScale}{logical specifying whether to estimate scale with a given shape value (default = TRUE)}
 
 \item{estimateShape}{logical specifying whether to estimate shape with a given scale value (default = TRUE)}
@@ -39,34 +41,40 @@ estimateSkewT(minAge, maxAge, monoGroups, phy, shape = 50, scale = 1.5,
 
 \item{pdfOutput}{pdf output file name}
 
-\item{writeMCMCTree}{logical whether to write tree in format that is compatible with mcmcTree to file}
+\item{writeMCMCtree}{logical whether to write tree in format that is compatible with MCMCTree to file}
 
-\item{mcmcTreeName}{mcmcTree output file name}
+\item{MCMCtreeName}{MCMCtree.output file name}
 }
 \value{
 list containing node estimates for each distribution
 \itemize{
  \item{"parameters"}{ estimated parameters for each node}
- \item{"apePhy"}{ phylogeny in ape format with node labels showing node distributions}
- \item{"mcmctree"}{ phylogeny in MCMCTree format}
- \item{"nodeLabels"}{ node labels in MCMCTreeR format}
+ \item{"apePhy"}{ phylogeny in \pkg{APE} format with node labels showing node distributions}
+ \item{"MCMCtree"}{ phylogeny in MCMCtree format}
+ \item{"nodeLabels"}{ node labels in MCMCtreeR format}
 }
 
 If plot=TRUE plot of distributions in file 'pdfOutput' written to current working directory
 
-If writeMCMCTree=TRUE tree in MCMCTree format in file "mcmcTreeName" written to current working directory
+If writeMCMCtree=TRUE tree in MCMCtree format in file "MCMCtreeName" written to current working directory
 }
 \description{
-Estimate the shape, scale, and location paramaters of a skew-t distribution and output trees for MCMCTree input
+Estimate the shape, scale, and location paramaters of a Skew-t distribution and output trees for MCMCtree input
 }
 \examples{
-apeTree <- read.tree(text="((((human, (chimpanzee, bonobo)), gorilla), (orangutan, sumatran)), gibbon);")
+data(apeData)
+attach(apeData)
 monophyleticGroups <- list()
-monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", "gorilla", "sumatran", "orangutan", "gibbon")
-monophyleticGroups[[2]] <- c("human", "chimpanzee", "bonobo", "gorilla")
-monophyleticGroups[[3]] <- c("human", "chimpanzee", "bonobo")
+monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", 
+"gorilla", "sumatran", "orangutan", "gibbon")
+getMRCA(apeTree, c("human", "chimpanzee", "bonobo", "gorilla"))
+monophyleticGroups[[2]] <-  tipDes(apeTree, 10)
+monophyleticGroups[[3]] <- tipDes(apeTree, 11)
 monophyleticGroups[[4]] <- c("sumatran", "orangutan")
-minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13) / 10
-maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 10
-estimateSkewT(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, phy=apeTree, plot=F)
+minimumTimes <- c("nodeOne"=15, "nodeTwo"=6,
+"nodeThree"=8, "nodeFour"=13) / 10
+maximumTimes <- c("nodeOne" = 30, "nodeTwo" = 12,
+"nodeThree"=12, "nodeFour" = 20) / 10
+estimateSkewT(minAge=minimumTimes, maxAge=maximumTimes,
+monoGroups=monophyleticGroups, phy=apeTree, plot=FALSE)
 }

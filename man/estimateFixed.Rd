@@ -2,10 +2,10 @@
 % Please edit documentation in R/estimateFixed.R
 \name{estimateFixed}
 \alias{estimateFixed}
-\title{Fixed Age for PAML input}
+\title{Fixed Age for MCMCtree analysis input}
 \usage{
-estimateFixed(minAge, phy, monoGroups, writeMCMCTree = FALSE,
-  mcmcTreeName = "estimateFixed.tre")
+estimateFixed(minAge, phy, monoGroups, writeMCMCtree = FALSE,
+  MCMCtreeName = "estimateFixed.tre")
 }
 \arguments{
 \item{minAge}{vector of fixed age bounds for nodes matching order in monoGroups}
@@ -14,32 +14,38 @@ estimateFixed(minAge, phy, monoGroups, writeMCMCTree = FALSE,
 
 \item{monoGroups}{list  with each element containing species that define a node of interest}
 
-\item{writeMCMCTree}{logical whether to write tree in format that is compatible with mcmcTree to file}
+\item{writeMCMCtree}{logical whether to write tree in format that is compatible with MCMCTree to file}
 
-\item{mcmcTreeName}{mcmcTree output file name}
+\item{MCMCtreeName}{MCMCtree.output file name}
 }
 \value{
 list containing node estimates for each distribution
 \itemize{
  \item{"parameters"}{ estimated parameters for each node}
  \item{"apePhy"}{ phylogeny in ape format with node labels showing node distributions}
- \item{"mcmctree"}{ phylogeny in MCMCTree format}
- \item{"nodeLabels"}{ node labels in MCMCTreeR format}
+ \item{"MCMCtree"}{ phylogeny in MCMCtreeR format}
+ \item{"nodeLabels"}{ node labels in MCMCtreeR format}
 }
 
-If writeMCMCTree=TRUE tree in MCMCTree format in file "mcmcTreeName" written to current working directory
+If writeMCMCtree=TRUE tree in MCMCtree format in file "MCMCtreeName" written to current working directory
 }
 \description{
-Produce fixed age trees for PAML
+Produce fixed age trees for MCMCtree analysis
 }
 \examples{
-apeTree <- read.tree(text="((((human, (chimpanzee, bonobo)), gorilla), (orangutan, sumatran)), gibbon);")
+data(apeData)
+attach(apeData)
 monophyleticGroups <- list()
-monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", "gorilla", "sumatran", "orangutan", "gibbon")
-monophyleticGroups[[2]] <- c("human", "chimpanzee", "bonobo", "gorilla")
+monophyleticGroups[[1]] <- c("human", "chimpanzee",
+"bonobo", "gorilla", "sumatran", "orangutan", "gibbon")
+monophyleticGroups[[2]] <- c("human", "chimpanzee",
+"bonobo", "gorilla")
 monophyleticGroups[[3]] <- c("human", "chimpanzee", "bonobo")
 monophyleticGroups[[4]] <- c("sumatran", "orangutan")
-minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13) / 10
-maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 10
-estimateFixed(minAge=minimumTimes[1], monoGroups=monophyleticGroups[[1]], phy=apeTree)
+minimumTimes <- c("nodeOne"=15, "nodeTwo"=6,
+"nodeThree"=8, "nodeFour"=13) / 10
+maximumTimes <- c("nodeOne"=30, "nodeTwo"=12,
+"nodeThree"=12, "nodeFour"=20) / 10
+estimateFixed(minAge=minimumTimes[1],
+monoGroups=monophyleticGroups[[1]], phy=apeTree)
 }

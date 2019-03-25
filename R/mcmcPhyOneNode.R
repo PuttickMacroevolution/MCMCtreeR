@@ -1,8 +1,5 @@
-#' mcmcPhyOneNode - internal function
-#'
-#' Produce fixed age trees for PAML
-
-mcmcPhyOneNode <- function(minAgeOne, maxAgeOne, phyOne, monoGroupOne, methodOne, offsetOne, dfOne, shapeOne, minProbOne, maxProbOne, scaleOne, estimateScaleOne, estimateShapeOne, alphaInputOne, betaInputOne, estimateAlphaOne, estimateBetaOne, rightTailOne, addModeOne, estimateModeOne) {
+# MCMCPhyOneNode - internal function
+MCMCPhyOneNode <- function(minAgeOne, maxAgeOne, phyOne, monoGroupOne, methodOne, offsetOne, dfOne, shapeOne, minProbOne, maxProbOne, scaleOne, estimateScaleOne, estimateShapeOne, alphaOne, betaOne, estimateAlphaOne, estimateBetaOne, rightTailOne, addModeOne, estimateModeOne) {
 	
 	if(methodOne == "cauchy") {
 		nodeEsts <- estimateCauchy(minAge = minAgeOne, maxAge = maxAgeOne, phy=phyOne, scale=scaleOne, offset=offsetOne, minProb=minProbOne, maxProb=maxProbOne,  monoGroups=monoGroupOne, estimateScale=estimateScaleOne, plot=F)
@@ -21,7 +18,7 @@ mcmcPhyOneNode <- function(minAgeOne, maxAgeOne, phyOne, monoGroupOne, methodOne
 	}
 	
 		if(methodOne == "gamma") {
-		nodeEsts <- estimateGamma(minAge=minAgeOne, maxAge=maxAgeOne, phy=phyOne,  alpha=alphaInputOne, beta=betaInputOne, offset=offsetOne, estimateAlpha=alphaInputOne, estimateBeta=estimateBetaOne,  monoGroups=monoGroupOne, plot=F)
+		nodeEsts <- estimateGamma(minAge=minAgeOne, maxAge=maxAgeOne, phy=phyOne,  alpha=alphaOne, beta=betaOne, offset=offsetOne, estimateAlpha=alphaOne, estimateBeta=estimateBetaOne,  monoGroups=monoGroupOne, plot=F)
 	}
 	
 			if(methodOne == "skewNormal") {
@@ -32,5 +29,4 @@ mcmcPhyOneNode <- function(minAgeOne, maxAgeOne, phyOne, monoGroupOne, methodOne
 		nodeEsts <- estimateSkewT(minAge=minAgeOne, maxAge=maxAgeOne, phy=phyOne, shape=shapeOne, scale=scaleOne, df=dfOne, estimateScale=estimateScaleOne, estimateShape=estimateShapeOne,  monoGroups=monoGroupOne, addMode=addModeOne, maxProb=maxProbOne, minProb=minProbOne, estimateMode=estimateModeOne, plot=F)
 	}	
 	return(nodeEsts)
-}	
-
+}

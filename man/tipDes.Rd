@@ -2,13 +2,14 @@
 % Please edit documentation in R/tipDes.R
 \name{tipDes}
 \alias{tipDes}
-\title{Find Descendant Tips From A Common Ancestor}
+\title{Find Descendent Tips From A Common Ancestor}
 \usage{
 tipDes(phy, node)
 }
 \arguments{
-\item{phy}{user tree in ape format
-node ancestral node}
+\item{phy}{user tree in ape format}
+
+\item{node}{ancestral, crown node of a clade}
 }
 \description{
 This function finds tip descendants from a common ancestor
@@ -16,7 +17,7 @@ This function finds tip descendants from a common ancestor
 \examples{
 phy <- rcoal(10)
 node <- 13
-commonAnc(phy, node)
+tipDes(phy, node)
 }
 \keyword{ancestor}
 \keyword{node}

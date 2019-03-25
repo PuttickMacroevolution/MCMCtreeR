@@ -4,14 +4,14 @@
 \alias{priorPosterior}
 \title{priorPosterior}
 \usage{
-priorPosterior(mcmcPrior, mcmcPosterior, inputTree)
+priorPosterior(MCMCPrior, MCMCPosterior, inputTree)
 }
 \arguments{
-\item{mcmcPrior}{prior of mcmc file from MCMCTree analysis using data=0}
+\item{MCMCPrior}{prior of MCMC file from MCMCtree analysis using data=0}
 
-\item{mcmcPosterior}{posterior of mcmc file from MCMCTree analysis using data}
+\item{MCMCPosterior}{posterior of MCMC file from MCMCtree analysis using data}
 
-\item{inputTree}{phylogeny in MCMCTree format used in MCMCTree analysis}
+\item{inputTree}{phylogeny in MCMCtree format used in MCMCtree analysis}
 }
 \value{
 list containing node estimates for each distribution
@@ -22,8 +22,11 @@ list containing node estimates for each distribution
 }
 }
 \description{
-Analyse prior and posterior node distributions from MCMCTree analysis
+Analyse prior and posterior node distributions from MCMCtree analysis
 }
 \examples{
-priorPosterior()
+data(MCMCtree.output)
+# priorPosterior(MCMCPrior, 
+# MCMCPosterior=MCMCtree.output$MCMCtree.posterior, 
+# path.to.input.tree)
 }

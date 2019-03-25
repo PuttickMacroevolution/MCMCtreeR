@@ -1,8 +1,6 @@
-#' uniformMCMCTree - internal function
-#'
-#' Produce soft-bounded uniform distribution
+# uniformMCMCtree - internal function
 
-uniformMCMCTree <- function(xRange=c(0.1, 4), tL, tU, minProb, maxProb) {
+uniformMCMCtree <- function(xRange=c(0.1, 4), tL, tU, minProb, maxProb) {
     
     omega <- ((1 - maxProb) * tL) / (minProb * (tU - tL))
     omegaTwo <- (1 - maxProb) / (minProb * (tU - tL))

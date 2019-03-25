@@ -1,6 +1,6 @@
-#' Estimate Skew Normal for MCMCTree
+#' Estimate Skew Normal for MCMCtree analysis
 #'
-#' Estimate the shape, scale, and location paramaters of a skew normal distribution and output trees for MCMCTree input
+#' Estimate the shape, scale, and location paramaters of a skew normal distribution and output trees for MCMCtree input
 #' @param minAge vector of minimum age bounds for nodes matching order in monoGroups
 #' @param maxAge vector of maximum age bounds for nodes matching order in monoGroups
 #' @param monoGroups list  with each element containing species that define a node of interest
@@ -9,41 +9,47 @@
 #' @param scale scale value for skew normal distribution (default = 1.5)
 #' @param addMode addition to the minimum age to give the location of the distribution
 #' @param maxProb probability of right tail (maximum bound default = 0.975) 
+#' @param minProb probability of left tail (maximum bound default = 0.003) 
 #' @param estimateScale logical specifying whether to estimate scale with a given shape value (default = TRUE)
 #' @param estimateShape logical specifying whether to estimate shape with a given scale value (default = TRUE)
 #' @param estimateMode logical speciftying whether to estimate the scale that produces probabilities of each tail that corresponds roughly to the values given by minProb (lower tail) and maxProb (upper tail)
 #' @param plot logical specifying whether to plot to PDF
 #' @param pdfOutput pdf output file name
-#' @param writeMCMCTree logical whether to write tree in format that is compatible with mcmcTree to file
-#' @param mcmcTreeName mcmcTree output file name
+#' @param writeMCMCtree logical whether to write tree in format that is compatible with MCMCTree to file
+#' @param MCMCtreeName MCMCtree.output file name
 #' @return list containing node estimates for each distribution
 #' \itemize{
 #'  \item{"parameters"}{ estimated parameters for each node}
 #'  \item{"apePhy"}{ phylogeny in ape format with node labels showing node distributions}
-#'  \item{"mcmctree"}{ phylogeny in MCMCTree format}
-#'  \item{"nodeLabels"}{ node labels in MCMCTreeR format}
+#'  \item{"MCMCtree"}{ phylogeny in MCMCtree format}
+#'  \item{"nodeLabels"}{ node labels in MCMCtreeR format}
 #' }
 #' @return If plot=TRUE plot of distributions in file 'pdfOutput' written to current working directory
-#' @return If writeMCMCTree=TRUE tree in MCMCTree format in file "mcmcTreeName" written to current working directory
+#' @return If writeMCMCtree=TRUE tree in MCMCtree format in file "MCMCtreeName" written to current working directory
 #' @export
 #' @examples
-#' apeTree <- read.tree(text="((((human, (chimpanzee, bonobo)), gorilla), (orangutan, sumatran)), gibbon);")
+#' data(apeData)
+#' attach(apeData)
 #' monophyleticGroups <- list()
-#' monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", "gorilla", "sumatran", "orangutan", "gibbon")
-#' monophyleticGroups[[2]] <- c("human", "chimpanzee", "bonobo", "gorilla")
-#' monophyleticGroups[[3]] <- c("human", "chimpanzee", "bonobo")
+#' monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", 
+#' "gorilla", "sumatran", "orangutan", "gibbon")
+#' getMRCA(apeTree, c("human", "chimpanzee", "bonobo", "gorilla"))
+#' monophyleticGroups[[2]] <-  tipDes(apeTree, 10)
+#' monophyleticGroups[[3]] <- tipDes(apeTree, 11)
 #' monophyleticGroups[[4]] <- c("sumatran", "orangutan")
-#' minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13) / 10
-#' maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 10
-#' estimateSkewNormal(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, phy=apeTree, plot=F)
+#' minimumTimes <- c("nodeOne"=15, "nodeTwo"=6,
+#' "nodeThree"=8, "nodeFour"=13) / 10
+#' maximumTimes <- c("nodeOne" = 30, "nodeTwo" = 12,
+#' "nodeThree"=12, "nodeFour" = 20) / 10
+#' estimateSkewNormal(minAge=minimumTimes, maxAge=maximumTimes, 
+#' monoGroups=monophyleticGroups, phy=apeTree, plot=FALSE)
 
-estimateSkewNormal <- function(minAge, maxAge, monoGroups, phy, shape=50, scale=1.5, addMode=0,  maxProb=0.975, minProb=0.003, estimateScale=T, estimateShape=F, estimateMode=F, plot=FALSE,  pdfOutput="skewNormalPlot.pdf", writeMCMCTree=FALSE, mcmcTreeName="skewNormalInput.tre")	{
-
-	#parameters from the dst function in the sn package
-	#dst(x, xi = 0, omega = 1, alpha = 0, nu = Inf, dp = NULL, log = FALSE) 
-	#xi = location
-	#alpha = shape
-	#omega = scale
+estimateSkewNormal <- function(minAge, maxAge, monoGroups, phy, shape=50, scale=1.5, addMode=0, maxProb=0.975, minProb=0.003, estimateScale=TRUE, estimateShape=F, estimateMode=FALSE, plot=FALSE,  pdfOutput="skewNormalPlot.pdf", writeMCMCtree=FALSE, MCMCtreeName="skewNormalInput.tre")	{
+	# parameters from the dst function in the sn package
+	# dst(x, xi = 0, omega = 1, alpha = 0, nu = Inf, dp = NULL, log = FALSE) 
+	# xi = location
+	# alpha = shape
+	# omega = scale
 	# paml gives these parameters in the following order:
 	# paml - location, scale, shape
 
@@ -65,9 +71,8 @@ estimateSkewNormal <- function(minAge, maxAge, monoGroups, phy, shape=50, scale=
 		}
 	if(length(addMode) < lMin) { 
 		addMode <- rep_len(addMode, lMin)
-		if(any(estimateMode) == F) print("warning - addMode parameter value recycled")
+		if(any(estimateMode) == FALSE) print("warning - addMode parameter value recycled")
 		}
-
 
 	nodeFun <- function(x)	{
 		upperEsts <- lowerEsts <- c()
@@ -81,47 +86,40 @@ estimateSkewNormal <- function(minAge, maxAge, monoGroups, phy, shape=50, scale=
 		maxProbInt <- maxProb[x]
 		minProbInt <- minProb[x]
 		
-		if(estimateModeInt == T) {
-			estimateScaleInt=F ; estimateShapeInt=F
-		}
-		if(estimateShapeInt == T && estimateScaleInt == T) stop("need to set scale or shape")
-
-
-	
-		if(estimateShapeInt == F && estimateScaleInt == F && estimateModeInt == F) {
-			
+		if(estimateModeInt == TRUE) {
+			estimateScaleInt=FALSE ; estimateShapeInt=FALSE
+			}
+		if(estimateShapeInt == TRUE && estimateScaleInt == TRUE) stop("need to set scale or shape")
+		if(estimateShapeInt == FALSE && estimateScaleInt == FALSE && estimateModeInt == FALSE) {
 			scaleInt <- scaleInt ; shapeInt <- shapeInt
-			} else
-			{
-						
-				if(estimateModeInt) {
-					scaleTest <- seq (0.01, 2, by=1e-2)
-					locTest <- seq(0.01, 1, by=0.01)
-					for(y in 1:length(locTest)) {
-						locationInt <- minAge[x] + locTest[y]
-						for(u in 1:length(scaleTest)) {
-							upperEsts[u] = qsn(maxProbInt, xi=locationInt, omega=scaleTest[u], alpha=shapeInt)
-							lowerEsts[u] = qsn(minProbInt, xi=locationInt, omega=scaleTest[u], alpha=shapeInt)
-							}
-						closest <- which(abs(upperEsts-maxAge[x])==min(abs(upperEsts-maxAge[x])))
-						closest2 <- which(abs(lowerEsts-minAge[x])==min(abs(lowerEsts-minAge[x])))
-						if(sum(match(closest, ((closest2-2):(closest2+2))), na.rm=T) != 0) break()
+		} else {
+			if(estimateModeInt) {
+				scaleTest <- seq (0.01, 2, by=1e-2)
+				locTest <- seq(0.01, 1, by=0.01)
+				for(y in 1:length(locTest)) {
+					locationInt <- minAge[x] + locTest[y]
+					for(u in 1:length(scaleTest)) {
+						upperEsts[u] = qsn(maxProbInt, xi=locationInt, omega=scaleTest[u], alpha=shapeInt)
+						lowerEsts[u] = qsn(minProbInt, xi=locationInt, omega=scaleTest[u], alpha=shapeInt)
 						}
-				
-					if(sum(match(closest, ((closest2-2):(closest2+2))), na.rm=T) == 0) stop("offset and scale combination not found for skew t distrbution. Maybe change shape and try again")
-					upperEst <- round(upperEsts[closest], 2)
-					lowerEst <- round(lowerEsts[closest2], 2)
-					scaleInt <- round(scaleTest[closest], 2)
-					locationInt <- round(locTest[y] + minAge[x], 2)
+					closest <- which(abs(upperEsts-maxAge[x])==min(abs(upperEsts-maxAge[x])))
+					closest2 <- which(abs(lowerEsts-minAge[x])==min(abs(lowerEsts-minAge[x])))
+					if(sum(match(closest, ((closest2-2):(closest2+2))), na.rm=T) != 0) break()
+					}
+				if(sum(match(closest, ((closest2-2):(closest2+2))), na.rm=T) == 0) stop("offset and scale combination not found for Skew t distrbution. Maybe change shape and try again")
+				upperEst <- round(upperEsts[closest], 2)
+				lowerEst <- round(lowerEsts[closest2], 2)
+				scaleInt <- round(scaleTest[closest], 2)
+				locationInt <- round(locTest[y] + minAge[x], 2)
 				}
 				
-				if(estimateScaleInt) {
-					scaleTest <- seq (0.01, 2, by=1e-2)
-					for(u in 1:length(scaleTest)) upperEsts[u] = qsn(maxProbInt, xi=locationInt, omega=scaleTest[u], alpha=shapeInt)
-					closest <- which(abs(upperEsts-maxAge[x])==min(abs(upperEsts-maxAge[x])))
-					upperEst <- upperEsts[closest]
-					scaleInt <- scaleTest[closest]
-					}		
+			if(estimateScaleInt) {
+				scaleTest <- seq (0.01, 2, by=1e-2)
+				for(u in 1:length(scaleTest)) upperEsts[u] = qsn(maxProbInt, xi=locationInt, omega=scaleTest[u], alpha=shapeInt)
+				closest <- which(abs(upperEsts-maxAge[x])==min(abs(upperEsts-maxAge[x])))
+				upperEst <- upperEsts[closest]
+				scaleInt <- scaleTest[closest]
+				}		
 		
 			if(estimateShapeInt) {
 				shapeTest <- seq (1, 50, by=50)
@@ -136,34 +134,30 @@ estimateSkewNormal <- function(minAge, maxAge, monoGroups, phy, shape=50, scale=
 			parameters <- c(locationInt, scaleInt, shapeInt)
 			names(parameters) <- c("location", "scale", "shape")
 			return(list(nodeCon, parameters))
-			}
-			
+		}
 	out <- sapply(1:lMin, nodeFun)
 	output <- c()
-	
 	prm <- matrix(unlist(out[2,]), ncol=3, byrow=T)
 	rownames(prm) <- paste0("node_", 1:lMin)
 	colnames(prm) <-  c("location", "scale", "shape")
 	output$parameters <- prm 
-	
 	output$apePhy <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), T) 
-	output$mcmctree <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), F) 
-	
-	if(writeMCMCTree == T) {
+	output$MCMCtree <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), F) 
+	if(writeMCMCtree == TRUE) {
 		outputTree <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), returnPhy=F) 
-		write.table(outputTree, paste0(mcmcTreeName), quote=F, row.names=F, col.names=F)
+		utils::write.table(outputTree, paste0(MCMCtreeName), quote=F, row.names=F, col.names=F)
 		}
-	if(plot == T) {
+	if(plot == TRUE) {
 		if(length(list.files(pattern=paste0(pdfOutput))) != 0) {
 			cat(paste0("warning - deleting and over-writing file ", pdfOutput))
 			file.remove(paste0(pdfOutput))
 			}
-	 	pdf(paste0(pdfOutput), family="Times")
+	 	grDevices::pdf(paste0(pdfOutput), family="Times")
 		for(k in 1:dim(prm)[1]) {
-			plotMCMCTree(prm[k,], method="skewNormal",  paste0(rownames(prm)[k], " skewNormal"), upperTime = max(maxAge)+1)
+			plotMCMCtree(prm[k,], method="skewNormal",  paste0(rownames(prm)[k], " skewNormal"), upperTime = max(maxAge)+1)
 			}
-		dev.off()
+		grDevices::dev.off()
 		}	
 	output$nodeLabels <- unlist(out[1,])	
 	return(output)
-}	
+}

@@ -1,6 +1,6 @@
-#' Estimate a Uniform Distribution for MCMCTree
+#' Estimate a Uniform Distribution for MCMCtree
 #'
-#' Estimate the paramaters of a soft-bounded uniform distribution and output trees for MCMCTree input
+#' Estimate the paramaters of a soft-bounded uniform distribution and output trees for MCMCtree input
 #' @param minAge vector of minimum age bounds for nodes matching order in monoGroups
 #' @param maxAge vector of maximum age bounds for nodes matching order in monoGroups
 #' @param monoGroups list  with each element containing species that define a node of interest
@@ -9,31 +9,37 @@
 #' @param rightTail probability of right tail (maximum bound default = 0.975) 
 #' @param plot logical specifying whether to plot to PDF
 #' @param pdfOutput pdf output file name
-#' @param writeMCMCTree logical whether to write tree in format that is compatible with mcmcTree to file
-#' @param mcmcTreeName mcmcTree output file name
+#' @param writeMCMCtree logical whether to write tree in format that is compatible with MCMCTree to file
+#' @param MCMCtreeName MCMCtree.output file name
 #' @return list containing node estimates for each distribution
 #' \itemize{
 #'  \item{"parameters"}{ estimated parameters for each node}
 #'  \item{"apePhy"}{ phylogeny in ape format with node labels showing node distributions}
-#'  \item{"mcmctree"}{ phylogeny in MCMCTree format}
-#'  \item{"nodeLabels"}{ node labels in MCMCTreeR format}
+#'  \item{"MCMCtree"}{ phylogeny in MCMCtreeR format}
+#'  \item{"nodeLabels"}{ node labels in MCMCtreeR format}
 #' }
 #' @return If plot=TRUE plot of distributions in file 'pdfOutput' written to current working directory
-#' @return If writeMCMCTree=TRUE tree in MCMCTree format in file "mcmcTreeName" written to current working directory
+#' @return If writeMCMCtree=TRUE tree in MCMCtree format in file "MCMCtreeName" written to current working directory
 #' @export
 #' @examples
-#' apeTree <- read.tree(text="((((human, (chimpanzee, bonobo)), gorilla), (orangutan, sumatran)), gibbon);")
+#' data(apeData)
+#' attach(apeData)
 #' monophyleticGroups <- list()
-#' monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", "gorilla", "sumatran", "orangutan", "gibbon")
-#' monophyleticGroups[[2]] <- c("human", "chimpanzee", "bonobo", "gorilla")
-#' monophyleticGroups[[3]] <- c("human", "chimpanzee", "bonobo")
+#' monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", 
+#' "gorilla", "sumatran", "orangutan", "gibbon")
+#' getMRCA(apeTree, c("human", "chimpanzee", "bonobo", "gorilla"))
+#' monophyleticGroups[[2]] <-  tipDes(apeTree, 10)
+#' monophyleticGroups[[3]] <- tipDes(apeTree, 11)
 #' monophyleticGroups[[4]] <- c("sumatran", "orangutan")
-#' minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13) / 10
-#' maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 10
-#' estimateBound(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, phy=apeTree)
+#' minimumTimes <- c("nodeOne"=15, "nodeTwo"=6,
+#' "nodeThree"=8, "nodeFour"=13) / 10
+#' maximumTimes <- c("nodeOne" = 30, "nodeTwo" = 12,
+#' "nodeThree"=12, "nodeFour" = 20) / 10
+#' estimateBound(minAge=minimumTimes, maxAge=maximumTimes, 
+#' monoGroups=monophyleticGroups, phy=apeTree, plot=FALSE)
 
 
-estimateBound <- function(minAge, maxAge, minProb=0.025, rightTail=0.025, phy, monoGroups,  writeMCMCTree=FALSE, plot=TRUE, mcmcTreeName="bound.tre", pdfOutput="uniformPlot.pdf")	 {
+estimateBound <- function(minAge, maxAge, minProb=0.025, rightTail=0.025, phy, monoGroups, writeMCMCtree=FALSE, plot=TRUE, MCMCtreeName="bound.tre", pdfOutput="uniformPlot.pdf")	 {
 
 	lMin <- length(minAge)
 	lMax <- length(maxAge)
@@ -55,24 +61,24 @@ estimateBound <- function(minAge, maxAge, minProb=0.025, rightTail=0.025, phy, m
 	rownames(prm) <- paste0("node_", 1:lMin)
 	colnames(prm) <-  c("tL", "tU", "pL", "pU")
 	output$apePhy <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), T) 
-	output$mcmctree <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), F) 
+	output$MCMCtree <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), F) 
     output$parameters <- prm
 
 		
-	if(writeMCMCTree == T) {
+	if(writeMCMCtree == T) {
 		outputTree <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), returnPhy=F) 
-		write.table(outputTree, paste0(mcmcTreeName), quote=F, row.names=F, col.names=F)
+		utils::write.table(outputTree, paste0(MCMCtreeName), quote=F, row.names=F, col.names=F)
 		}
 	if(plot == T) {
 		if(length(list.files(pattern=paste0(pdfOutput))) != 0) {
 			cat(paste0("warning - deleting and over-writing file ", pdfOutput))
 			file.remove(paste0(pdfOutput))
 			}
-	 	pdf(paste0(pdfOutput), family="Times")
+	 	grDevices::pdf(paste0(pdfOutput), family="Times")
 		for(k in 1:dim(prm)[1]) {
-			plotMCMCTree(prm[k,], method="bound",  paste0(rownames(prm)[k], " bound"), upperTime = maxAge[k] +1)
+			plotMCMCtree(prm[k,], method="bound",  paste0(rownames(prm)[k], " bound"), upperTime = maxAge[k] +1)
 			}
-		dev.off()
+		grDevices::dev.off()
 		}	
 	
 	output$nodeLabels <- unlist(out[1,])	

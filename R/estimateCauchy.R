@@ -1,6 +1,6 @@
-#' Estimate Cauchy Distribution for MCMCTree
+#' Estimate Cauchy Distribution for MCMCtree
 #'
-#' Estimate the offset and scale paramaters of a soft-tailed cauchy distribution and output trees for MCMCTree input
+#' Estimate the offset and scale paramaters of a soft-tailed cauchy distribution and output trees for MCMCtree input
 #' @param minAge vector of minimum age bounds for nodes matching order in monoGroups
 #' @param maxAge vector of maximum age bounds for nodes matching order in monoGroups
 #' @param monoGroups list  with each element containing species that define a node of interest
@@ -12,31 +12,37 @@
 #' @param maxProb probability of right tail (maximum bound. default = 0.975) 
 #' @param plot logical specifying whether to plot to PDF
 #' @param pdfOutput pdf output file name
-#' @param writeMCMCTree logical whether to write tree in format that is compatible with mcmcTree to file
-#' @param mcmcTreeName mcmcTree output file name
+#' @param writeMCMCtree logical whether to write tree in format that is compatible with MCMCTree to file
+#' @param MCMCtreeName MCMCtree.output file name
 #' @return list containing node estimates for each distribution
 #' \itemize{
 #'  \item{"parameters"}{ estimated parameters for each node}
 #'  \item{"apePhy"}{ phylogeny in ape format with node labels showing node distributions}
-#'  \item{"mcmctree"}{ phylogeny in MCMCTree format}
-#'  \item{"nodeLabels"}{ node labels in MCMCTreeR format}
+#'  \item{"MCMCtree"}{ phylogeny in MCMCtree format}
+#'  \item{"nodeLabels"}{ node labels in MCMCtreeR format}
 #' }
 #' @return If plot=TRUE plot of distributions in file 'pdfOutput' written to current working directory
-#' @return If writeMCMCTree=TRUE tree in MCMCTree format in file "mcmcTreeName" written to current working directory
+#' @return If writeMCMCtree=TRUE tree in MCMCtree format in file "MCMCtreeName" written to current working directory
 #' @export
 #' @examples
-#' apeTree <- read.tree(text="((((human, (chimpanzee, bonobo)), gorilla), (orangutan, sumatran)), gibbon);")
+#' data(apeData)
+#' attach(apeData)
 #' monophyleticGroups <- list()
-#' monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", "gorilla", "sumatran", "orangutan", "gibbon")
-#' monophyleticGroups[[2]] <- c("human", "chimpanzee", "bonobo", "gorilla")
-#' monophyleticGroups[[3]] <- c("human", "chimpanzee", "bonobo")
+#' monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", 
+#' "gorilla", "sumatran", "orangutan", "gibbon")
+#' getMRCA(apeTree, c("human", "chimpanzee", "bonobo", "gorilla"))
+#' monophyleticGroups[[2]] <-  tipDes(apeTree, 10)
+#' monophyleticGroups[[3]] <- tipDes(apeTree, 11)
 #' monophyleticGroups[[4]] <- c("sumatran", "orangutan")
-#' minimumTimes <- c("nodeOne"=15, "nodeTwo"=6, "nodeThree"=8, "nodeFour"=13) / 10
-#' maximumTimes <- c("nodeOne"=30, "nodeTwo"=12, "nodeThree"=12, "nodeFour"=20) / 10
-#' estimateCauchy(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, offset=0.5, phy=apeTree, plot=F)
+#' minimumTimes <- c("nodeOne"=15, "nodeTwo"=6,
+#' "nodeThree"=8, "nodeFour"=13) / 10
+#' maximumTimes <- c("nodeOne" = 30, "nodeTwo" = 12,
+#' "nodeThree"=12, "nodeFour" = 20) / 10
+#' estimateCauchy(minAge=minimumTimes, maxAge=maximumTimes, 
+#' monoGroups=monophyleticGroups, offset=0.5, phy=apeTree, plot=FALSE)
 
-estimateCauchy <- function(minAge, maxAge, phy, monoGroups, scale=0.2, offset=0.1, estimateScale=T,  minProb=0, maxProb=0.975, plot=FALSE, pdfOutput="cauchyPlot.pdf", writeMCMCTree=FALSE, mcmcTreeName="cauchyInput.tre")	{
-
+estimateCauchy <- function(minAge, maxAge, phy, monoGroups, scale=0.2, offset=0.1, estimateScale=TRUE,  minProb=0, maxProb=0.975, plot=FALSE, pdfOutput="cauchyPlot.pdf", writeMCMCtree=FALSE, MCMCtreeName="cauchyInput.tre") {
+	
 	lMin <- length(minAge)
 	lMax <- length(maxAge)
 	if(lMin != lMax) stop("length of ages do not match")
@@ -46,23 +52,16 @@ estimateCauchy <- function(minAge, maxAge, phy, monoGroups, scale=0.2, offset=0.
 	if(length(scale) < lMin) { scale <- rep_len(scale, lMin) ; print("warning - scale parameter value recycled") }
 	if(length(estimateScale) < lMin) { estimateScale <- rep_len(estimateScale, lMin) ; print("warning - estimateScale argument recycled") }
 
-
 	nodeFun <- function(x)	{
-	
-	scaleInt <- scale[x]
-	locationInt <- minAge[x]
-	offsetInt <- offset[x]
-	estimateScaleInt <- estimateScale[x]
-	maxProbInt <- maxProb[x]
-	minProbInt <- minProb[x]
-
-
-	if(estimateScaleInt == F) {
-			
+		scaleInt <- scale[x]
+		locationInt <- minAge[x]
+		offsetInt <- offset[x]
+		estimateScaleInt <- estimateScale[x]
+		maxProbInt <- maxProb[x]
+		minProbInt <- minProb[x]
+		if(estimateScaleInt == FALSE) {
 			scaleInt <- scaleInt ; offsetInt <- offsetInt
-			
-			} else
-			{
+		} else {
 			p <- offsetInt
 			cEsts <- c()
 			cTest <- seq (0.001, 10, by=1e-3)
@@ -70,18 +69,14 @@ estimateCauchy <- function(minAge, maxAge, phy, monoGroups, scale=0.2, offset=0.
 			closest <- which(abs(cEsts-maxAge[x]) == min(abs(cEsts-maxAge[x])))
 			upperEst <- cEsts[closest]
 			scaleInt <- cTest[closest]
-		} 
+			} 
+		if(minProbInt < 1e-7) minProbInt <- 1e-300
+		nodeCon <- paste0("'L[", locationInt, "~", offsetInt, "~", scaleInt, "~",  minProbInt, "]'")	
+		parameters <- c(locationInt, offsetInt, scaleInt, minProbInt)
+		names(parameters) <- c("tL", "p", "c", "pL")
+		return(list(nodeCon, parameters))	
+		}
 		
-		
-	if(minProbInt < 1e-7) minProbInt <- 1e-300
-	nodeCon <- paste0("'L[", locationInt, "~", offsetInt, "~", scaleInt, "~",  minProbInt, "]'")	
-	parameters <- c(locationInt, offsetInt, scaleInt, minProbInt)
-	names(parameters) <- c("tL", "p", "c", "pL")
-	return(list(nodeCon, parameters))	
-		
-	}
-		
-	
 	out <- sapply(1:lMin, nodeFun)
 	output <- c()
 	prm <- matrix(unlist(out[2,]), ncol=4, byrow=T)
@@ -90,25 +85,25 @@ estimateCauchy <- function(minAge, maxAge, phy, monoGroups, scale=0.2, offset=0.
 	output$parameters <- prm
 	
 	output$apePhy <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), T) 
-	output$mcmctree <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), F) 
+	output$MCMCtree <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), F) 
 
-	if(writeMCMCTree == T) {
+	if(writeMCMCtree == TRUE) {
 		outputTree <- nodeToPhy(phy, monoGroups, nodeCon=unlist(out[1,]), returnPhy=F) 
-		write.table(outputTree, paste0(mcmcTreeName), quote=F, row.names=F, col.names=F)
+		utils::write.table(outputTree, paste0(MCMCtreeName), quote=F, row.names=F, col.names=F)
 		}	
-	if(plot == T) {
+		
+	if(plot == TRUE) {
 		cat("warning - cauchy plots will be approximations!")
 		if(length(list.files(pattern=paste0(pdfOutput))) != 0) {
 			cat(paste0("warning - deleting and over-writing file ", pdfOutput))
 			file.remove(paste0(pdfOutput))
 			}
-	 	pdf(paste0(pdfOutput), family="Times")
+	 	grDevices::pdf(paste0(pdfOutput), family="Times")
 		for(k in 1:dim(prm)[1]) {
-			plotMCMCTree(prm[k,], method="cauchy",  paste0(rownames(prm)[k], " cauchy"), upperTime = max(maxAge)+1)
+			plotMCMCtree(prm[k,], method="cauchy",  paste0(rownames(prm)[k], " cauchy"), upperTime = max(maxAge)+1)
 			}
-		dev.off()
+		grDevices::dev.off()
 		}	
-		
 	output$nodeLabels <- unlist(out[1,])	
 	return(output)
 }
