@@ -27,7 +27,7 @@ names(apeData)</code></pre>
 <pre class="r"><code>plot(apeTree)
 nodelabels()</code></pre>
 <div class="figure" style="text-align: center">
-<img src="/vignettes/MCMCtree/Figure1unnamed-chunk-3-1.pdf" alt="**Figure 1** Plot of the tree with node labelled with numbers" width="800" />
+<img src="/vignettes/MCMCtree/unnamed-chunk-11-1.png" alt="**Figure 1** Plot of the tree with node labelled with numbers" width="800" />
 <p class="caption">
 <strong>Figure 1</strong> Plot of the tree with node labelled with numbers
 </p>
@@ -82,7 +82,7 @@ monophyleticGroups.user</code></pre>
 for (i in 1:4) plotMCMCtree(skewT_results$parameters[i, ], method = &quot;skewT&quot;, 
     title = paste0(&quot;node &quot;, i), upperTime = max(maximumTimes))</code></pre>
 <div class="figure" style="text-align: center">
-<img src="/vignettes/MCMCtree/Figure2unnamed-chunk-6-1.pdf" alt="**Figure 2** Skew T distributions for all nodes" width="1200" />
+<img src="/vignettes/MCMCtree/unnamed-chunk-12-1.png" alt="**Figure 2** Skew T distributions for all nodes" width="1200" />
 <p class="caption">
 <strong>Figure 2</strong> Skew T distributions for all nodes
 </p>
@@ -150,7 +150,7 @@ skewT_results$parameters</code></pre>
 for (i in 1:4) plotMCMCtree(skewNormal_results$parameters[i, 
     ], method = &quot;skewNormal&quot;, title = paste0(&quot;node &quot;, i), upperTime = max(maximumTimes))</code></pre>
 <div class="figure" style="text-align: center">
-<img src="/vignettes/MCMCtree/Figure3unnamed-chunk-11-1.pdf" alt="**Figure 3** Skew normal distributions for all nodes" width="1200" />
+<img src="/vignettes/MCMCtree/unnamed-chunk-13-1.png" alt="**Figure 3** Skew normal distributions for all nodes" width="1200" />
 <p class="caption">
 <strong>Figure 3</strong> Skew normal distributions for all nodes
 </p>
@@ -165,7 +165,7 @@ for (i in 1:4) plotMCMCtree(skewNormal_results$parameters[i,
 plotMCMCtree(example_page_50, method = &quot;cauchy&quot;, title = paste0(&quot;node &quot;, 
     i), upperTime = max(maximumTimes))</code></pre>
 <div class="figure" style="text-align: center">
-<img src="/vignettes/MCMCtree/Figure4unnamed-chunk-12-1.pdf" alt="**Figure 4** Cauchy distributions for all nodes  (with a given scale)" width="1200" />
+<img src="/vignettes/MCMCtree/unnamed-chunk-14-1.png" alt="**Figure 4** Cauchy distributions for all nodes  (with a given scale)" width="1200" />
 <p class="caption">
 <strong>Figure 4</strong> Cauchy distributions for all nodes (with a given scale)
 </p>
@@ -191,7 +191,7 @@ plotMCMCtree(example_page_50, method = &quot;cauchy&quot;, title = paste0(&quot;
 for (i in 1:4) plotMCMCtree(cauchy_results$parameters[i, ], method = &quot;cauchy&quot;, 
     title = paste0(&quot;node &quot;, i), upperTime = max(maximumTimes))</code></pre>
 <div class="figure" style="text-align: center">
-<img src="/vignettes/MCMCtree/Figure5unnamed-chunk-13-1.pdf" alt="**Figure 5** Cauchy distributions for all nodes (with a given shape)" width="1200" />
+<img src="/vignettes/MCMCtree/unnamed-chunk-15-1.png" alt="**Figure 5** Cauchy distributions for all nodes (with a given shape)" width="1200" />
 <p class="caption">
 <strong>Figure 5</strong> Cauchy distributions for all nodes (with a given shape)
 </p>
@@ -214,7 +214,7 @@ for (i in 1:4) plotMCMCtree(cauchy_results$parameters[i, ], method = &quot;cauch
 for (i in 1:4) plotMCMCtree(cauchy_results$parameters[i, ], method = &quot;cauchy&quot;, 
     title = paste0(&quot;node &quot;, i), upperTime = maximumTimes[i])</code></pre>
 <div class="figure" style="text-align: center">
-<img src="/vignettes/MCMCtree/Figure6unnamed-chunk-14-1.pdf" alt="**Figure 6** Cauchy distributions for all nodes (with a given shape) and smaller offset" width="1200" />
+<img src="/vignettes/MCMCtree/unnamed-chunk-16-1.png" alt="**Figure 6** Cauchy distributions for all nodes (with a given shape) and smaller offset" width="1200" />
 <p class="caption">
 <strong>Figure 6</strong> Cauchy distributions for all nodes (with a given shape) and smaller offset
 </p>
@@ -238,7 +238,7 @@ for (i in 1:4) plotMCMCtree(uniform_results$parameters[i, ],
     method = &quot;bound&quot;, title = paste0(&quot;node &quot;, i), upperTime = maximumTimes[i] + 
         1)</code></pre>
 <div class="figure" style="text-align: center">
-<img src="/vignettes/MCMCtree/Figure7unnamed-chunk-15-1.pdf" alt="**Figure 7** Uniform distributions for all nodes" width="1200" />
+<img src="/vignettes/MCMCtree/unnamed-chunk-3-1.png" alt="**Figure 7** Uniform distributions for all nodes" width="1200" />
 <p class="caption">
 <strong>Figure 7</strong> Uniform distributions for all nodes
 </p>
@@ -264,7 +264,7 @@ for (i in 1:4) plotMCMCtree(uniform_results$parameters[i, ],
 for (i in 1:4) plotMCMCtree(gamma_results$parameters[i, ], method = &quot;gamma&quot;, 
     title = paste0(&quot;node &quot;, i), upperTime = maximumTimes[i])</code></pre>
 <div class="figure" style="text-align: center">
-<img src="/vignettes/MCMCtree/Figure8unnamed-chunk-16-1.pdf" alt="**Figure 8** Gamma distributions for all nodes" width="1200" />
+<img src="/vignettes/MCMCtree/unnamed-chunk-6-1.png" alt="**Figure 8** Gamma distributions for all nodes" width="1200" />
 <p class="caption">
 <strong>Figure 8</strong> Gamma distributions for all nodes
 </p>
