@@ -41,20 +41,28 @@
 #' @param pos.age position position of absolute age axis
 #' @param ... further arguments to be used in \code{\link[ape]{plot.phylo}}
 #' @return If plot=TRUE plot of distributions in file 'pdfOutput' written to current working directory
+#' @details The primary inputs for the 'method' options are outputs from analysis conducting using MCMCtree, MrBayes, RevBayes, or User.
+#' @details For analyses under the 'MCMCtree' option (the default) the function only requires a 'FigTree' output from MCMCtree analysis or the full MCMCtree posterior. For option "MrBayes" and "RevBayes", the method argument takes the user-supplied directory address in which all the output files are stored. 
+#' @details For the option 'User' the function requires a full posterior distribution and time-scaled phylogeny. This function can take any posterior distribution, but it may require some manipulation. The argument node.ages in MCMC.tree.plot takes a named list containing the posterior ages for each node, with the name of each element corresponding to the node in the phylogeny.
 #' @import ape
 #' @import coda
 #' @import sn
 #' @export
+#' @author Mark Puttick
 #' @examples
 #' data(MCMCtree.output)
 #' attach(MCMCtree.output)
-#' MCMCtree.file <- readMCMCtree(MCMCtree.phy, from.file=FALSE)
-#' MCMC.tree.plot(MCMCtree.file[[1]],  analysis.type="MCMCtree",
+#' ## if it is necessary to read in file manually
+#' ## MCMCtree.posterior <- read.csv("mcmc.posterior.file.directory", sep="\t")
+#' MCMCtree.file <- readMCMCtree(MCMCtree.phy, from.file=FALSE)$apePhy
+#' MCMC.tree.plot(phy=MCMCtree.file,  analysis.type="MCMCtree",
 #' MCMC.chain=MCMCtree.posterior, plot.type="distributions", cex.tips=0.5)
 
 MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, node.ages=NULL, directory.files=NULL, plot.type="phylogram", build.tree=FALSE, node.method="bar", all.nodes=NULL, add.time.scale=TRUE, add.abs.time=TRUE, scale.res="Epoch", label.timescale.names=FALSE, time.correction=1, col.age="blue", tip.lengths=FALSE, density.col="#00000050", density.border.col="#00000080", cex.tips=1, show.tip.label=TRUE, col.tree="black", tip.color="black", lwd.bar=1, grey.bars=TRUE, cex.age=1, cex.labels=1, cex.names=1, relative.height=0.08, tip.bar.col="#ff000050", burn.in=0.25, distribution.height=0.8, abs.age.mgp=c(3, 0.35, 0), abs.age.lwd.ticks=0.7, abs.age.lwd=0, tck.abs.age=-0.01, abs.age.line=-0.4, pos.age=NULL, n.runs=2, ...) {
 	
-	if(is.na(match(tolower(analysis.type), c("mcmctree", "mrbayes", "revbayes", "user")))) {
+	analysis.type <- tolower(analysis.type)
+	
+	if(is.na(match(analysis.type, c("mcmctree", "mrbayes", "revbayes", "user")))) {
 		stop("analysis.type must be one of 'MCMCtree', 'mrbayes', 'revbayes', or 'user'")
 	}
 	
@@ -68,7 +76,7 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 	
 	if(analysis.type == "mcmctree") {
 		phy.in <- phy
-		phy <- phy.in[[1]]
+		if(class(phy.in)[1] == "MCMCtreer") phy <- phy.in[[1]]
 		}
 	
 	if(analysis.type == "mrbayes") {
@@ -160,6 +168,9 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 	}
 		
 	if(analysis.type == "user") {
+		node.order <- c(Ntip(phy) + 1, phy$edge[which(phy$edge[,2] > Ntip(phy)),2])
+		if(any(is.na(node.order))) ("the names in the node.ages list don't match to the tree - please check")
+		node.ages[match(node.order, as.numeric(as.character(names(node.ages))))] <- node.ages		
 		node.ages <- lapply(node.ages, function(x) x * time.correction)
 		phy$edge.length <- phy$edge.length * time.correction
 		hpd.ages <- sapply(node.ages, function(xx) HPDinterval(as.mcmc(xx)))
@@ -194,45 +205,47 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 		match.edges <- which(last.plot.coord$edge[,1] == Ntip(phy) + 1)
 		
 		if(node.method != "none") {
-		
-		if(is.null(all.nodes)) {
-			ext.node <- which(last.plot.coord$edge[,2] > Ntip(phy))
-		} else {
-			ext.node <- match(all.nodes, last.plot.coord$edge[,2])
-		}	
 			
-			if(length(col.age) < length(ext.node)) col.age <- rep(col.age, length(ext.node) + 1)
-			if(node.method == "full.length") {
-				graphics::polygon(c(xx[1], xx[2], xx[2], xx[1]), matrix(c(0, 0, Ntip(phy), Ntip(phy)), ncol=2), col=col.age[1], border=FALSE)
+			if(is.null(all.nodes)) {
+				ext.node <- which(last.plot.coord$edge[,2] > Ntip(phy))
+			} else {
+				ext.node <- match(all.nodes, last.plot.coord$edge[,2])
+			}	
+				
+				if(length(col.age) < length(ext.node)) col.age <- rep(col.age, length(ext.node) + 1)
+				include.root <- any(ext.node == 1)
+				
+				if(node.method == "full.length" && include.root) {
+					graphics::polygon(c(xx[1], xx[2], xx[2], xx[1]), matrix(c(0, 0, Ntip(phy), Ntip(phy)), ncol=2), col=col.age[1], border=FALSE)
+					}
+				if(node.method == "node.length" && include.root) {
+					graphics::polygon(c(xx[1], xx[2], xx[2], xx[1]), rbind(structure[match.edges,2], structure[match.edges,2]), col=col.age[1], border=FALSE)
 				}
-			if(node.method == "node.length") {
-				graphics::polygon(c(xx[1], xx[2], xx[2], xx[1]), rbind(structure[match.edges,2], structure[match.edges,2]), col=col.age[1], border=FALSE)
-			}
-			if(node.method == "bar") {
-				graphics::lines(c(xx[1], xx[2]), rep(structure[1,1], 2), col=col.age[1], lwd=lwd.bar)
-			}			
+				if(node.method == "bar" && include.root) {
+					graphics::lines(c(xx[1], xx[2]), rep(structure[1,1], 2), col=col.age[1], lwd=lwd.bar)
+				}			
+				
+				if(length(col.age) == length(ext.node)) col.age <- rep(col.age, length(ext.node) + 1)
+				
 			
-			if(length(col.age) == length(ext.node)) col.age <- rep(col.age, length(ext.node) + 1)
+			counter <- 2
 			
-		
-		counter <- 2
-		
-		for(uu in ext.node) {
-			match.nodes <- last.plot.coord$edge[uu,2]
-			location.here <- match(match.nodes, node.in.ape)
-			xx <- mean.ages[,location.here]
-			match.edges <- range(which(last.plot.coord$edge[,1] == last.plot.coord$edge[uu,2]))
-			if(node.method == "full.length") {
-				graphics::polygon(c(xx[1], xx[2], xx[2], xx[1]), matrix(c(0, 0, Ntip(phy), Ntip(phy)), ncol=2), col=col.age[counter], border=FALSE)
+			for(uu in ext.node) {
+				match.nodes <- last.plot.coord$edge[uu,2]
+				location.here <- match(match.nodes, node.in.ape)
+				xx <- mean.ages[,location.here]
+				match.edges <- range(which(last.plot.coord$edge[,1] == last.plot.coord$edge[uu,2]))
+				if(node.method == "full.length") {
+					graphics::polygon(c(xx[1], xx[2], xx[2], xx[1]), matrix(c(0, 0, Ntip(phy), Ntip(phy)), ncol=2), col=col.age[counter], border=FALSE)
+					}
+				if(node.method == "node.length") {
+					graphics::polygon(c(xx[1], xx[2], xx[2], xx[1]), rbind(structure[match.edges,2], structure[match.edges,2]), col=col.age[counter], border=FALSE)
+					}
+				if(node.method == "bar") {
+					graphics::lines(xx, rep(structure[uu,2], 2), col=col.age[counter], lwd=lwd.bar)
+					}	
+				counter = counter + 1
 				}
-			if(node.method == "node.length") {
-				graphics::polygon(c(xx[1], xx[2], xx[2], xx[1]), rbind(structure[match.edges,2], structure[match.edges,2]), col=col.age[counter], border=FALSE)
-				}
-			if(node.method == "bar") {
-				graphics::lines(xx, rep(structure[uu,2], 2), col=col.age[counter], lwd=lwd.bar)
-				}	
-			counter = counter + 1
-			}
 		}
 			
 		if(tip.lengths) {
@@ -508,7 +521,6 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 				
 				
 				
-				
 				if(level == "Eon") {
 					plot.bar(bin.eon, Eon.colour, names(Eon.colour),start.one,end.one, grey.line=grey.now, cex.labels.int=cex.labels)
 					# if(label.timescale.names) graphics::text(total.length, mean(heights[start.one:end.one]), "Eon", pos=4, font=4, cex=cex.labels)
@@ -570,8 +582,8 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 				add.abs.time <- rep(FALSE, length(scale.res))
 				}
 				
+			grey.now.int <- rep(FALSE, length(scale.res))
 			if(grey.bars) {
-				grey.now.int <- rep(FALSE, length(scale.res))
 				if(!any(add.abs.time)) {
 					add.time <- length(scale.res)
 					} else {

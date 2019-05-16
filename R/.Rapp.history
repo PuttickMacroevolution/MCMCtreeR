@@ -827,3 +827,21 @@ maximumTimes <- c("nodeOne"=30, "nodeTwo"=12,#
 "nodeThree"=12, "nodeFour"=20) / 10#
 boundEst <- estimateBound(minAge=minimumTimes[1], maxAge=maximumTimes[1],#
 monoGroups=monophyleticGroups[[1]], phy=apeTree, plot=FALSE)
+qsn
+library(sn)
+qsn
+?qst
+library(MCMCtreeR)#
+data(MCMCtree.output)#
+attach(MCMCtree.output)#
+## if it is necessary to read in file manually#
+## MCMCtree.posterior <- read.csv("mcmc.posterior.file.directory", sep="\t")#
+MCMCtree.file <- readMCMCtree(MCMCtree.phy, from.file=FALSE)
+MCMC.tree.plot(phy=MCMCtree.file[[1]],  analysis.type="MCMCtree",
+MCMC.chain=MCMCtree.posterior, plot.type="distributions", cex.tips=0.5)
+plot.bar
+MCMC.chain=MCMCtree.posterior, plot.type="distributions", cex.tips=0.5, grey.line=FALSE)
+MCMC.tree.plot(phy=MCMCtree.file[[1]],  analysis.type="MCMCtree",MCMC.chain=MCMCtree.posterior, plot.type="distributions", cex.tips=0.5, grey.line=FALSE)
+MCMC.tree.plot(phy=MCMCtree.file[[1]],  analysis.type="MCMCtree",MCMC.chain=MCMCtree.posterior, plot.type="distributions", cex.tips=0.5, grey.bars=FALSE)
+is
+read.csv

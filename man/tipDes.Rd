@@ -9,15 +9,26 @@ tipDes(phy, node)
 \arguments{
 \item{phy}{user tree in ape format}
 
-\item{node}{ancestral, crown node of a clade}
+\item{node}{one or more nodes from the ape format that designate the crown monophyletic group}
 }
 \description{
 This function finds tip descendants from a common ancestor
 }
+\details{
+If a single node number is supplied the function returns a vector of tip labels. When more than one node number is supplied the function returns a list with each element a vector of tip labels for that node.
+}
 \examples{
+set.seed(1029)
+# one node
 phy <- rcoal(10)
 node <- 13
 tipDes(phy, node)
+## multiple nodes
+node <- c(13,14,15)
+tipDes(phy, node)
+}
+\author{
+Mark Puttick
 }
 \keyword{ancestor}
 \keyword{node}

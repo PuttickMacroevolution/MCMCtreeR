@@ -21,23 +21,20 @@
 #' @return If plot=TRUE plot of distributions in file 'pdfOutput' written to current working directory
 #' @return If writeMCMCtree=TRUE tree in MCMCtree format in file "MCMCtreeName" written to current working directory
 #' @export
+#' @author Mark Puttick
 #' @examples
 #' data(apeData)
 #' attach(apeData)
-#' monophyleticGroups <- list()
-#' monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", 
-#' "gorilla", "sumatran", "orangutan", "gibbon")
-#' getMRCA(apeTree, c("human", "chimpanzee", "bonobo", "gorilla"))
-#' monophyleticGroups[[2]] <-  tipDes(apeTree, 10)
-#' monophyleticGroups[[3]] <- tipDes(apeTree, 11)
-#' monophyleticGroups[[4]] <- c("sumatran", "orangutan")
+#' ## extract taxon descending from calibrated nodes 8, 10, 11, 13
+#' ## these nodes can be visualised using plot.phylo
+#' ## and nodelabels from ape
+#' monophyleticGroups <- tipDes(apeData$apeTree, c(8,10,11,13))
 #' minimumTimes <- c("nodeOne"=15, "nodeTwo"=6,
 #' "nodeThree"=8, "nodeFour"=13) / 10
 #' maximumTimes <- c("nodeOne" = 30, "nodeTwo" = 12,
 #' "nodeThree"=12, "nodeFour" = 20) / 10
 #' estimateBound(minAge=minimumTimes, maxAge=maximumTimes, 
-#' monoGroups=monophyleticGroups, phy=apeTree, plot=FALSE)
-
+#' monoGroups=monophyleticGroups, phy=apeTree, plot=FALSE)$MCMCtree
 
 estimateBound <- function(minAge, maxAge, minProb=0.025, rightTail=0.025, phy, monoGroups, writeMCMCtree=FALSE, plot=TRUE, MCMCtreeName="bound.tre", pdfOutput="uniformPlot.pdf")	 {
 

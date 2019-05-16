@@ -27,16 +27,16 @@
 #' @return If plot=TRUE plot of distributions in file 'pdfOutput' written to current working directory
 #' @return If writeMCMCtree=TRUE tree in MCMCtree format in file "MCMCtreeName" written to current working directory
 #' @export
+#' @seealso \code{\link[sn]{qst}}
+#' @author Mark Puttick
 #' @examples
 #' data(apeData)
 #' attach(apeData)
 #' monophyleticGroups <- list()
-#' monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", 
-#' "gorilla", "sumatran", "orangutan", "gibbon")
-#' getMRCA(apeTree, c("human", "chimpanzee", "bonobo", "gorilla"))
-#' monophyleticGroups[[2]] <-  tipDes(apeTree, 10)
-#' monophyleticGroups[[3]] <- tipDes(apeTree, 11)
-#' monophyleticGroups[[4]] <- c("sumatran", "orangutan")
+#' ## extract taxon descending from calibrated nodes 8, 10, 11, 13
+#' ## these nodes can be visualised using plot.phylo
+#' ## and nodelabels from ape
+#' monophyleticGroups <- tipDes(apeData$apeTree, c(8,10,11,13))
 #' minimumTimes <- c("nodeOne"=15, "nodeTwo"=6,
 #' "nodeThree"=8, "nodeFour"=13) / 10
 #' maximumTimes <- c("nodeOne" = 30, "nodeTwo" = 12,
@@ -99,8 +99,8 @@ estimateSkewNormal <- function(minAge, maxAge, monoGroups, phy, shape=50, scale=
 				for(y in 1:length(locTest)) {
 					locationInt <- minAge[x] + locTest[y]
 					for(u in 1:length(scaleTest)) {
-						upperEsts[u] = qsn(maxProbInt, xi=locationInt, omega=scaleTest[u], alpha=shapeInt)
-						lowerEsts[u] = qsn(minProbInt, xi=locationInt, omega=scaleTest[u], alpha=shapeInt)
+						upperEsts[u] = sn::qsn(maxProbInt, xi=locationInt, omega=scaleTest[u], alpha=shapeInt)
+						lowerEsts[u] = sn::qsn(minProbInt, xi=locationInt, omega=scaleTest[u], alpha=shapeInt)
 						}
 					closest <- which(abs(upperEsts-maxAge[x])==min(abs(upperEsts-maxAge[x])))
 					closest2 <- which(abs(lowerEsts-minAge[x])==min(abs(lowerEsts-minAge[x])))
@@ -115,7 +115,7 @@ estimateSkewNormal <- function(minAge, maxAge, monoGroups, phy, shape=50, scale=
 				
 			if(estimateScaleInt) {
 				scaleTest <- seq (0.01, 2, by=1e-2)
-				for(u in 1:length(scaleTest)) upperEsts[u] = qsn(maxProbInt, xi=locationInt, omega=scaleTest[u], alpha=shapeInt)
+				for(u in 1:length(scaleTest)) upperEsts[u] = sn::qsn(maxProbInt, xi=locationInt, omega=scaleTest[u], alpha=shapeInt)
 				closest <- which(abs(upperEsts-maxAge[x])==min(abs(upperEsts-maxAge[x])))
 				upperEst <- upperEsts[closest]
 				scaleInt <- scaleTest[closest]
@@ -123,7 +123,7 @@ estimateSkewNormal <- function(minAge, maxAge, monoGroups, phy, shape=50, scale=
 		
 			if(estimateShapeInt) {
 				shapeTest <- seq (1, 50, by=50)
-				for(u in 1:length(shapeTest)) upperEsts[u] = qsn(maxProbInt, xi=locationInt, omega=scaleInt, alpha=shapeTest[u])
+				for(u in 1:length(shapeTest)) upperEsts[u] = sn::qsn(maxProbInt, xi=locationInt, omega=scaleInt, alpha=shapeTest[u])
 				closest <- which(abs(upperEsts-maxAge[x])==min(abs(upperEsts-maxAge[x])))
 				upperEst <- upperEsts[closest]
 				shapeInt <-shapeTest[closest]

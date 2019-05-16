@@ -19,11 +19,14 @@ apePhy time-scaled output tree from MCMCtree in APE format
 nodeAges mean and 95% Equal-tail CI ages for each node on the tree
 }
 \description{
-Read MCMCtree output tree into R to produce time-scaled tree in APE format, and a table of the mean and 95% Equal-tail CI
+Read MCMCtree output tree into R to produce time-scaled tree in APE format, and a table of the mean and 95% Highest Posterior Density
 }
 \examples{
 data(MCMCtree.output)
 attach(MCMCtree.output)
 # tree and node ages
 readMCMCtree(MCMCtree.phy, from.file=FALSE)
+}
+\author{
+Mark Puttick
 }

@@ -14,22 +14,20 @@
 #'  \item{"nodeLabels"}{ node labels in MCMCtreeR format}
 #' }
 #' @return If writeMCMCtree=TRUE tree in MCMCtree format in file "MCMCtreeName" written to current working directory
+#' @author Mark Puttick
 #' @examples
 #' data(apeData)
 #' attach(apeData)
-#' monophyleticGroups <- list()
-#' monophyleticGroups[[1]] <- c("human", "chimpanzee",
-#' "bonobo", "gorilla", "sumatran", "orangutan", "gibbon")
-#' monophyleticGroups[[2]] <- c("human", "chimpanzee",
-#' "bonobo", "gorilla")
-#' monophyleticGroups[[3]] <- c("human", "chimpanzee", "bonobo")
-#' monophyleticGroups[[4]] <- c("sumatran", "orangutan")
+#' ## extract taxon descending from calibrated nodes 8, 10, 11, 13
+#' ## these nodes can be visualised using plot.phylo
+#' ## and nodelabels from ape
+#' monophyleticGroups <- tipDes(apeData$apeTree, c(8,10,11,13))
 #' minimumTimes <- c("nodeOne"=15, "nodeTwo"=6,
 #' "nodeThree"=8, "nodeFour"=13) / 10
-#' maximumTimes <- c("nodeOne"=30, "nodeTwo"=12,
-#' "nodeThree"=12, "nodeFour"=20) / 10
+#' maximumTimes <- c("nodeOne" = 30, "nodeTwo" = 12,
+#' "nodeThree"=12, "nodeFour" = 20) / 10
 #' estimateFixed(minAge=minimumTimes[1],
-#' monoGroups=monophyleticGroups[[1]], phy=apeTree)
+#' monoGroups=monophyleticGroups[[1]], phy=apeTree)$MCMCtree
 #' @export
 
 estimateFixed <- function(minAge, phy, monoGroups, writeMCMCtree=FALSE, MCMCtreeName="estimateFixed.tre") {

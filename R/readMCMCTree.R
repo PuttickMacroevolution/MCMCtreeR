@@ -1,11 +1,12 @@
 #' Read MCMCtree output tree into R
 #'
-#' Read MCMCtree output tree into R to produce time-scaled tree in APE format, and a table of the mean and 95% Equal-tail CI
+#' Read MCMCtree output tree into R to produce time-scaled tree in APE format, and a table of the mean and 95% Highest Posterior Density
 #' @param inputPhy file directory of 'Figtree' output from MCMCtree
 #' @param forceUltrametric alters branch lengths at tips so tree is fully ultrametric (default = TRUE)
 #' @param from.file Logical. Read a tree from file or locally from within R?
 #' @return apePhy time-scaled output tree from MCMCtree in APE format
 #' @return nodeAges mean and 95% Equal-tail CI ages for each node on the tree
+#' @author Mark Puttick
 #' @export
 #' @examples
 #' data(MCMCtree.output)
@@ -26,7 +27,7 @@
     phyInt$node.label <- 1:Nnode(phy)
     phyInt$edge.length <- NULL
     phyInt$root.edge <- NULL
-    phyInt$tip.label <- rep(paste0(sample(letters, replace = T, 
+    phyInt$tip.label <- rep(paste0(sample(letters, replace = TRUE, 
         4), collapse = ""), Ntip(phyInt))
     nodingOrder <- as.numeric(as.character(unlist(strsplit(write.tree(phyInt)[[1]], 
         "[^0-9]+"))[-1]))

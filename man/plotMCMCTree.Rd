@@ -32,21 +32,18 @@ Estimate the offset and scale paramaters of a soft-tailed cauchy distribution an
 \examples{
 data(apeData)
 attach(apeData)
-monophyleticGroups <- list()
-monophyleticGroups[[1]] <- c("human", "chimpanzee",
-"bonobo", "gorilla", "sumatran", "orangutan", "gibbon")
-monophyleticGroups[[2]] <- c("human", "chimpanzee",
-"bonobo", "gorilla")
-monophyleticGroups[[3]] <- c("human",
-"chimpanzee", "bonobo")
-monophyleticGroups[[4]] <- c("sumatran", "orangutan")
+# create monophyletic groups descending from nodes 8, 10, 11, and 13
+monophyleticGroups <- tipDes(apeData$apeTree, c(8,10,11,13))
 minimumTimes <- c("nodeOne"=15, "nodeTwo"=6,
 "nodeThree"=8, "nodeFour"=13) / 10
-maximumTimes <- c("nodeOne"=30, "nodeTwo"=12,
-"nodeThree"=12, "nodeFour"=20) / 10
+maximumTimes <- c("nodeOne" = 30, "nodeTwo" = 12,
+"nodeThree"=12, "nodeFour" = 20) / 10
 cauchy <- estimateCauchy(minAge=minimumTimes[1], maxAge=maximumTimes[1],
 monoGroups=monophyleticGroups[[1]], offset=0.5, phy=apeTree, plot=FALSE)
 ## un-comment to run
 plotMCMCtree(parameters=cauchy$parameters, method="cauchy",
 title="cauchyPlot", upperTime=maximumTimes[1]+1)
+}
+\author{
+Mark Puttick
 }

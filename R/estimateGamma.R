@@ -1,13 +1,13 @@
 #' Estimate Gamma Distribution for MCMCtree analysis
 #'
-#' Estimate the offset and scale paramaters of a soft-tailed cauchy distribution and output trees for MCMCtree input
+#' Estimate the shape and rate paramaters of Gamma distribution and output trees for MCMCtree input
 #' @param minAge vector of minimum age bounds for nodes matching order in monoGroups
 #' @param maxAge vector of maximum age bounds for nodes matching order in monoGroups
 #' @param monoGroups list  with each element containing species that define a node of interest
 #' @param phy fully resolved phylogeny in ape format
-#' @param alpha alpha value for gamma distribution (default = 188) (p in PAML manual page 49)
-#' @param beta beta value for gamma distribution (default = 2690) (c in PAML manual page 49)
-#' @param offset distance of mean value from minimum bound#' @param minProb probability of left tail (minimum bound) - default to hard minimum (minProb=0)
+#' @param alpha alpha value for gamma distribution (default = 188)
+#' @param beta beta value for gamma distribution (default = 2690)
+#' @param offset distance of mean value from minimum bound
 #' @param estimateAlpha logical specifying whether to estimate alpha with a given beta value (default = TRUE)
 #' @param estimateBeta logical specifying whether to estimate beta with a given alpha value (default = FALSE)
 #' @param plot logical specifying whether to plot to PDF
@@ -24,25 +24,22 @@
 #' @return If plot=TRUE plot of distributions in file 'pdfOutput' written to current working directory
 #' @return If writeMCMCtree=TRUE tree in MCMCtree format in file "MCMCtreeName" written to current working directory
 #' @export
+#' @author Mark Puttick
 #' @examples
 #' data(apeData)
 #' attach(apeData)
-#' monophyleticGroups <- list()
-#' monophyleticGroups[[1]] <- c("human", "chimpanzee", "bonobo", 
-#' "gorilla", "sumatran", "orangutan", "gibbon")
-#' getMRCA(apeTree, c("human", "chimpanzee", "bonobo", "gorilla"))
-#' monophyleticGroups[[2]] <-  tipDes(apeTree, 10)
-#' monophyleticGroups[[3]] <- tipDes(apeTree, 11)
-#' monophyleticGroups[[4]] <- c("sumatran", "orangutan")
-#' minimumTimes <- c("nodeOne"=15, "nodeTwo"=6,
-#' "nodeThree"=8, "nodeFour"=13) / 10
-#' maximumTimes <- c("nodeOne" = 30, "nodeTwo" = 12,
-#' "nodeThree"=12, "nodeFour" = 20) / 10
-#' estimateGamma(minAge=minimumTimes, maxAge=maximumTimes, 
+#' ## extract taxon descending from calibrated nodes 8, 10, 11, 13
+#' ## these nodes can be visualised using plot.phylo
+#' ## and nodelabels from ape
+#' monophyleticGroups <- tipDes(apeData$apeTree, c(8,10,11,13))
+#' minimumTimes <- c("8"=15, "10"=6,
+#' "11"=8, "13"=13) / 10
+#' maximumTimes <- c("8" = 30, "10" = 12,
+#' "11"=12, "13" = 20) / 10
+#' gamma.nodes <- estimateGamma(minAge=minimumTimes, maxAge=maximumTimes, 
 #' monoGroups=monophyleticGroups, alpha=188, beta=2690, 
 #' offset=0.1, phy=apeTree, plot=FALSE)
-
-
+#' gamma.nodes
 
 estimateGamma <- function(minAge, maxAge, phy, monoGroups, alpha=188, beta=2690, offset=0.1, estimateAlpha=TRUE, estimateBeta=FALSE, plot=FALSE, pdfOutput="gammaPlot.pdf", writeMCMCtree=FALSE, MCMCtreeName="gammaInput.tre") {
 	
