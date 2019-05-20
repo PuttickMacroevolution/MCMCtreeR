@@ -6,7 +6,7 @@
 \usage{
 estimateSkewNormal(minAge, maxAge, monoGroups, phy, shape = 50,
   scale = 1.5, addMode = 0, maxProb = 0.975, minProb = 0.003,
-  estimateScale = TRUE, estimateShape = F, estimateMode = FALSE,
+  estimateScale = TRUE, estimateShape = FALSE, estimateMode = FALSE,
   plot = FALSE, pdfOutput = "skewNormalPlot.pdf",
   writeMCMCtree = FALSE, MCMCtreeName = "skewNormalInput.tre")
 }
@@ -31,7 +31,7 @@ estimateSkewNormal(minAge, maxAge, monoGroups, phy, shape = 50,
 
 \item{estimateScale}{logical specifying whether to estimate scale with a given shape value (default = TRUE)}
 
-\item{estimateShape}{logical specifying whether to estimate shape with a given scale value (default = TRUE)}
+\item{estimateShape}{logical specifying whether to estimate shape with a given scale value (default = FALSE)}
 
 \item{estimateMode}{logical speciftying whether to estimate the scale that produces probabilities of each tail that corresponds roughly to the values given by minProb (lower tail) and maxProb (upper tail)}
 

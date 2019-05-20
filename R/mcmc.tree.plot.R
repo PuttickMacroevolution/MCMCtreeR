@@ -39,6 +39,7 @@
 #' @param tck.abs.age tck values for the absolute age axis tick height, only applicable if add.abs.time is TRUE
 #' @param abs.age.line line correction for the absolute age axis tick, only applicable if add.abs.time is TRUE
 #' @param pos.age position position of absolute age axis
+#' @param ladderize.tree Logical. Plot a ladderized tree (TRUE) or not (FALSE)
 #' @param ... further arguments to be used in \code{\link[ape]{plot.phylo}}
 #' @return If plot=TRUE plot of distributions in file 'pdfOutput' written to current working directory
 #' @details The primary inputs for the 'method' options are outputs from analysis conducting using MCMCtree, MrBayes, RevBayes, or User.
@@ -58,7 +59,7 @@
 #' MCMC.tree.plot(phy=MCMCtree.file,  analysis.type="MCMCtree",
 #' MCMC.chain=MCMCtree.posterior, plot.type="distributions", cex.tips=0.5)
 
-MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, node.ages=NULL, directory.files=NULL, plot.type="phylogram", build.tree=FALSE, node.method="bar", all.nodes=NULL, add.time.scale=TRUE, add.abs.time=TRUE, scale.res="Epoch", label.timescale.names=FALSE, time.correction=1, col.age="blue", tip.lengths=FALSE, density.col="#00000050", density.border.col="#00000080", cex.tips=1, show.tip.label=TRUE, col.tree="black", tip.color="black", lwd.bar=1, grey.bars=TRUE, cex.age=1, cex.labels=1, cex.names=1, relative.height=0.08, tip.bar.col="#ff000050", burn.in=0.25, distribution.height=0.8, abs.age.mgp=c(3, 0.35, 0), abs.age.lwd.ticks=0.7, abs.age.lwd=0, tck.abs.age=-0.01, abs.age.line=-0.4, pos.age=NULL, n.runs=2, ...) {
+MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, node.ages=NULL, directory.files=NULL, plot.type="phylogram", build.tree=FALSE, node.method="bar", all.nodes=NULL, add.time.scale=TRUE, add.abs.time=TRUE, scale.res="Epoch", label.timescale.names=FALSE, time.correction=1, col.age="blue", tip.lengths=FALSE, density.col="#00000050", density.border.col="#00000080", cex.tips=1, show.tip.label=TRUE, col.tree="black", tip.color="black", lwd.bar=1, grey.bars=TRUE, cex.age=1, cex.labels=1, cex.names=1, relative.height=0.08, tip.bar.col="#ff000050", burn.in=0.25, distribution.height=0.8, abs.age.mgp=c(3, 0.35, 0), abs.age.lwd.ticks=0.7, abs.age.lwd=0, tck.abs.age=-0.01, abs.age.line=-0.4, pos.age=NULL, n.runs=2, ladderize.tree=TRUE,...) {
 	
 	analysis.type <- tolower(analysis.type)
 	
@@ -192,7 +193,12 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 	############    phylogram   ##############
 		
 	if(plot.type == "phylogram") {
-		plot.phylo(ladderize(phy), type="phylogram", edge.color=col.tree, root.edge=TRUE, y.lim=c(t.depth, t.height), cex=cex.tips, show.tip.label=show.tip.label, tip.color=tip.color, ...)
+		if(ladderize.tree) {
+			plot.phylo(ladderize(phy), type="phylogram", edge.color=col.tree, root.edge=TRUE, y.lim=c(t.depth, t.height), cex=cex.tips, show.tip.label=show.tip.label, tip.color=tip.color, ...)
+			} else {
+			plot.phylo(phy, type="phylogram", edge.color=col.tree, root.edge=TRUE, y.lim=c(t.depth, t.height), cex=cex.tips, show.tip.label=show.tip.label, tip.color=tip.color, ...)
+			}
+			
 		last.plot.coord <- get("last_plot.phylo", envir = .PlotPhyloEnv)
 		int <- last.plot.coord$yy[last.plot.coord$edge[,1]]
 		ext <- last.plot.coord$yy[last.plot.coord$edge[,2]]
@@ -265,7 +271,12 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 	############    cladogram   ##############
 
 	if(plot.type == "cladogram") {
-		plot.phylo(ladderize(phy), type="cladogram", edge.color=col.tree, root.edge=TRUE, y.lim=c(t.depth, t.height), cex=cex.tips, show.tip.label=show.tip.label, tip.color=tip.color, ...)
+		if(ladderize.tree) {
+			plot.phylo(ladderize(phy), type="cladogram", edge.color=col.tree, root.edge=TRUE, y.lim=c(t.depth, t.height), cex=cex.tips, show.tip.label=show.tip.label, tip.color=tip.color, ...)
+		} else {
+			plot.phylo(phy, type="cladogram", edge.color=col.tree, root.edge=TRUE, y.lim=c(t.depth, t.height), cex=cex.tips, show.tip.label=show.tip.label, tip.color=tip.color, ...)
+		}
+		
 		last.plot.coord <- get("last_plot.phylo", envir = .PlotPhyloEnv)
 		int <- last.plot.coord$yy[last.plot.coord$edge[,1]]
 		ext <- last.plot.coord$yy[last.plot.coord$edge[,2]]
@@ -299,9 +310,11 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 	############  distributions   ##############
 	
 	if(plot.type == "distributions") {
-		
-		plot.phylo(ladderize(phy), type="p", edge.color=col.tree, root.edge=TRUE, y.lim=c(t.depth, t.height), cex=cex.tips, show.tip.label=show.tip.label, tip.color=tip.color, ...)
-		last.plot.coord <- get("last_plot.phylo", envir = .PlotPhyloEnv)
+		if(ladderize.tree) {
+			plot.phylo(ladderize(phy), type="p", edge.color=col.tree, root.edge=TRUE, y.lim=c(t.depth, t.height), cex=cex.tips, show.tip.label=show.tip.label, tip.color=tip.color, ...)
+			} else {
+			plot.phylo(phy, type="p", edge.color=col.tree, root.edge=TRUE, y.lim=c(t.depth, t.height), cex=cex.tips, show.tip.label=show.tip.label, tip.color=tip.color, ...)	
+			}
 		last.plot.coord <- get("last_plot.phylo", envir = .PlotPhyloEnv)
 		
 		if(analysis.type == "mrbayes") {

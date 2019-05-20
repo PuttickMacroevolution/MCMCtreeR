@@ -17,7 +17,8 @@ MCMC.tree.plot(phy = NULL, analysis.type = "MCMCtree",
   tip.bar.col = "#ff000050", burn.in = 0.25,
   distribution.height = 0.8, abs.age.mgp = c(3, 0.35, 0),
   abs.age.lwd.ticks = 0.7, abs.age.lwd = 0, tck.abs.age = -0.01,
-  abs.age.line = -0.4, pos.age = NULL, n.runs = 2, ...)
+  abs.age.line = -0.4, pos.age = NULL, n.runs = 2,
+  ladderize.tree = TRUE, ...)
 }
 \arguments{
 \item{phy}{A timescaled phylogeny, unless analysis.type="MCMCtree" and build.tree=TRUE}
@@ -95,6 +96,8 @@ MCMC.tree.plot(phy = NULL, analysis.type = "MCMCtree",
 \item{pos.age}{position position of absolute age axis}
 
 \item{n.runs}{For analysis.type mrbayes, the number of independent chains to summarise}
+
+\item{ladderize.tree}{Logical. Plot a ladderized tree (TRUE) or not (FALSE)}
 
 \item{...}{further arguments to be used in \code{\link[ape]{plot.phylo}}}
 }

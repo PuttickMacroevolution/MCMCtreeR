@@ -11,7 +11,7 @@
 #' @param maxProb probability of right tail (maximum bound default = 0.975) 
 #' @param minProb probability of left tail (maximum bound default = 0.003) 
 #' @param estimateScale logical specifying whether to estimate scale with a given shape value (default = TRUE)
-#' @param estimateShape logical specifying whether to estimate shape with a given scale value (default = TRUE)
+#' @param estimateShape logical specifying whether to estimate shape with a given scale value (default = FALSE)
 #' @param estimateMode logical speciftying whether to estimate the scale that produces probabilities of each tail that corresponds roughly to the values given by minProb (lower tail) and maxProb (upper tail)
 #' @param plot logical specifying whether to plot to PDF
 #' @param pdfOutput pdf output file name
@@ -44,7 +44,7 @@
 #' estimateSkewNormal(minAge=minimumTimes, maxAge=maximumTimes, 
 #' monoGroups=monophyleticGroups, phy=apeTree, plot=FALSE)
 
-estimateSkewNormal <- function(minAge, maxAge, monoGroups, phy, shape=50, scale=1.5, addMode=0, maxProb=0.975, minProb=0.003, estimateScale=TRUE, estimateShape=F, estimateMode=FALSE, plot=FALSE,  pdfOutput="skewNormalPlot.pdf", writeMCMCtree=FALSE, MCMCtreeName="skewNormalInput.tre")	{
+estimateSkewNormal <- function(minAge, maxAge, monoGroups, phy, shape=50, scale=1.5, addMode=0, maxProb=0.975, minProb=0.003, estimateScale=TRUE, estimateShape=FALSE, estimateMode=FALSE, plot=FALSE, pdfOutput="skewNormalPlot.pdf", writeMCMCtree=FALSE, MCMCtreeName="skewNormalInput.tre")	{
 	# parameters from the dst function in the sn package
 	# dst(x, xi = 0, omega = 1, alpha = 0, nu = Inf, dp = NULL, log = FALSE) 
 	# xi = location

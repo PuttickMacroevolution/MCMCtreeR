@@ -12,7 +12,7 @@
 #' @param maxProb probability of right tail (maximum bound default = 0.975)
 #' @param minProb probability of left tail (maximum bound default = 0.003)
 #' @param estimateScale logical specifying whether to estimate scale with a given shape value (default = TRUE)
-#' @param estimateShape logical specifying whether to estimate shape with a given scale value (default = TRUE)
+#' @param estimateShape logical specifying whether to estimate shape with a given scale value (default = FALSE)
 #' @param estimateMode logical speciftying whether to estimate the scale that produces probabilities of each tail that corresponds roughly to the values given by minProb (lower tail) and maxProb (upper tail)
 #' @param plot logical specifying whether to plot to PDF
 #' @param pdfOutput pdf output file name
