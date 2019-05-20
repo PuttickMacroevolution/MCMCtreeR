@@ -3,14 +3,13 @@
 <h4 class="author"><em>Mark Puttick</em></h4>
 <h4 class="author"><em><a href="mailto:marknputtick@gmail.com" class="email">marknputtick@gmail.com</a></em></h4>
 <h4 class="author"><em>University of Bath</em></h4>
-<h4 class="date"><em>16 May 2019</em></h4>
+<h4 class="date"><em>20 May 2019</em></h4>
 </div>
 <p>This is a guide for the R program <a href="https://github.com/PuttickMacroevolution">MCMCtreeR</a>.</p>
 <p>MCMCtreeR contains functions to set up analyses in the <a href="http://abacus.gene.ucl.ac.uk/software/paml.html">MCMCtree</a> program. The functions here help users choose the best parameters to reflect age information for prior age distributions, visualise time priors, and produce output files ready to be used in <strong>MCMCtree</strong>. A seperate <a href="https://github.com/PuttickMacroevolution/MCMCtreeR/blob/master/vignettes/MCMCtree_plot.pdf">vignette</a> is available to explain the plotting options for timescaled trees in MCMCtreeR.</p>
 <p><a href="http://abacus.gene.ucl.ac.uk/software/paml.html">MCMCtree</a> is a Bayesian program in the software PAML that estimates divergence times on fixed topologies using molecular data, developed by Ziheng Yang. The program requires various inputs from the user: a phylogeny, molecular sequence alignment, and selected model parameters. This guide does not include details about which time and other priors are most appropriate for the data, etc., so please see the <a href="https://github.com/PuttickMacroevolution/MCMCtreeR/blob/master/pamlDOC.pdf">MCMCtree manual</a> for more information.</p>
 <div id="installation" class="section level1">
 <h1>Installation</h1>
-<p>The examples here use a phylogeny of apes and associated age information. These data are a phylogeny of apes <code>apeTree</code>, the minimum ages for internal nodes <code>minimumTimes</code>, maximum ages for internal nodes <code>maximumTimes</code>, and the tip labels descending from each node <code>monophyleticGroups</code>. These example data can be substituted for other data. The order of the data must match in the <code>minimumTimes</code>, <code>maximumTimes</code>, and <code>monophyleticGroups</code> objects. These data do not need to be given in the order they appear in the tree, but the order must match in each object. For example, if the minimum age for the root is the first element in <code>minimumTimes</code> it must also be the first element in the <code>minimumTimes</code> and <code>monophyleticGroup</code> objects.</p>
 <pre class="r"><code>if (!any(rownames(installed.packages()) == &quot;MCMCtreeR&quot;)) install.packages(&quot;MCMCtreeR&quot;)
 library(MCMCtreeR, quietly = TRUE, warn.conflicts = FALSE)</code></pre>
 <pre><code>## 
@@ -18,12 +17,41 @@ library(MCMCtreeR, quietly = TRUE, warn.conflicts = FALSE)</code></pre>
 <pre><code>## The following object is masked from &#39;package:stats&#39;:
 ## 
 ##     sd</code></pre>
+<p>The examples here use a phylogeny of apes and associated age information. These data are a phylogeny of apes <code>apeTree</code>, the minimum ages for internal nodes <code>minimumTimes</code>, maximum ages for internal nodes <code>maximumTimes</code>, and the tip labels descending from each node <code>monophyleticGroups</code>. These example data can be substituted for other data.</p>
 <pre class="r"><code>data(apeData)
 attach(apeData)
 names(apeData)</code></pre>
 <pre><code>## [1] &quot;minimumTimes&quot;       &quot;maximumTimes&quot;       &quot;monophyleticGroups&quot;
 ## [4] &quot;apeTree&quot;</code></pre>
-<p>For example, for this example there are four calibrated nodes. The MCMCtree function <code>tipDes</code> can be used to recreate the monophyletic group list object. First the <code>ape</code> package is used to plot the tree and view the node label numbers.</p>
+<pre class="r"><code>minimumTimes</code></pre>
+<pre><code>##   nodeOne   nodeTwo nodeThree  nodeFour 
+##       1.5       0.6       0.8       1.3</code></pre>
+<pre class="r"><code>maximumTimes</code></pre>
+<pre><code>##   nodeOne   nodeTwo nodeThree  nodeFour 
+##       3.0       1.2       1.2       2.0</code></pre>
+<pre class="r"><code>monophyleticGroups</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;human&quot;      &quot;chimpanzee&quot; &quot;bonobo&quot;     &quot;gorilla&quot;    &quot;sumatran&quot;  
+## [6] &quot;orangutan&quot;  &quot;gibbon&quot;    
+## 
+## [[2]]
+## [1] &quot;human&quot;      &quot;chimpanzee&quot; &quot;bonobo&quot;     &quot;gorilla&quot;   
+## 
+## [[3]]
+## [1] &quot;human&quot;      &quot;chimpanzee&quot; &quot;bonobo&quot;    
+## 
+## [[4]]
+## [1] &quot;sumatran&quot;  &quot;orangutan&quot;</code></pre>
+<pre class="r"><code>apeTree</code></pre>
+<pre><code>## 
+## Phylogenetic tree with 7 tips and 6 internal nodes.
+## 
+## Tip labels:
+##  human, chimpanzee, bonobo, gorilla, orangutan, sumatran, ...
+## 
+## Rooted; no branch lengths.</code></pre>
+<p>The order of the data must match in the <code>minimumTimes</code>, <code>maximumTimes</code>, and <code>monophyleticGroups</code> objects. These data do not need to be given in the order they appear in the tree, but the order must match in each object. For example, if the minimum age for the root is the first element in <code>minimumTimes</code> it must also be the first element in the <code>minimumTimes</code> and <code>monophyleticGroup</code> objects.</p>
+<p>For this example there are four calibrated nodes. The MCMCtree function <code>tipDes</code> can be used to recreate the <code>monophyleticGroups</code> list object. First the <code>ape</code> package is used to plot the tree and view the node label numbers.</p>
 <pre class="r"><code>plot(apeTree)
 nodelabels()</code></pre>
 <div class="figure" style="text-align: center">
@@ -53,11 +81,11 @@ monophyleticGroups.user</code></pre>
 <div id="estimate-parameters-for-node-input-parameters" class="section level1">
 <h1>Estimate parameters for node input parameters</h1>
 <p>This section includes information to estimate and plot prior age distributions for node(s) used in MCMCtree divergence time estimation. The data required to do this are a phylogeny, minimum and maximum ages for the nodes with prior distributions, and taxa that descend from each node (please see above for information on how to make this various objects).</p>
-<p>The code can be used to simultanaeouly estimate the parameter values that reflect the <strong>a priori</strong> time information for nodes and write files ready for MCMCtree input. MCMCtreeR can produce output files with the same type of distributions used to summarise <strong>a prior</strong> time information for all nodes, or different distributions can be used to reflect uncertainty on different internal nodes.</p>
-<p>The functions here estimates the distribution parameters so that the distribution spans for user-supplied minimum bounds (lower age) and maximum bounds (upper age). By default, minimum ages are treated as ‘hard’ constraints and maximum ages are ‘soft’. The function then ensures that 97.5% of the distribution falls between these minimum and maximum ages. The code can estimate paramaters for the Cauchy, Skew-T, Skew-normal, and Gamma distirbutions shown in the <a href="https://github.com/PuttickMacroevolution/MCMCtreeR/blob/master/pamlDOC.pdf">MCMCtree manual</a> on page 49, and calibrated node priors can also be placed on trees for uniform (bound), fixed, and upper age.</p>
+<p>The code can be used to simultaneously estimate the parameter values that reflect the <em>a priori</em> time information for nodes and write files ready for MCMCtree input. MCMCtreeR can produce output files with the same type of distributions used to summarise <em>a priori</em> time information for all nodes, or different distributions can be used to reflect uncertainty on different internal nodes.</p>
+<p>The functions here estimates the distribution parameters so that the distribution spans for user-supplied minimum bounds (lower age) and maximum bounds (upper age). By default, minimum ages are treated as ‘hard’ constraints and maximum ages are ‘soft’. The function then ensures that 97.5% of the distribution falls between these minimum and maximum ages. The code can estimate paramaters for the Cauchy, Skew <em>t</em>, Skew-normal, and Gamma distirbutions shown in the <a href="https://github.com/PuttickMacroevolution/MCMCtreeR/blob/master/pamlDOC.pdf">MCMCtree manual</a> on page 49, and calibrated node priors can also be placed on trees for uniform (bound), fixed, and upper age.</p>
 <p>For each function, if only a single value is provided for each parameter by the user, the function outputs warnings to indicate these values are recycled for each node.</p>
 <div id="skew-t" class="section level2">
-<h2>Skew t</h2>
+<h2>Skew <em>t</em></h2>
 <div id="estimate-scale-with-a-given-shape" class="section level3">
 <h3>estimate scale with a given shape</h3>
 <p>The default arguments in the <code>estimateSkewT</code> assumes the user wants to estimate the scale of the distribution with a given shape value (the default shape value is 50). The function estimates the parameters with the user-supplied minimum and maximum ages for all nodes, and the monophyletic groups that define the nodes.The output <code>skewT_results$MCMCtree</code> shows the estimated parameters in the input ready for MCMCtree. Here the parameters for the Skew T distributions are the location (lower node age), scale, shape, and degrees of freedom</p>
@@ -77,14 +105,15 @@ monophyleticGroups.user</code></pre>
 ## 1 ((((human,(chimpanzee,bonobo))&#39;ST(0.8,0.016,50,1)&#39;,gorilla)&#39;ST(0.6,0.024,50,1)&#39;,(orangutan,sumatran)&#39;ST(1.3,0.028,50,1)&#39;),gibbon)&#39;ST(1.5,0.059,50,1)&#39;;
 ##                
 ## 1 //end of file</code></pre>
+<p>As explained above, if only a single value is provided for each parameter by the user, the function outputs warnings to indicate these values are recycled for each node.</p>
 <p>The function <code>plotMCMCtree</code> plots the estimated age distributions given these parameters.</p>
 <pre class="r"><code>par(mfrow = c(2, 2), family = &quot;Palatino&quot;)
 for (i in 1:4) plotMCMCtree(skewT_results$parameters[i, ], method = &quot;skewT&quot;, 
     title = paste0(&quot;node &quot;, i), upperTime = max(maximumTimes))</code></pre>
 <div class="figure" style="text-align: center">
-<img src="/vignettes/MCMCtree/unnamed-chunk-12-1.png" alt="**Figure 2** Skew T distributions for all nodes" width="1200" />
+<img src="/vignettes/MCMCtree/unnamed-chunk-12-1.png" alt="**Figure 2** Skew *t* distributions for all nodes" width="1200" />
 <p class="caption">
-<strong>Figure 2</strong> Skew T distributions for all nodes
+<strong>Figure 2</strong> Skew <em>t</em> distributions for all nodes
 </p>
 </div>
 <pre class="r"><code>skewT_results$MCMCtree</code></pre>
@@ -172,7 +201,7 @@ plotMCMCtree(example_page_50, method = &quot;cauchy&quot;, title = paste0(&quot;
 </div>
 <div id="estimate-scale-with-a-given-shape-1" class="section level3">
 <h3>estimate scale with a given shape</h3>
-<p>The <code>estimateCauch</code> function will take minimum input times, and estimate the value of the scale parameter that will produce a Cauchy distribution with the 97.5% cumulative probability of the distribution at the user-supplied maximum age.</p>
+<p>The <code>estimateCauchy</code> function will take minimum input times, and estimate the value of the scale parameter that will produce a Cauchy distribution with the 97.5% cumulative probability of the distribution at the user-supplied maximum age.</p>
 <pre class="r"><code>cauchy_results &lt;- estimateCauchy(minAge = minimumTimes, maxAge = maximumTimes, 
     monoGroups = monophyleticGroups, offset = 0.5, phy = apeTree, 
     plot = FALSE)</code></pre>
@@ -238,7 +267,7 @@ for (i in 1:4) plotMCMCtree(uniform_results$parameters[i, ],
     method = &quot;bound&quot;, title = paste0(&quot;node &quot;, i), upperTime = maximumTimes[i] + 
         1)</code></pre>
 <div class="figure" style="text-align: center">
-<img src="/vignettes/MCMCtree/unnamed-chunk-3-1.png" alt="**Figure 7** Uniform distributions for all nodes" width="1200" />
+<img src="/vignettes/MCMCtree/unnamed-chunk-17-1.png" alt="**Figure 7** Uniform distributions for all nodes" width="1200" />
 <p class="caption">
 <strong>Figure 7</strong> Uniform distributions for all nodes
 </p>
@@ -264,7 +293,7 @@ for (i in 1:4) plotMCMCtree(uniform_results$parameters[i, ],
 for (i in 1:4) plotMCMCtree(gamma_results$parameters[i, ], method = &quot;gamma&quot;, 
     title = paste0(&quot;node &quot;, i), upperTime = maximumTimes[i])</code></pre>
 <div class="figure" style="text-align: center">
-<img src="/vignettes/MCMCtree/unnamed-chunk-6-1.png" alt="**Figure 8** Gamma distributions for all nodes" width="1200" />
+<img src="/vignettes/MCMCtree/unnamed-chunk-3-1.png" alt="**Figure 8** Gamma distributions for all nodes" width="1200" />
 <p class="caption">
 <strong>Figure 8</strong> Gamma distributions for all nodes
 </p>
@@ -315,7 +344,7 @@ fixed_results</code></pre>
 </div>
 <div id="different-parameters-on-different-nodes" class="section level2">
 <h2>Different parameters on different nodes</h2>
-<p>If we require different node calibration distributions on each calibrated nodes we can specify this by using the <code>MCMCtreePhy</code> function. Here there are different distributions applied to the internal nodes: a fixed root (node 1), skew normal (node 2), gamma (node 3), and upper distribution (node 4). For each input we give the associated parameter values in a vector in the order of nodes. i.e., for the <code>minProb</code> on four nodes can be set as 1, 2, 4 to be 1e-8 and node 3 to be 0.025</p>
+<p>It is possible to specify different node calibration distributions to each calibrated node. we can specify this by using the <code>MCMCtreePhy</code> function. Here there are different distributions applied to the internal nodes: a fixed root (node 1), skew normal (node 2), gamma (node 3), and upper distribution (node 4). For each input we give the associated parameter values in a vector in the order of nodes. i.e., for the <code>minProb</code> on four nodes can be set as 1, 2, 4 to be 1e-8 and node 3 to be 0.025</p>
 <pre class="r"><code>each.node.method &lt;- c(&quot;skewT&quot;, &quot;cauchy&quot;, &quot;gamma&quot;, &quot;upper&quot;)
 output.full &lt;- MCMCtreePhy(phy = apeTree, minAge = minimumTimes, 
     maxAge = maximumTimes, monoGroups = monophyleticGroups, method = each.node.method, 
