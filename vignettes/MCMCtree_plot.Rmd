@@ -32,7 +32,7 @@ MCMC.tree.plot(phy, MCMC.chain=MCMCtree.posterior, time.correction=100, plot.typ
 MCMC.tree.plot(phy, MCMC.chain=MCMCtree.posterior, time.correction=100, plot.type="cladogram", cex.age=0.7, cex.labels=0.7, relative.height=0.08, col.tree="#008b00", scale.res=c("Eon", "Period"), no.margin=TRUE, label.offset=4, col.age = "#008b0070", label.timescale.names=FALSE, tip.color="white",  cex.tips=0.1)
 ```
 
-This guide demonstrates the ``MCMC.tree.plot`` function that plots time trees output from divergence time analysis using the molecular (or morphological) clock. ``MCMC.tree.plot`` includes options to plot the HPD age distribution for each node as node bars or the full distribution, and also includes arguments to plot a geological and/or absolute timescale.
+This guide demonstrates the ``MCMC.tree.plot`` function that plots time trees output from divergence time analysis using the molecular (or morphological) clock. ``MCMC.tree.plot`` includes options to plot the Bayesian HPD age distribution for each node as node bars or the full distribution, and also includes arguments to plot a geological and/or absolute timescale.
 
 ``MCMC.tree.plot`` can take any timescaled tree from any software as long as it is read into R in [APE](https://CRAN.R-project.org/package=ape) format. The function contains methods to read in and summarise posterior age estimates for analyses from [MrBayes](http://nbisweden.github.io/MrBayes/), [RevBayes](https://revbayes.github.io/), and [MCMCtree](http://abacus.gene.ucl.ac.uk/software/paml.html). However **any** tree and uncertainty can be plotted the phylogeny and posterior age estimates are given as arguments to the function. 
 

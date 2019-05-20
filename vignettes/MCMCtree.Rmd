@@ -29,17 +29,27 @@ MCMCtreeR contains functions to set up analyses in the [MCMCtree](http://abacus.
 
 # Installation
 
-The examples here use a phylogeny of apes and associated age information. These data are a phylogeny of apes ``apeTree``, the minimum ages for internal nodes ``minimumTimes``, maximum ages for internal nodes ``maximumTimes``, and the tip labels descending from each node ``monophyleticGroups``. These example data can be substituted for other data. The order of the data must match in the ``minimumTimes``, ``maximumTimes``, and ``monophyleticGroups`` objects. These data do not need to be given in the order they appear in the tree, but the order must match in each object. For example, if the minimum age for the root is the first element in ``minimumTimes`` it must also be the first element in the ``minimumTimes`` and ``monophyleticGroup`` objects. 
-
 ```{r}
 if(!any(rownames(installed.packages()) == "MCMCtreeR")) install.packages("MCMCtreeR")
 library(MCMCtreeR, quietly=TRUE, warn.conflicts=FALSE)
+```
+
+The examples here use a phylogeny of apes and associated age information. These data are a phylogeny of apes ``apeTree``, the minimum ages for internal nodes ``minimumTimes``, maximum ages for internal nodes ``maximumTimes``, and the tip labels descending from each node ``monophyleticGroups``. These example data can be substituted for other data. 
+
+```{r}
 data(apeData)
 attach(apeData)
 names(apeData)
+minimumTimes
+maximumTimes
+monophyleticGroups
+apeTree
 ```
 
-For example, for this example there are four calibrated nodes. The MCMCtree function ``tipDes`` can be used to recreate the monophyletic group list object. First the ``ape`` package is used to plot the tree and view the node label numbers. 
+
+The order of the data must match in the ``minimumTimes``, ``maximumTimes``, and ``monophyleticGroups`` objects. These data do not need to be given in the order they appear in the tree, but the order must match in each object. For example, if the minimum age for the root is the first element in ``minimumTimes`` it must also be the first element in the ``minimumTimes`` and ``monophyleticGroup`` objects. 
+
+For this example there are four calibrated nodes. The MCMCtree function ``tipDes`` can be used to recreate the ``monophyleticGroups`` list object. First the ``ape`` package is used to plot the tree and view the node label numbers. 
 
 ```{r, fig.align='center', fig.cap='**Figure 1** Plot of the tree with node labelled with numbers', fig.height=4, fig.width=4, dpi=200}
 plot(apeTree)
@@ -59,26 +69,28 @@ monophyleticGroups.user
 
 This section includes information to estimate and plot prior age distributions for node(s) used in MCMCtree divergence time estimation. The data required to do this are a phylogeny, minimum and maximum ages for the nodes with prior distributions, and taxa that descend from each node (please see above for information on how to make this various objects).
 
-The code can be used to simultanaeouly estimate the parameter values that reflect the **a priori** time information for nodes and write files ready for MCMCtree input. MCMCtreeR can produce output files with the same type of distributions used to summarise **a prior** time information for all nodes, or different distributions can be used to reflect uncertainty on different internal nodes.
+The code can be used to simultaneously estimate the parameter values that reflect the *a priori* time information for nodes and write files ready for MCMCtree input. MCMCtreeR can produce output files with the same type of distributions used to summarise *a priori* time information for all nodes, or different distributions can be used to reflect uncertainty on different internal nodes.
 
-The functions here estimates the distribution parameters so that the distribution spans for user-supplied minimum bounds (lower age) and maximum bounds (upper age). By default, minimum ages are treated as 'hard' constraints and maximum ages are 'soft'. The function then ensures that 97.5% of the distribution falls between these minimum and maximum ages. The code can estimate paramaters for the Cauchy, Skew-T, Skew-normal, and Gamma distirbutions shown in the [MCMCtree manual](https://github.com/PuttickMacroevolution/MCMCtreeR/blob/master/pamlDOC.pdf) on page 49, and calibrated node priors can also be placed on trees for uniform (bound), fixed, and upper age.
+The functions here estimates the distribution parameters so that the distribution spans for user-supplied minimum bounds (lower age) and maximum bounds (upper age). By default, minimum ages are treated as 'hard' constraints and maximum ages are 'soft'. The function then ensures that 97.5% of the distribution falls between these minimum and maximum ages. The code can estimate paramaters for the Cauchy, Skew *t*, Skew-normal, and Gamma distirbutions shown in the [MCMCtree manual](https://github.com/PuttickMacroevolution/MCMCtreeR/blob/master/pamlDOC.pdf) on page 49, and calibrated node priors can also be placed on trees for uniform (bound), fixed, and upper age.
 
 For each function, if only a single value is provided for each parameter by the user, the function outputs warnings to indicate these values are recycled for each node. 
 
-## Skew t
+## Skew *t*
 
 ###	 estimate scale with a given shape
 
-The default arguments in the ``estimateSkewT`` assumes the user wants to estimate the scale of the distribution with a given shape value (the default shape value is 50). The function estimates the parameters with the user-supplied minimum and maximum ages for all nodes, and the monophyletic groups that define the nodes.The output ``skewT_results$MCMCtree`` shows the estimated parameters in the input ready for MCMCtree. Here the parameters for the Skew T distributions are the location (lower node age), scale, shape, and degrees of freedom
+The default arguments in the ``estimateSkewT`` assumes the user wants to estimate the scale of the distribution with a given shape value (the default shape value is 50). The function estimates the parameters with the user-supplied minimum and maximum ages for all nodes, and the monophyletic groups that define the nodes.The output ``skewT_results$MCMCtree`` shows the estimated parameters in the input ready for MCMCtree. Here the parameters for the Skew *t* distributions are the location (lower node age), scale, shape, and degrees of freedom.
 
 ```{r}
 skewT_results <- estimateSkewT(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups, phy=apeTree, plot=FALSE)
 skewT_results$MCMCtree
 ```
 
+As explained above, if only a single value is provided for each parameter by the user, the function outputs warnings to indicate these values are recycled for each node. 
+
 The function ``plotMCMCtree`` plots the estimated age distributions given these parameters.
 
-```{r, fig.align='center', fig.cap='**Figure 2** Skew T distributions for all nodes', fig.height=6, fig.width=6, dpi=200}
+```{r, fig.align='center', fig.cap='**Figure 2** Skew *t* distributions for all nodes', fig.height=6, fig.width=6, dpi=200}
 par(mfrow=c(2,2), family="Palatino")
 for(i in 1:4) plotMCMCtree(skewT_results$parameters[i,], method="skewT", title=paste0("node ", i), upperTime=max(maximumTimes))
 skewT_results$MCMCtree
@@ -137,7 +149,7 @@ plotMCMCtree(example_page_50, method="cauchy", title=paste0("node ", i), upperTi
 
 ### estimate scale with a given shape 
 
-The ``estimateCauch`` function will take minimum input times, and estimate the value of the scale parameter that will produce a Cauchy distribution with the 97.5% cumulative probability of the distribution at the user-supplied maximum age.
+The ``estimateCauchy`` function will take minimum input times, and estimate the value of the scale parameter that will produce a Cauchy distribution with the 97.5% cumulative probability of the distribution at the user-supplied maximum age.
 
 ```{r, fig.align='center', fig.cap='**Figure 5** Cauchy distributions for all nodes (with a given shape)', fig.height=6, fig.width=6, dpi=200}
 cauchy_results <- estimateCauchy(minAge=minimumTimes, maxAge=maximumTimes, monoGroups=monophyleticGroups,  offset=0.5, phy=apeTree, plot=FALSE)
@@ -190,7 +202,7 @@ fixed_results
 
 ##	 Different parameters on different nodes
 
-If we require different node calibration distributions on each calibrated nodes we can specify this by using the ``MCMCtreePhy`` function. Here there are different distributions applied to the internal nodes: a fixed root (node 1), skew normal (node 2), gamma (node 3), and upper distribution (node 4). For each input we give the associated parameter values in a vector in the order of nodes. i.e., for the ``minProb`` on four nodes can be set as 1, 2, 4 to be 1e-8 and node 3 to be 0.025
+It is possible to specify different node calibration distributions to each calibrated node. we can specify this by using the ``MCMCtreePhy`` function. Here there are different distributions applied to the internal nodes: a fixed root (node 1), skew normal (node 2), gamma (node 3), and upper distribution (node 4). For each input we give the associated parameter values in a vector in the order of nodes. i.e., for the ``minProb`` on four nodes can be set as 1, 2, 4 to be 1e-8 and node 3 to be 0.025
 
 ```{r}
 each.node.method <- c("skewT", "cauchy", "gamma", "upper")
