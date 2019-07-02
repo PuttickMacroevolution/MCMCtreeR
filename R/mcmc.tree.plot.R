@@ -2,10 +2,10 @@
 #'
 #' Plot time-scaled phylogenies with node uncertainty and timescale
 #' @param phy A timescaled phylogeny, unless analysis.type="MCMCtree" and build.tree=TRUE
-#' @param analysis.type The method used to generate the time-scale tree, one of MCMCtree, MrBayes, RevBayes, or User.
+#' @param analysis.type The method used to generate the time-scale tree, one of MCMCtree, MrBayes, RevBayes, BEAST2, or User.
 #' @param MCMC.chain The full posterior of age estimates for all nodes (default NULL)
 #' @param node.ages List of user-supplied node ages applicable for analysis.type user. Either all nodes or a selection of nodes. Each list element must be named with its corresponding node label from the APE format.
-#' @param directory.files The directory for files to summarise for MrBayes and RevBayes analyses
+#' @param directory.files The directory for files to summarise for MrBayes, RevBayes, and BEAST2 analyses
 #' @param plot.type The plotting method for the phylogram corresponding to the APE definition. Phylogram is available for all analysis types, but cladogram is only avilable for MCMCtree analyses at present. Type distributions plots a phylogram with stats::density distributions on each of the nodes.
 #' @param build.tree Logical. Only applicable to MCMCtree analyses, whether to timescale the phylogeny based on the full MCMC chain
 #' @param node.method For plot.type phylogram the method to dispay age uncertainty on each node, either bar, node.length, or full.length. If 'none' is supplied plotting node uncertainty is suppressed. 
@@ -63,8 +63,8 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 	
 	analysis.type <- tolower(analysis.type)
 	
-	if(is.na(match(analysis.type, c("mcmctree", "mrbayes", "revbayes", "user")))) {
-		stop("analysis.type must be one of 'MCMCtree', 'mrbayes', 'revbayes', or 'user'")
+	if(is.na(match(analysis.type, c("mcmctree", "mrbayes", "revbayes", "user", "beast2")))) {
+		stop("analysis.type must be one of 'MCMCtree', 'mrbayes', 'revbayes', 'beast2', or 'user'")
 	}
 	
 	if(any(is.na(match(scale.res, c("Eon", "Period", "Epoch", "Age"))))) {
@@ -85,6 +85,16 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 		t.name <- gsub(".con.tre", ".run1.t", directory.files)
 		phy <- phy.data$phy
 		if(plot.type == "cladogram") stop("sorry plot type 'cladogram' only avilable for MCMCtree trees")
+		}
+		
+	if(analysis.type == "beast2") {
+		phy.data <- read.in.beast2(directory.files)
+		phy <- phy.data$phy
+		if(plot.type != "phylogram") stop("only 'phylogram' currently avilable for BEAST2 trees")
+		if(tip.lengths) {
+			tip.lengths <- FALSE
+			warning("tip.lengths argument not currently avilable for BEAST2 trees")
+			} 
 		}
 		
 	if(analysis.type == "revbayes") {
@@ -118,6 +128,8 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 			node.in.ape <- as.numeric(gsub("t_n", "", names(node.estimates)))
 			hpd.ages <- apply(node.estimates, 2, function(x) HPDinterval(as.mcmc(x))) 
 			mean.ages <- apply(node.estimates, 2, function(x) mean(x))
+			
+			mean.ages <- apply(node.estimates, 2, function(x) median(x))
 			max.ages <- apply(node.estimates, 2, function(x) max(x))
 			end.age <- hpd.ages[2,1]
 			if(build.tree) {
@@ -141,7 +153,7 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 			end.age <- hpd.ages[2,1]
 			node.in.ape <- as.numeric(rownames(phy.in$nodeAges))
 			ext.node <- which(phy$edge[,2] > Ntip(phy))
-			phy$root.edge <- end.age - mean.ages[1]
+			phy$root.edge <- end.age - max(branching.times(phy))
 			tip.range <- matrix(0, nrow=2, ncol=Ntip(phy))
 		}
 	}
@@ -153,6 +165,15 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 		node.in.ape <- as.numeric(phy.data$node.ages[,"node.name"])
 		phy$root.edge <- end.age - nodeTimes(phy)[1,1]
 		tip.range <- sapply(phy.data$tip.ages[,"age_95%HPD"], function(xx) as.numeric(strsplit(xx, ",")[[1]]))
+		}
+		
+	if(analysis.type == "beast2") {
+		phy.data <- phy.data
+		hpd.ages <- sapply(phy.data$node.ages[,"age_95%HPD"], function(xx) as.numeric(strsplit(xx, ",")[[1]]))
+		end.age <- hpd.ages[2,1]
+		node.in.ape <- as.numeric(phy.data$node.ages[,"node.name"])
+		phy$root.edge <- end.age - nodeTimes(phy)[1,1]
+		tip.range <- c(0,0)
 		}
 		
 	if(analysis.type == "revbayes") {

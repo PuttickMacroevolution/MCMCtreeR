@@ -5,10 +5,18 @@ Author: Mark Puttick [aut,cre]
 Maintainer: Mark Puttick <mark.puttick@bristol.ac.uk>
 Description: Provides functions to prepare time priors for 'MCMCtree' analyses in the 'PAML' software from Yang (2007)<doi:10.1093/molbev/msm088> and plot time-scaled phylogenies from any Bayesian divergence time analysis. Most time-calibrated node prior distributions require user-specified parameters. The package provides functions to refine these parameters, so that the resulting prior distributions accurately reflect confidence in known, usually fossil, time information. These functions also enable users to visualise distributions and write 'MCMCtree' ready input files. Additionally, the package supplies flexible functions to visualise age uncertainty on a plotted tree with using node bars, using branch widths proportional to the age uncertainty, or by plotting the full posterior distributions on nodes. Time-scaled phylogenetic plots can be visualised with absolute and geological timescales . All plotting functions are applicable with output from any Bayesian software, not just 'MCMCtree'.
 Depends: R (>= 3.3), ape (>= 3.0-7), sn, coda
-Imports: methods, utils, stats, grDevices, graphics
+Imports: 
+    methods,
+    utils,
+    stats,
+    grDevices,
+    graphics,
+    Rcpp
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
+LinkingTo: 
+    Rcpp

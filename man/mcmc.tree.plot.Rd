@@ -23,13 +23,13 @@ MCMC.tree.plot(phy = NULL, analysis.type = "MCMCtree",
 \arguments{
 \item{phy}{A timescaled phylogeny, unless analysis.type="MCMCtree" and build.tree=TRUE}
 
-\item{analysis.type}{The method used to generate the time-scale tree, one of MCMCtree, MrBayes, RevBayes, or User.}
+\item{analysis.type}{The method used to generate the time-scale tree, one of MCMCtree, MrBayes, RevBayes, BEAST2, or User.}
 
 \item{MCMC.chain}{The full posterior of age estimates for all nodes (default NULL)}
 
 \item{node.ages}{List of user-supplied node ages applicable for analysis.type user. Either all nodes or a selection of nodes. Each list element must be named with its corresponding node label from the APE format.}
 
-\item{directory.files}{The directory for files to summarise for MrBayes and RevBayes analyses}
+\item{directory.files}{The directory for files to summarise for MrBayes, RevBayes, and BEAST2 analyses}
 
 \item{plot.type}{The plotting method for the phylogram corresponding to the APE definition. Phylogram is available for all analysis types, but cladogram is only avilable for MCMCtree analyses at present. Type distributions plots a phylogram with stats::density distributions on each of the nodes.}
 
