@@ -121,7 +121,8 @@ attach(MCMCtree.output)
 ## MCMCtree.posterior <- read.csv("mcmc.posterior.file.directory", sep="\\t")
 MCMCtree.file <- readMCMCtree(MCMCtree.phy, from.file=FALSE)$apePhy
 MCMC.tree.plot(phy=MCMCtree.file,  analysis.type="MCMCtree",
-MCMC.chain=MCMCtree.posterior, plot.type="distributions", cex.tips=0.5)
+MCMC.chain=MCMCtree.posterior, plot.type="distributions", cex.tips=0.5,
+time.correction=100)
 }
 \author{
 Mark Puttick
