@@ -4,9 +4,18 @@
 \alias{estimateBound}
 \title{Estimate a Uniform Distribution for MCMCtree}
 \usage{
-estimateBound(minAge, maxAge, minProb = 0.025, rightTail = 0.025, phy,
-  monoGroups, writeMCMCtree = FALSE, plot = TRUE,
-  MCMCtreeName = "bound.tre", pdfOutput = "uniformPlot.pdf")
+estimateBound(
+  minAge,
+  maxAge,
+  minProb = 0.025,
+  rightTail = 0.025,
+  phy,
+  monoGroups,
+  writeMCMCtree = FALSE,
+  plot = TRUE,
+  MCMCtreeName = "bound.tre",
+  pdfOutput = "uniformPlot.pdf"
+)
 }
 \arguments{
 \item{minAge}{vector of minimum age bounds for nodes matching order in monoGroups}

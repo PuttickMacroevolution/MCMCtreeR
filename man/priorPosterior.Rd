@@ -4,8 +4,13 @@
 \alias{priorPosterior}
 \title{priorPosterior}
 \usage{
-priorPosterior(MCMCPrior, MCMCPosterior = NULL, inputTree,
-  return.density = FALSE, rootCalibration = NULL)
+priorPosterior(
+  MCMCPrior,
+  MCMCPosterior = NULL,
+  inputTree,
+  return.density = FALSE,
+  rootCalibration = NULL
+)
 }
 \arguments{
 \item{MCMCPrior}{prior of MCMC file from MCMCtree analysis using data=0}

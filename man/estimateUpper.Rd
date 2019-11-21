@@ -4,8 +4,14 @@
 \alias{estimateUpper}
 \title{Estimate Upper Age for MCMCtree analysis}
 \usage{
-estimateUpper(maxAge, rightTail = 0.025, phy, monoGroups,
-  writeMCMCtree = FALSE, MCMCtreeName = "estimateUpper.tre")
+estimateUpper(
+  maxAge,
+  rightTail = 0.025,
+  phy,
+  monoGroups,
+  writeMCMCtree = FALSE,
+  MCMCtreeName = "estimateUpper.tre"
+)
 }
 \arguments{
 \item{maxAge}{vector of maximum age bounds for nodes matching order in monoGroups}

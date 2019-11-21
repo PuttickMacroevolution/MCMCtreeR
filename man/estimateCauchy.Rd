@@ -4,10 +4,21 @@
 \alias{estimateCauchy}
 \title{Estimate Cauchy Distribution for MCMCtree}
 \usage{
-estimateCauchy(minAge, maxAge, phy, monoGroups, scale = 1.5,
-  offset = 50, estimateScale = TRUE, minProb = 0, maxProb = 0.975,
-  plot = FALSE, pdfOutput = "cauchyPlot.pdf", writeMCMCtree = FALSE,
-  MCMCtreeName = "cauchyInput.tre")
+estimateCauchy(
+  minAge,
+  maxAge,
+  phy,
+  monoGroups,
+  scale = 1.5,
+  offset = 50,
+  estimateScale = TRUE,
+  minProb = 0,
+  maxProb = 0.975,
+  plot = FALSE,
+  pdfOutput = "cauchyPlot.pdf",
+  writeMCMCtree = FALSE,
+  MCMCtreeName = "cauchyInput.tre"
+)
 }
 \arguments{
 \item{minAge}{vector of minimum age bounds for nodes matching order in monoGroups}

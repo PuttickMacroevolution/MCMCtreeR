@@ -4,9 +4,14 @@
 \alias{plotMCMCtree}
 \title{Plot distribution from MCMCtree node estimations}
 \usage{
-plotMCMCtree(parameters, method = c("skewT", "skewNormal", "cauchy",
-  "gamma", "bound"), title, upperTime, lowerTime = 0,
-  plotMCMCtreeData = TRUE)
+plotMCMCtree(
+  parameters,
+  method = c("skewT", "skewNormal", "cauchy", "gamma", "bound"),
+  title,
+  upperTime,
+  lowerTime = 0,
+  plotMCMCtreeData = TRUE
+)
 }
 \arguments{
 \item{parameters}{output parameters from node estimation function}

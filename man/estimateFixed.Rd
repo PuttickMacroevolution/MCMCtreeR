@@ -4,8 +4,13 @@
 \alias{estimateFixed}
 \title{Fixed Age for MCMCtree analysis input}
 \usage{
-estimateFixed(minAge, phy, monoGroups, writeMCMCtree = FALSE,
-  MCMCtreeName = "estimateFixed.tre")
+estimateFixed(
+  minAge,
+  phy,
+  monoGroups,
+  writeMCMCtree = FALSE,
+  MCMCtreeName = "estimateFixed.tre"
+)
 }
 \arguments{
 \item{minAge}{vector of fixed age bounds for nodes matching order in monoGroups}

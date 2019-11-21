@@ -4,14 +4,32 @@
 \alias{MCMCtreePhy}
 \title{MCMCtreePhy}
 \usage{
-MCMCtreePhy(phy, minAges, maxAges, monoGroups, method = c("cauchy",
-  "upper", "bound", "gamma", "skewNormal", "skewT", "fixed"),
-  offset = 0.1, df = 1, shape = 50, scale = 1.5, minProb = 1e-08,
-  addMode = 0, maxProb = 0.975, rightTail = 0.025, alpha = 188,
-  beta = 100, estimateScale = TRUE, estimateShape = FALSE,
-  estimateMode = FALSE, estimateAlpha = TRUE, estimateBeta = FALSE,
-  plot = FALSE, pdfOutput = "nodeDistributions.pdf",
-  writeMCMCtree = TRUE, MCMCtreeName = "output.tre")
+MCMCtreePhy(
+  phy,
+  minAges,
+  maxAges,
+  monoGroups,
+  method = c("cauchy", "upper", "bound", "gamma", "skewNormal", "skewT", "fixed"),
+  offset = 0.1,
+  df = 1,
+  shape = 50,
+  scale = 1.5,
+  minProb = 1e-08,
+  addMode = 0,
+  maxProb = 0.975,
+  rightTail = 0.025,
+  alpha = 188,
+  beta = 100,
+  estimateScale = TRUE,
+  estimateShape = FALSE,
+  estimateMode = FALSE,
+  estimateAlpha = TRUE,
+  estimateBeta = FALSE,
+  plot = FALSE,
+  pdfOutput = "nodeDistributions.pdf",
+  writeMCMCtree = TRUE,
+  MCMCtreeName = "output.tre"
+)
 }
 \arguments{
 \item{phy}{fully resolved phylogeny in ape format}

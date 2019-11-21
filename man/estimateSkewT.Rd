@@ -4,11 +4,25 @@
 \alias{estimateSkewT}
 \title{Estimate Skew-t Distribution for MCMCtree analysis}
 \usage{
-estimateSkewT(minAge, maxAge, monoGroups, phy, shape = 50, scale = 1.5,
-  df = 1, addMode = 0, maxProb = 0.975, minProb = 0.003,
-  estimateScale = TRUE, estimateShape = FALSE, estimateMode = FALSE,
-  plot = FALSE, pdfOutput = "skewTPlot.pdf", writeMCMCtree = FALSE,
-  MCMCtreeName = "skewTInput.tre")
+estimateSkewT(
+  minAge,
+  maxAge,
+  monoGroups,
+  phy,
+  shape = 50,
+  scale = 1.5,
+  df = 1,
+  addMode = 0,
+  maxProb = 0.975,
+  minProb = 0.003,
+  estimateScale = TRUE,
+  estimateShape = FALSE,
+  estimateMode = FALSE,
+  plot = FALSE,
+  pdfOutput = "skewTPlot.pdf",
+  writeMCMCtree = FALSE,
+  MCMCtreeName = "skewTInput.tre"
+)
 }
 \arguments{
 \item{minAge}{vector of minimum age bounds for nodes matching order in monoGroups}

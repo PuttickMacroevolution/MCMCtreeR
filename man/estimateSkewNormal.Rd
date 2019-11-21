@@ -4,11 +4,24 @@
 \alias{estimateSkewNormal}
 \title{Estimate Skew Normal for MCMCtree analysis}
 \usage{
-estimateSkewNormal(minAge, maxAge, monoGroups, phy, shape = 50,
-  scale = 1.5, addMode = 0, maxProb = 0.975, minProb = 0.003,
-  estimateScale = TRUE, estimateShape = FALSE, estimateMode = FALSE,
-  plot = FALSE, pdfOutput = "skewNormalPlot.pdf",
-  writeMCMCtree = FALSE, MCMCtreeName = "skewNormalInput.tre")
+estimateSkewNormal(
+  minAge,
+  maxAge,
+  monoGroups,
+  phy,
+  shape = 50,
+  scale = 1.5,
+  addMode = 0,
+  maxProb = 0.975,
+  minProb = 0.003,
+  estimateScale = TRUE,
+  estimateShape = FALSE,
+  estimateMode = FALSE,
+  plot = FALSE,
+  pdfOutput = "skewNormalPlot.pdf",
+  writeMCMCtree = FALSE,
+  MCMCtreeName = "skewNormalInput.tre"
+)
 }
 \arguments{
 \item{minAge}{vector of minimum age bounds for nodes matching order in monoGroups}

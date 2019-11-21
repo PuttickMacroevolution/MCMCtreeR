@@ -149,13 +149,13 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 		} else {
 			phy$edge.length <- phy$edge.length * time.correction
 			phy.in$nodeAges <- phy.in$nodeAges * time.correction
-			hpd.ages <- t(phy.in$nodeAges[,-1])
-			mean.ages <- phy.in$nodeAges[,1]
-			end.age <- hpd.ages[2,1]
+			hpd.ages <- t(phy.in$nodeAges[, -1])
+			mean.ages <- phy.in$nodeAges[, 1]
+			end.age <- max(hpd.ages[ ,1])
 			node.in.ape <- as.numeric(rownames(phy.in$nodeAges))
-			ext.node <- which(phy$edge[,2] > Ntip(phy))
+			ext.node <- which(phy$edge[, 2] > Ntip(phy))
 			phy$root.edge <- end.age - max(branching.times(phy))
-			tip.range <- matrix(0, nrow=2, ncol=Ntip(phy))
+			tip.range <- matrix(0, nrow = 2, ncol = Ntip(phy))
 		}
 	}
 		
@@ -562,7 +562,7 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 					if(label.timescale.names) graphics::mtext("Eon", 4, at=mean(heights[start.one:end.one]), line=0, font=4, cex=cex.names, las=1)
 					if(time.check) {
 						if(is.null(pos.age)) pos.age <- Ntip(phy) + (Ntip(phy) / 100)
-						graphics::axis(3, at=bin.eon, labels=signif(total.length-bin.eon, 2), line=abs.age.line, lwd=abs.age.lwd, lwd.ticks=abs.age.lwd.ticks, mgp=abs.age.mgp, cex.axis=cex.age.int, pos=pos.age, tck=tck.abs.age)
+						graphics::axis(3, at=bin.eon, labels=signif(total.length-bin.eon, 3), line=abs.age.line, lwd=abs.age.lwd, lwd.ticks=abs.age.lwd.ticks, mgp=abs.age.mgp, cex.axis=cex.age.int, pos=pos.age, tck=tck.abs.age)
 						# if(label.timescale.names) graphics::text(total.length, Ntip(phy) + (Ntip(phy) / 35), "Ma", pos=4, font=4, cex=cex.labels, adj=c(0,1), xpd=TRUE)
 						if(label.timescale.names) graphics::mtext("Ma",4, line=0, at=Ntip(phy) + (Ntip(phy) / 35), xpd=TRUE, cex=cex.names, font=4, las=1)
 					}
@@ -574,7 +574,7 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 					if(label.timescale.names) graphics::mtext("Period", 4, at=mean(heights[start.one:end.one]), line=0, font=4, cex=cex.names, las=1)
 					if(time.check) {
 						if(is.null(pos.age)) pos.age <- Ntip(phy) + (Ntip(phy) / 100)
-						graphics::axis(3, at=bin.period, labels=signif(total.length-bin.period, 2), line=abs.age.line, lwd=abs.age.lwd, lwd.ticks=abs.age.lwd.ticks, mgp=abs.age.mgp, cex.axis=cex.age.int, pos=pos.age, tck=tck.abs.age)
+						graphics::axis(3, at=bin.period, labels=signif(total.length-bin.period, 3), line=abs.age.line, lwd=abs.age.lwd, lwd.ticks=abs.age.lwd.ticks, mgp=abs.age.mgp, cex.axis=cex.age.int, pos=pos.age, tck=tck.abs.age)
 						# if(label.timescale.names) graphics::text(total.length, Ntip(phy) + (Ntip(phy) / 35), "Ma", pos=4, font=4, cex=cex.labels, adj=c(0,1), xpd=TRUE)
 						if(label.timescale.names) graphics::mtext("Ma",4, line=0, at=Ntip(phy) + (Ntip(phy) / 35), xpd=TRUE, cex=cex.names, font=4, las=1)
 					}
@@ -586,7 +586,7 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 					if(label.timescale.names) graphics::mtext("Epoch", 4, at=mean(heights[start.one:end.one]), line=0, font=4, cex=cex.names, las=1)
 					if(time.check) {
 						if(is.null(pos.age)) pos.age <- Ntip(phy) + (Ntip(phy) / 100)
-						graphics::axis(3, at=bin.epoch, labels=signif(total.length-bin.epoch, 2), line=abs.age.line, lwd=abs.age.lwd, lwd.ticks=abs.age.lwd.ticks, mgp=abs.age.mgp, cex.axis=cex.age.int, pos=pos.age, tck=tck.abs.age, ...)
+						graphics::axis(3, at=bin.epoch, labels=signif(total.length-bin.epoch, 3), line=abs.age.line, lwd=abs.age.lwd, lwd.ticks=abs.age.lwd.ticks, mgp=abs.age.mgp, cex.axis=cex.age.int, pos=pos.age, tck=tck.abs.age)
 						# if(label.timescale.names) graphics::text(total.length, Ntip(phy) + (Ntip(phy) / 35), "Ma", pos=4, font=4, cex=cex.labels, adj=c(0,1), xpd=TRUE)
 						if(label.timescale.names) graphics::mtext("Ma",4, line=0, at=Ntip(phy) + (Ntip(phy) / 35), xpd=TRUE, cex=cex.names, font=4, las=1)
 					}
@@ -598,7 +598,7 @@ MCMC.tree.plot <- function(phy=NULL, analysis.type="MCMCtree", MCMC.chain=NULL, 
 					if(label.timescale.names) graphics::mtext("Age", 4, at=mean(heights[start.one:end.one]), line=0, font=4, cex=cex.names, las=1)
 					if(time.check) {
 						if(is.null(pos.age)) pos.age <- Ntip(phy) + (Ntip(phy) / 100)
-						graphics::axis(3, at=bin.age, labels=signif(total.length-bin.age, 2), line=abs.age.line, lwd=abs.age.lwd, lwd.ticks=abs.age.lwd.ticks, mgp=abs.age.mgp, cex.axis=cex.age.int, pos=pos.age, tck=tck.abs.age)
+						graphics::axis(3, at=bin.age, labels=signif(total.length-bin.age, 3), line=abs.age.line, lwd=abs.age.lwd, lwd.ticks=abs.age.lwd.ticks, mgp=abs.age.mgp, cex.axis=cex.age.int, pos=pos.age, tck=tck.abs.age)
 						# if(label.timescale.names) graphics::text(total.length, Ntip(phy) + (Ntip(phy) / 35), "Ma", pos=4, font=4, cex=cex.labels, adj=c(0,1), xpd=TRUE)
 						if(label.timescale.names) graphics::mtext("Ma",4, line=0, at=Ntip(phy) + (Ntip(phy) / 35), xpd=TRUE, cex=cex.names, font=4, las=1)
 					}

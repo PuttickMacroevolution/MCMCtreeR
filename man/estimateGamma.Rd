@@ -4,10 +4,21 @@
 \alias{estimateGamma}
 \title{Estimate Gamma Distribution for MCMCtree analysis}
 \usage{
-estimateGamma(minAge, maxAge, phy, monoGroups, alpha = 188,
-  beta = 2690, offset = 0.1, estimateAlpha = TRUE,
-  estimateBeta = FALSE, plot = FALSE, pdfOutput = "gammaPlot.pdf",
-  writeMCMCtree = FALSE, MCMCtreeName = "gammaInput.tre")
+estimateGamma(
+  minAge,
+  maxAge,
+  phy,
+  monoGroups,
+  alpha = 188,
+  beta = 2690,
+  offset = 0.1,
+  estimateAlpha = TRUE,
+  estimateBeta = FALSE,
+  plot = FALSE,
+  pdfOutput = "gammaPlot.pdf",
+  writeMCMCtree = FALSE,
+  MCMCtreeName = "gammaInput.tre"
+)
 }
 \arguments{
 \item{minAge}{vector of minimum age bounds for nodes matching order in monoGroups}
